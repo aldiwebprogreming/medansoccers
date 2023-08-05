@@ -1,13 +1,30 @@
 body {
-  margin: 0;
+  /* margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
+  background-color: rgb(230, 227, 223);
+}
+
+.headerred {
+  height: 250px;
+  background-image: url("https://o-cdf.sirclocdn.com/unsafe/cdn-omp.orami.co.id/media/banners/HOMEPAGE_1000X500lowres_copy_1.png");
+}
+.cardMenu {
+  position: relative;
+  bottom: 50px;
+}
+
+.cardMenu img {
+  height: 50px;
+}
+.cardMenu p {
+  font-weight: bold;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
