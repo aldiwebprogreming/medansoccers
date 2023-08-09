@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 import BookingLapangan from "./pages/BookingLapangan";
 import Formbooking from "./pages/Formbooking";
+import Pay from "./pages/Pay";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                   path="/formbooking/:idlapangan"
                   element={<Formbooking />}
                 />
+                <Route path="/pay" element={<Pay />} />
               </Routes>
             </Router>
           </div>

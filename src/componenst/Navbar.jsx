@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar({ judul, aicon }) {
   return (
     <div>
-      <nav className="navbar navbar-danger bg-danger">
+      <nav className="navbar navbar-danger bg-danger shadow">
         <div className="container">
           <div className="d-flex justify-content-between">
             <Link to="/" className="navbar-brand text-white" href="#">
