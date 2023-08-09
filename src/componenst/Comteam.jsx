@@ -36,7 +36,7 @@ export default function Comteam() {
         <div className="card-body">
           <div className="d-flex justify-content-between">
             <h5 className="" style={{ fontWeight: "bold" }}>
-              Export United
+              Export Unitedere
             </h5>
             <h5 className="text-dangar">
               <i className="fa-solid fa-arrow-right"></i>
