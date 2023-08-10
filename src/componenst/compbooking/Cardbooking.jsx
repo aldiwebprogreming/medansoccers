@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function Cardbooking() {
   const [lapangan, setLapangan] = useState([]);
+  const urlapi = process.env.REACT_APP_BASE_URL;
 
   const getdata = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost/backmedansoccers/api/lapangan"
-      );
+      const response = await axios.get(urlapi + "lapangan");
       setLapangan(response.data);
     } catch (error) {
       console.log(error.message);

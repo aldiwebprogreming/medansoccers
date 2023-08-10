@@ -5,17 +5,15 @@ import Headerbokinglapangan from "../componenst/compbooking/Headerbokinglapangan
 import axios from "axios";
 import CompSlide from "../componenst/compbooking/CompSlide";
 import Listjadwalbooking from "../componenst/compbooking/Listjadwalbooking";
-import Formbooking from "./Formbooking";
 
 export default function BookingLapangan() {
+  const urlapi = process.env.REACT_APP_BASE_URL;
   const [lapangan, setLapangan] = useState([]);
   const { slug, id } = useParams();
 
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost/backmedansoccers/api/lapangan?slug=" + slug
-      );
+      const response = await axios.get(urlapi + "lapangan?slug=" + slug);
       setLapangan(response.data);
     } catch (error) {
       console.log(error.message);

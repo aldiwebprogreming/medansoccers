@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function Listjadwalbooking({ idlapangan }) {
   const [booking, setBooking] = useState([]);
+  const urlapi = process.env.REACT_APP_BASE_URL;
 
   const getDataBooking = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost/backmedansoccers/api/booking?id=" + idlapangan
-      );
+      const response = await axios.get(urlapi + "booking?id=" + idlapangan);
 
       // console.log(idlapangan);
       setBooking(response.data);

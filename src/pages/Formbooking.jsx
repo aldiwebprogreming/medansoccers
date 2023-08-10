@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 
 export default function Formbooking() {
+  const urlapi = process.env.REACT_APP_BASE_URL;
   const { idlapangan } = useParams();
   const [jambooking, setJambooking] = useState("");
   const [tglbooking, setTglbooking] = useState("");
@@ -21,9 +22,7 @@ export default function Formbooking() {
 
   const getLapangan = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost/backmedansoccers/api/Lapangan?id=" + idlapangan
-      );
+      const response = await axios.get(urlapi + "Lapangan?id=" + idlapangan);
       setTotalharga(response.data.harga_perjam);
       setTNamalapangan(response.data.lapangan);
     } catch (error) {
@@ -43,7 +42,7 @@ export default function Formbooking() {
 
   const actionCekTgl = async (tgl) => {
     await axios
-      .post("http://localhost/backmedansoccers/api/Cekbooking", {
+      .post(urlapi + "Cekbooking", {
         jam: jambooking,
         tgl: tgl,
         id_lapangan: idlapangan,
@@ -58,7 +57,7 @@ export default function Formbooking() {
 
   const actionCekJam = async (jam) => {
     await axios
-      .post("http://localhost/backmedansoccers/api/Cekbooking", {
+      .post(urlapi + "Cekbooking", {
         jam: jam,
         tgl: tglbooking,
         id_lapangan: idlapangan,
@@ -73,7 +72,7 @@ export default function Formbooking() {
 
   const PayBooking = async () => {
     await axios
-      .post("http://localhost/backmedansoccers/api/pay", {
+      .post(urlapi + "pay", {
         total: totalHarga,
         team: namateam,
       })
@@ -98,7 +97,7 @@ export default function Formbooking() {
 
     const addBooking = async (result) => {
       await axios
-        .post("http://localhost/backmedansoccers/api/Addbooking", {
+        .post(urlapi + "Addbooking", {
           jam: jambooking,
           tgl: tglbooking,
           team: namateam,
@@ -123,7 +122,7 @@ export default function Formbooking() {
 
   return (
     <div>
-      <Navbar judul="form booking" aicon="true" />
+      <Navbar judul="Booking" aicon="true" />
       <div className="card container">
         <div className="card my-3 shadow">
           <div className="card-header text-danger">Kententuan booking</div>
