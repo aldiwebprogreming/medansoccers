@@ -6,6 +6,9 @@ import Booking from "./pages/Booking";
 import BookingLapangan from "./pages/BookingLapangan";
 import Formbooking from "./pages/Formbooking";
 import Pay from "./pages/Pay";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Intro from "./pages/Intro";
 
 function App() {
   return (
@@ -26,7 +29,9 @@ function App() {
                   path="/formbooking/:idlapangan"
                   element={<Formbooking />}
                 />
-                <Route path="/pay" element={<Pay />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/intro" element={<Intro />} />
               </Routes>
             </Router>
           </div>

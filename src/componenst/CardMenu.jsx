@@ -1,5 +1,5 @@
 import React from "react";
-import Compcrousel from "./Compcrousel";
+
 import { Link } from "react-router-dom";
 
 export default function CardMenu() {
@@ -10,16 +10,21 @@ export default function CardMenu() {
           <div className="card-body">
             <div className="row">
               <div className="col-sm-3 col-3">
-                <center>
-                  <img
-                    src="football.png"
-                    className="img-fluid"
-                    alt="Responsive image"
-                  />
-                  <p className="text-danger mt-2" style={{ fontSize: "12px" }}>
-                    About
-                  </p>
-                </center>
+                <Link to={"/about"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="football.png"
+                      className="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      About
+                    </p>
+                  </center>
+                </Link>
               </div>
 
               <div className="col-sm-3 col-3">
@@ -48,17 +53,22 @@ export default function CardMenu() {
                 </center>
               </div>
               <div className="col-sm-3 col-3">
-                <center>
-                  <img src="man.png" class="img-fluid" alt="Responsive image" />
-                  <p
-                    className="text-danger font-weight-bold mt-2"
-                    style={{ fontSize: "12px" }}
-                  >
-                    Login
-                  </p>
-                </center>
+                <Link to={"/login"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="man.png"
+                      class="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger font-weight-bold mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Login
+                    </p>
+                  </center>
+                </Link>
               </div>
-              {/* <Compcrousel /> */}
             </div>
           </div>
         </div>

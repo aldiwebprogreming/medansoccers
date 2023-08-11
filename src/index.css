@@ -39,6 +39,24 @@ body {
   bottom: 70px;
   border: 0px;
 }
+.owl-next {
+  position: relative;
+  left: 100px;
+}
+
+.owl-next h5 {
+  color: red;
+}
+
+.owl-prev h5 {
+  color: red;
+}
+
+.owl-prev {
+  position: relative;
+  right: 100px;
+  color: red;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
