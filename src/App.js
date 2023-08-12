@@ -9,6 +9,7 @@ import Pay from "./pages/Pay";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Intro from "./pages/Intro";
+import Member from "./pages/Member";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                   element={<Formbooking />}
                 />
                 <Route path="/about" element={<About />} />
+                <Route path="/member" element={<Member />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/intro" element={<Intro />} />
               </Routes>
