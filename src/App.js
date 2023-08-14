@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Intro from "./pages/Intro";
 import Member from "./pages/Member";
+import Profil from "./pages/Profil";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <div className="card comcontent" style={{ border: "0px" }}>
             <Router>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Intro />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/booking" element={<Booking />} />
                 <Route
                   path="/bookinglapangan/:slug/:id"
@@ -33,7 +35,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/intro" element={<Intro />} />
+                <Route path="/profil" element={<Profil />} />
               </Routes>
             </Router>
           </div>
