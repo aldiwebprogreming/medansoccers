@@ -53,7 +53,7 @@ export default function CardMenu() {
                 </center>
               </div>
               <div className="col-sm-3 col-3">
-                <Link to={"/login"} style={{ textDecoration: "none" }}>
+                <Link to={"/member"} style={{ textDecoration: "none" }}>
                   <center>
                     <img
                       src="man.png"
@@ -64,7 +64,7 @@ export default function CardMenu() {
                       className="text-danger font-weight-bold mt-2"
                       style={{ fontSize: "12px" }}
                     >
-                      Login
+                      Member karir
                     </p>
                   </center>
                 </Link>
