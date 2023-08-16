@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Intro from "./pages/Intro";
 import Member from "./pages/Member";
 import Profil from "./pages/Profil";
+import Jadwalmember from "./pages/Jadwalmember";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 />
                 <Route path="/about" element={<About />} />
                 <Route path="/member" element={<Member />} />
+                <Route path="/jadwalmemberkarir" element={<Jadwalmember />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profil" element={<Profil />} />
               </Routes>

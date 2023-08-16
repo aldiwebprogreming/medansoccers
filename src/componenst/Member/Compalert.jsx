@@ -29,6 +29,10 @@ export default function Compalert({ pdfurl, statuscode }) {
                 Lihat instruksi pembayaran{" "}
                 <i className="fas fa-arrow-right"></i>
               </a>
+              <br />
+              {/* <button className="btn btn-danger mt-2">
+                <i className="fas fa-mony"></i> Ulangi Pembayaran anda
+              </button> */}
             </center>
           ) : (
             <center>
@@ -46,7 +50,7 @@ export default function Compalert({ pdfurl, statuscode }) {
                 Status pembayaran anda berhasil, sekarang anda dapat menentukan
                 jadwal bermain anda
               </p>
-              <Link to="/setjadwal" style={{ textDecoration: "none" }}>
+              <Link to="/jadwalmemberkarir" style={{ textDecoration: "none" }}>
                 Tentukan jadwal bermain anda{" "}
                 <i className="fas fa-arrow-right"></i>
               </Link>

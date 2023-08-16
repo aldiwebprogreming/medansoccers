@@ -45,6 +45,7 @@ export default function Compmember({ props }) {
               // console.log(result);
               addMemberkarir(result);
               getMember();
+              setAwal(false);
             },
             onPending: (result) => {
               setShow(false);
