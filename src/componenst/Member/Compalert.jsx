@@ -51,7 +51,7 @@ export default function Compalert({ pdfurl, statuscode }) {
                 jadwal bermain anda
               </p>
               <Link to="/jadwalmemberkarir" style={{ textDecoration: "none" }}>
-                Tentukan jadwal bermain anda{" "}
+                Gunakan slot bermain anda sekarang{" "}
                 <i className="fas fa-arrow-right"></i>
               </Link>
             </center>

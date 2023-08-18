@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 export default function Navbar({ judul, aicon }) {
   return (
     <div>
-      <nav className="navbar navbar-danger bg-danger shadow">
+      <nav
+        className="navbar navbar-danger bg-danger shadow mb-5"
+        style={{ position: "fixed", zIndex: "9999", width: "663px" }}
+      >
         <div className="container">
           <div className="d-flex justify-content-between">
-            <Link to="/" className="navbar-brand text-white" href="#">
+            <Link to="/home" className="navbar-brand text-white" href="#">
               <b>
                 {" "}
                 {aicon == "true" ? (

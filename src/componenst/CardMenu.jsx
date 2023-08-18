@@ -40,7 +40,7 @@ export default function CardMenu() {
                   </center>
                 </Link>
               </div>
-
+              {/* 
               <div className="col-sm-3 col-3">
                 <center>
                   <img src="2.png" class="img-fluid" alt="Responsive image" />
@@ -51,9 +51,12 @@ export default function CardMenu() {
                     Sparing
                   </p>
                 </center>
-              </div>
+              </div> */}
               <div className="col-sm-3 col-3">
-                <Link to={"/member"} style={{ textDecoration: "none" }}>
+                <Link
+                  to={"/jadwalmemberkarir"}
+                  style={{ textDecoration: "none" }}
+                >
                   <center>
                     <img
                       src="man.png"
@@ -65,6 +68,27 @@ export default function CardMenu() {
                       style={{ fontSize: "12px" }}
                     >
                       Member karir
+                    </p>
+                  </center>
+                </Link>
+              </div>
+
+              <div className="col-sm-3 col-3">
+                <Link
+                  to={"/listbookingkarir"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <center>
+                    <img
+                      src="main.jpg"
+                      class="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger font-weight-bold mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Data main
                     </p>
                   </center>
                 </Link>

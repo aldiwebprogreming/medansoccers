@@ -12,6 +12,8 @@ import Intro from "./pages/Intro";
 import Member from "./pages/Member";
 import Profil from "./pages/Profil";
 import Jadwalmember from "./pages/Jadwalmember";
+import Listjadwalbooking from "./componenst/compbooking/Listjadwalbooking";
+import Listbookingkarir from "./pages/Listbookingkarir";
 
 function App() {
   return (
@@ -36,6 +38,10 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/jadwalmemberkarir" element={<Jadwalmember />} />
+                <Route
+                  path="/listbookingkarir"
+                  element={<Listbookingkarir />}
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profil" element={<Profil />} />
               </Routes>
