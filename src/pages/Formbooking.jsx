@@ -123,7 +123,7 @@ export default function Formbooking() {
   return (
     <div>
       <Navbar judul="Booking" aicon="true" />
-      <div className="card container">
+      <div className="card container mt-5">
         <div className="card my-3 shadow">
           <div className="card-header text-danger">Kententuan booking</div>
           <div className="card-body">

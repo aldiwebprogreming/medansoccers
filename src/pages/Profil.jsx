@@ -6,7 +6,7 @@ import Compprofil from "../componenst/Profil/Compprofil";
 export default function Profil() {
   return (
     <div>
-      <Navbar judul="Profil" aicon="true" />
+      <Navbar judul="Profil" aicon="false" />
       <CompHeader />
       <Compprofil />
     </div>

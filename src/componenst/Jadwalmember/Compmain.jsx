@@ -4,13 +4,32 @@ import Modal from "react-bootstrap/Modal";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Compmain({ jml_main }) {
   const urlapi = process.env.REACT_APP_BASE_URL;
+
+  const notify = () =>
+    toast.error(
+      "Mohon maaf jam booking member karir anda sudah habis, cobalah di hari yang akan datang",
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
+  const [btnmain, setBtnmain] = useState(true);
 
   const [karir, setKarir] = useState([]);
   const [sisa, setSisa] = useState(0);
@@ -65,6 +84,13 @@ export default function Compmain({ jml_main }) {
   useEffect(() => {
     getKarir();
     getMain();
+    const date = new Date();
+    const jam = date.getHours();
+    if (jam < 10) {
+      setBtnmain(true);
+    } else {
+      setBtnmain(false);
+    }
   }, []);
 
   return (
@@ -165,9 +191,27 @@ export default function Compmain({ jml_main }) {
             expedita aperiam repellendus velit facere!
           </p>
 
-          <Button variant="danger" className="w-100" onClick={handleShow}>
-            Mulai bermain hari ini
-          </Button>
+          {btnmain ? (
+            <Button variant="danger" className="w-100" onClick={handleShow}>
+              Mulai bermain hari ini
+            </Button>
+          ) : (
+            <Button variant="danger" className="w-100" onClick={notify}>
+              Mulai bermain hari ini
+            </Button>
+          )}
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
 
           <Modal centered show={show} onHide={handleClose}>
             <Modal.Header closeButton>

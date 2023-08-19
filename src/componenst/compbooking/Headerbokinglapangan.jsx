@@ -8,7 +8,7 @@ export default function Headerbokinglapangan({ judul, title }) {
         style={{ borderRadius: "0px" }}
       >
         <div className="container my-5">
-          <h3 className="card-title">{judul}</h3>
+          <h3 className="card-title mt-5">{judul}</h3>
           <br></br>
           <br></br>
         </div>

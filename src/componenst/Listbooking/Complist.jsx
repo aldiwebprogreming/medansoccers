@@ -36,6 +36,38 @@ export default function Complist() {
     }
   };
 
+  const renderTeam = (team) => {
+    if (team == "Merah") {
+      return (
+        <p className="text-danger">
+          {" "}
+          <i class="fas fa-shield"></i> {team}
+        </p>
+      );
+    } else if (team == "Biru") {
+      return (
+        <p className="text-primary">
+          {" "}
+          <i class="fas fa-shield"></i> {team}
+        </p>
+      );
+    } else if (team == "Putih") {
+      return (
+        <p className="text-secondary">
+          {" "}
+          <i class="fas fa-shield"></i> {team}
+        </p>
+      );
+    } else {
+      return (
+        <p className="">
+          {" "}
+          <i class="fas fa-shield"></i> {team}
+        </p>
+      );
+    }
+  };
+
   useEffect(() => {
     getKarir();
     getBooking();
@@ -130,16 +162,18 @@ export default function Complist() {
                         alt="Responsive image"
                         style={{ height: "50px" }}
                       ></img>
+
                       <p className="text-danger" style={{ marginLeft: "10px" }}>
                         Anda telah melakukan booking main di medan mini soccer
                         pada Tanggal :
                       </p>
                     </div>
-                    <div className="d-flex justify-content-around text-danger fw-bold">
-                      <p>
+                    <div className="d-flex justify-content-around  fw-bold">
+                      {renderTeam(data.team)}
+                      <p className="text-danger">
                         <i className="fas fa-calendar-days"></i> {data.tgl_main}
                       </p>
-                      <p>
+                      <p className="text-danger">
                         <i className="fas fa-clock"></i> {data.jam_main} WIB
                       </p>
                     </div>

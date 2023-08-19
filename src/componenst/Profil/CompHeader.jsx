@@ -8,7 +8,7 @@ export default function CompHeader() {
         style={{ borderRadius: "0px" }}
       >
         <div className="container my-5">
-          <h3 className="card-title">Lengkapi profil anda</h3>
+          <h3 className="card-title mt-5">Lengkapi profil anda</h3>
           <p className="card-text">
             Lengkapi profil anda terlebih dahulu untuk memulai aplikasi
           </p>
