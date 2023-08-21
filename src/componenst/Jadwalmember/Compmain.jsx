@@ -39,7 +39,10 @@ export default function Compmain({ jml_main }) {
   const getKarir = async () => {
     try {
       const response = await axios.get(
-        urlapi + "AddMemberKarir?id_user=" + localStorage.getItem("id")
+        urlapi +
+          "AddMemberKarir?id_user=" +
+          localStorage.getItem("id") +
+          "&&status=200"
       );
       setKarir(response.data);
       setSisa(response.data.sisa_bermain);
@@ -86,7 +89,7 @@ export default function Compmain({ jml_main }) {
     getMain();
     const date = new Date();
     const jam = date.getHours();
-    if (jam < 10) {
+    if (jam) {
       setBtnmain(true);
     } else {
       setBtnmain(false);

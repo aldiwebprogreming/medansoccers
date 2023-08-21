@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Compmainhariini from "./Compmainhariini";
 
 export default function Complist() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -14,7 +15,10 @@ export default function Complist() {
   const getKarir = async () => {
     try {
       const response = await axios.get(
-        urlapi + "AddMemberKarir?id_user=" + localStorage.getItem("id")
+        urlapi +
+          "AddMemberKarir?id_user=" +
+          localStorage.getItem("id") +
+          "&&status=200"
       );
       setKarir(response.data);
       setSisa(response.data.sisa_bermain);
@@ -150,7 +154,7 @@ export default function Complist() {
 
         {datamain ? (
           <div>
-            {" "}
+            <Compmainhariini />{" "}
             {databookingmain.map((data) => {
               return (
                 <div className="card shadow mt-2" key={data.id}>

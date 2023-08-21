@@ -79,6 +79,7 @@ export default function Compmember({ props }) {
         console.log(response);
         setShow(false);
         setAwal(true);
+        getMember();
       })
       .catch((error) => {
         console.log(error.message);
@@ -107,7 +108,7 @@ export default function Compmember({ props }) {
 
   useEffect(() => {
     getMember();
-  });
+  }, []);
 
   return (
     <div>

@@ -22,6 +22,7 @@ function App() {
         <div className="col-sm-3"></div>
         <div className="col-sm-6">
           <div className="card comcontent" style={{ border: "0px" }}>
+           
             <Router>
               <Routes>
                 <Route path="/" element={<Intro />} />
