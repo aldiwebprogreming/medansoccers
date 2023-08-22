@@ -5,7 +5,7 @@ import CardMenu from "../componenst/CardMenu";
 // import Content from "../componenst/Content";
 import Vanue from "../componenst/Vanue";
 import Comteam from "../componenst/Comteam";
-import Footer from "../componenst/Footer";
+// import Footer from "../componenst/Footer";
 
 export default function Home() {
   return (

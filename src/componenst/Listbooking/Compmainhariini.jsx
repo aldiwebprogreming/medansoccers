@@ -2,12 +2,15 @@ import { act } from "@testing-library/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Complawanmainhariini from "./Complawanmainhariini";
 
 export default function Compmainhariini() {
   const urlapi = process.env.REACT_APP_BASE_URL;
   const [team, setTeam] = useState([]);
   const [viewteam, setViewteam] = useState(false);
+  const [viewlawan, setViewlawan] = useState(false);
   const [totalpemain, setTotalpemain] = useState(0);
+  const [match, setMatch] = useState([]);
 
   const getTeam = async () => {
     try {
@@ -24,6 +27,35 @@ export default function Compmainhariini() {
 
   const actionViewTeam = () => {
     setViewteam(!viewteam);
+    setViewlawan(false);
+  };
+
+  const actionViewLawan = () => {
+    setViewlawan(!viewlawan);
+    setViewteam(false);
+  };
+
+  const pertandingan = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Pertandingan?id_user=" + localStorage.getItem("id")
+      );
+      setMatch(response.data);
+    } catch (error) {
+      console.log("error.message");
+    }
+  };
+
+  const colorTeam = (color) => {
+    if (color == "Merah") {
+      return "text-danger";
+    } else if (color == "Biru") {
+      return "text-primary";
+    } else if (color == "Hitam") {
+      return "text-dark";
+    } else {
+      return "text-secondary";
+    }
   };
 
   const Alerslot = () => {
@@ -50,6 +82,7 @@ export default function Compmainhariini() {
 
   useEffect(() => {
     getTeam();
+    pertandingan();
   }, []);
 
   return (
@@ -62,22 +95,47 @@ export default function Compmainhariini() {
               onClick={actionViewTeam}
               style={{ textDecoration: "none" }}
             >
-              <p>Lihat team anda hari ini ?</p>
+              <p>
+                Team anda <i className="far fa-user"></i>
+              </p>
             </Link>
 
             <Link
               to=""
-              onClick={actionViewTeam}
+              onClick={actionViewLawan}
               style={{ textDecoration: "none" }}
             >
               <p>
-                <i className="fas fa-arrow-right"></i>
+                Team lawan <i className="far fa-user"></i>
               </p>
             </Link>
           </div>
-          <Alerslot />
+
+          <div className="d-flex justify-content-between">
+            <h4>
+              <i
+                className={`fa-solid fa-shield-halved ${colorTeam(match.team)}`}
+              ></i>{" "}
+              {match.team}
+            </h4>
+
+            <h4 className="fw-bold text-danger">VS</h4>
+
+            <h4>
+              <i
+                className={`fa-solid fa-shield-halved ${colorTeam(
+                  match.lawan
+                )}`}
+              ></i>{" "}
+              {match.lawan}
+            </h4>
+          </div>
+
           {viewteam ? (
             <>
+              <hr />
+
+              <Alerslot />
               <div className="d-flex justify-content-between">
                 <p>Team anda hari ini</p>
                 <p>
@@ -112,7 +170,7 @@ export default function Compmainhariini() {
                       </p> */}
 
                         <p>
-                          <i class="fas fa-chart-simple"></i> Statistik
+                          <i className="fas fa-chart-simple"></i> Statistik
                         </p>
                       </div>
                     </div>
@@ -121,6 +179,14 @@ export default function Compmainhariini() {
                 );
               })}
             </>
+          ) : (
+            ""
+          )}
+
+          {viewlawan ? (
+            <div>
+              <Complawanmainhariini />
+            </div>
           ) : (
             ""
           )}

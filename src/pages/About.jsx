@@ -1,7 +1,7 @@
 import React from "react";
 import Compabout from "../componenst/About/Compabout";
 import Navbar from "../componenst/Navbar";
-import Header from "../componenst/Header";
+// import Header from "../componenst/Header";
 import CompHeader from "../componenst/About/CompHeader";
 
 export default function About() {

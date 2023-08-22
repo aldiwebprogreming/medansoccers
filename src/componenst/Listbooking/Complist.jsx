@@ -173,13 +173,14 @@ export default function Complist() {
                       </p>
                     </div>
                     <div className="d-flex justify-content-around  fw-bold">
-                      {renderTeam(data.team)}
-                      <p className="text-danger">
-                        <i className="fas fa-calendar-days"></i> {data.tgl_main}
-                      </p>
-                      <p className="text-danger">
-                        <i className="fas fa-clock"></i> {data.jam_main} WIB
-                      </p>
+                      <small> {renderTeam(data.team)} </small>
+                      <small className="text-danger">
+                        <i className="far fa-calendar-days"></i> {data.tgl_main}
+                      </small>
+                      <small className="text-danger">
+                        <i className="far fa-clock"></i> {data.jam_main} -{" "}
+                        {data.jam_selesai} WIB
+                      </small>
                     </div>
                   </div>
                 </div>
