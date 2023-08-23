@@ -95,12 +95,16 @@ export default function Compmainhariini() {
               onClick={actionViewTeam}
               style={{ textDecoration: "none" }}
             >
-              <p>
-                Team anda <i className="far fa-user"></i>
-              </p>
+              <p>Lihat team anda</p>
             </Link>
 
-            <Link
+            <i
+              onClick={actionViewTeam}
+              className="fas fa-chevron-right text-primary"
+              style={{ textDecoration: "none" }}
+            ></i>
+
+            {/* <Link
               to=""
               onClick={actionViewLawan}
               style={{ textDecoration: "none" }}
@@ -108,7 +112,7 @@ export default function Compmainhariini() {
               <p>
                 Team lawan <i className="far fa-user"></i>
               </p>
-            </Link>
+            </Link> */}
           </div>
 
           <div className="d-flex justify-content-between">

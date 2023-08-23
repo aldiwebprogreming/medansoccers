@@ -89,6 +89,7 @@ export default function Compmain({ jml_main }) {
     getMain();
     const date = new Date();
     const jam = date.getHours();
+
     if (jam) {
       setBtnmain(true);
     } else {
