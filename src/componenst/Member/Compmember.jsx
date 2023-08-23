@@ -11,6 +11,7 @@ export default function Compmember({ props }) {
   const [awal, setAwal] = useState(true);
   const [datauser, setDatauser] = useState([]);
   const urlapi = process.env.REACT_APP_BASE_URL;
+  const [sisamain, setSisamain] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -91,7 +92,13 @@ export default function Compmember({ props }) {
       const response = await axios.get(
         urlapi + "AddMemberKarir?id_user=" + localStorage.getItem("id")
       );
-      setAwal(false);
+      console.log(response.data);
+      if (response.data.sisa_bermain == 0) {
+        setAwal(true);
+      } else {
+        setAwal(false);
+      }
+      setSisamain(response.data.sisa_bermain);
       setDatauser(response.data);
     } catch (error) {
       console.log(error.message);
@@ -121,22 +128,28 @@ export default function Compmember({ props }) {
               <h4 className="mt-4 text-danger text-left fw-bold">
                 Apa itu member karir ?
               </h4>
-              <p>
+              <p className="text-secondary">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Obcaecati quam eaque, autem quis, harum quaerat veniam labore
                 dolore nulla similique cumque esse quasi repellendus illum
                 placeat saepe atque id itaque?
               </p>
-              <p>
+              <p className="text-secondary">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Obcaecati quam eaque, autem quis, harum quaerat veniam labore
                 dolore nulla similique cumque esse quasi repellendus illum
                 placeat saepe atque id itaque?
               </p>
 
-              <Button variant="danger" className="w-100" onClick={handleShow}>
-                Daftar member karir <i className="fas fa-futbol"></i>
-              </Button>
+              {sisamain == 0 ? (
+                <Button variant="danger" className="w-100" onClick={handleShow}>
+                  Beli slot member karir <i className="fas fa-futbol"></i>
+                </Button>
+              ) : (
+                <Button variant="danger" className="w-100" onClick={handleShow}>
+                  Daftar member karir <i className="fas fa-futbol"></i>
+                </Button>
+              )}
 
               <Modal
                 {...props}
