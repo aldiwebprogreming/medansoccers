@@ -69,14 +69,14 @@ export default function Compmainhariini() {
         </div>
       );
     } else if (totalpemain < 10) {
-      return (
-        <div
-          className="alert alert-warning alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Upps..</strong> Slot pemain team anda hari ini belum terpenuhi
-        </div>
-      );
+      // return (
+      //   <div
+      //     className="alert alert-warning alert-dismissible fade show"
+      //     role="alert"
+      //   >
+      //     <strong>Upps..</strong> Slot pemain team anda hari ini belum terpenuhi
+      //   </div>
+      // );
     }
   };
 
