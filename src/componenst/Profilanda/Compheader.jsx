@@ -15,7 +15,11 @@ export default function Compheader({ img }) {
                 src="pemain.png"
                 className="img-fluid mt-4"
                 alt="Responsive image"
-                style={{ height: "150px" }}
+                style={{
+                  height: "150px",
+                  borderRadius: "100%",
+                  borderStyle: "solid",
+                }}
               ></img>
             ) : (
               <img
