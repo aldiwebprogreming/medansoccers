@@ -6,14 +6,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 // import { FileUploader } from "react-drag-drop-files";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 } from "uuid";
-// const fileTypes = ["JPG", "PNG", "GIF"];
+// import { v4 } from "uuid";
+import axios from "axios";
+
+const urlapi = process.env.REACT_APP_BASE_URL;
 
 function MyVerticallyCenteredModal(props) {
   //   const [file, setFile] = useState(null);
   const [img, setImg] = useState("");
   const [nameImg, setNameImg] = useState("");
+  const [valueimg, setvalueimg] = useState("");
   const [formatImg, setFormatImg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [pesan, setPesan] = useState(false);
 
   //   const handleChange = (file) => {
   //     setFile(file);
@@ -22,17 +27,40 @@ function MyVerticallyCenteredModal(props) {
 
   const handleChangeImg = (e) => {
     setImg(e.target.files[0]);
-    setNameImg(e.target.files[0]);
+    console.log(e);
+    setvalueimg(e.target.value);
+    setNameImg(e.target.files[0].name);
   };
 
   const handleUpload = () => {
-    const imgRef = ref(imageDb, `files/${v4()}`);
+    const imgRef = ref(imageDb, `files/${nameImg}`);
     uploadBytes(imgRef, img);
-    console.log(imgRef);
-    // getDownloadURL(imgRef).then((url) => {
-    //   console.log(url);
-    // });
+    console.log(imgRef._location.path_);
+
+    setLoading(true);
+
+    setTimeout(() => {
+      getDownloadURL(ref(imageDb, `files/${nameImg}`)).then((url) => {
+        updateProfil(url);
+      });
+    }, 3000);
   };
+
+  const updateProfil = async (url) => {
+    await axios
+      .post(urlapi + "Updateprofil", {
+        iduser: localStorage.getItem("id"),
+        urlimg: url,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setLoading(false);
+        setPesan(true);
+        setvalueimg("");
+      })
+      .catch(console.error());
+  };
+
   return (
     <Modal
       {...props}
@@ -46,19 +74,27 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* <h4 className="text-center">To Drag & Drop Files</h4> */}
-        {/* <FileUploader
-          handleChange={handleChange}
-          name="file"
-          label="Upload gambar profil anda disini"
-          types={fileTypes}
-        /> */}
-
         <input
           type="file"
           onChange={(e) => handleChangeImg(e)}
           className="form-control"
+          value={valueimg}
         ></input>
+
+        {loading ? (
+          <p className="text-center mt-3 fw-bold">😁 Loading .....</p>
+        ) : (
+          ""
+        )}
+
+        {pesan ? (
+          <p className="text-center fw-bold mt-3 text-success">
+            {" "}
+            🤩 Update profil success
+          </p>
+        ) : (
+          ""
+        )}
       </Modal.Body>
 
       <hr />

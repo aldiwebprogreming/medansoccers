@@ -8,7 +8,7 @@ export default function Profilanda() {
   return (
     <div>
       <Navbar judul="Profil anda" aicon="true" />
-      <Compheader />
+      {/* <Compheader /> */}
       <Compmain />
     </div>
   );
