@@ -10,6 +10,23 @@ export default function CardMenu() {
           <div className="card-body">
             <div className="row">
               <div className="col-sm-3 col-3">
+                <Link to={"/home"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="house.png"
+                      className="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Home
+                    </p>
+                  </center>
+                </Link>
+              </div>
+              <div className="col-sm-3 col-3">
                 <Link to={"/about"} style={{ textDecoration: "none" }}>
                   <center>
                     <img
@@ -59,7 +76,7 @@ export default function CardMenu() {
                 >
                   <center>
                     <img
-                      src="man.png"
+                      src="memberkarir.png"
                       class="img-fluid"
                       alt="Responsive image"
                     />
@@ -89,6 +106,41 @@ export default function CardMenu() {
                       style={{ fontSize: "12px" }}
                     >
                       Data main
+                    </p>
+                  </center>
+                </Link>
+              </div>
+              <div className="col-sm-3 col-3">
+                <Link to={"/profilanda"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="man.png"
+                      class="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger font-weight-bold mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Profil anda
+                    </p>
+                  </center>
+                </Link>
+              </div>
+
+              <div className="col-sm-3 col-3">
+                <Link to={"/profilanda"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="update score.png"
+                      class="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger font-weight-bold mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Update score
                     </p>
                   </center>
                 </Link>

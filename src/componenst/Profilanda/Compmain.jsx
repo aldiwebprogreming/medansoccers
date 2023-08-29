@@ -59,6 +59,17 @@ export default function Compmain() {
                   5 Goal <i className="far fa-futbol"></i>
                 </p>
               </div>
+              <hr />
+              <div class="d-flex justify-content-between text-secondary">
+                <p>Rank</p>
+                <p className="text-warning">
+                  <i className="far fa-futbol"></i>{" "}
+                  <i className="far fa-futbol"></i>{" "}
+                  <i className="far fa-futbol"></i>{" "}
+                  <i className="far fa-futbol"></i>{" "}
+                  <i className="far fa-futbol"></i>
+                </p>
+              </div>
             </div>
           </div>
         </div>

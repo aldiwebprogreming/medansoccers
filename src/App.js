@@ -15,6 +15,7 @@ import Jadwalmember from "./pages/Jadwalmember";
 import Listjadwalbooking from "./componenst/compbooking/Listjadwalbooking";
 import Listbookingkarir from "./pages/Listbookingkarir";
 import Profilanda from "./pages/Profilanda";
+import Score from "./pages/Score";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profil" element={<Profil />} />
                 <Route path="/profilanda" element={<Profilanda />} />
+                <Route path="/updatescore" element={<Score />} />
               </Routes>
             </Router>
           </div>

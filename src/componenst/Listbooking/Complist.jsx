@@ -10,6 +10,7 @@ export default function Complist() {
   const [sisa, setSisa] = useState(0);
   const [databookingmain, setDatabookingmain] = useState([]);
   const [datamain, setDatamain] = useState(true);
+  const [profil, setProfil] = useState("");
   //   const [main, setMain] = useState([]);
 
   const getKarir = async () => {
@@ -37,6 +38,17 @@ export default function Complist() {
     } catch (error) {
       console.log(error.message);
       setDatamain(false);
+    }
+  };
+
+  const getProfil = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Profil?id=" + localStorage.getItem("id")
+      );
+      setProfil(response.data.image);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -75,6 +87,7 @@ export default function Complist() {
   useEffect(() => {
     getKarir();
     getBooking();
+    getProfil();
   }, []);
 
   return (
@@ -160,13 +173,23 @@ export default function Complist() {
                 <div className="card shadow mt-2" key={data.id}>
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
-                      <img
-                        src="pemain.png"
-                        class="img-fluid"
-                        alt="Responsive image"
-                        style={{ height: "50px" }}
-                      ></img>
-
+                      <Link to="/profilanda">
+                        {profil == "" ? (
+                          <img
+                            src="pemain.png"
+                            class="img-fluid"
+                            alt="Responsive image"
+                            style={{ height: "50px" }}
+                          ></img>
+                        ) : (
+                          <img
+                            src={profil}
+                            class="img-fluid"
+                            alt="Responsive image"
+                            style={{ height: "50px" }}
+                          ></img>
+                        )}
+                      </Link>
                       <p className="text-danger" style={{ marginLeft: "10px" }}>
                         Anda telah melakukan booking main di medan mini soccer
                         pada Tanggal :
@@ -178,8 +201,8 @@ export default function Complist() {
                         <i className="far fa-calendar-days"></i> {data.tgl_main}
                       </small>
                       <small className="text-danger">
-                        <i className="far fa-clock"></i> {data.jam_main} -{" "}
-                        {data.jam_selesai} WIB
+                        <i className="far fa-clock"></i> {data.jam_main}{" "}
+                        {data.jam_selesai} WIB - End
                       </small>
                     </div>
                   </div>
