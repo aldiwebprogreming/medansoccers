@@ -30,6 +30,8 @@ export default function Compmain() {
     getScore(liga);
   };
 
+  const tgl = formattedDate.toString();
+
   const getScore = async (liga) => {
     try {
       const response = await axios.get(
@@ -46,6 +48,7 @@ export default function Compmain() {
 
   useEffect(() => {
     getScore(idliga);
+    // console.log(tgl);
   }, []);
 
   return (

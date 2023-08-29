@@ -129,7 +129,7 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
-                <Link to={"/profilanda"} style={{ textDecoration: "none" }}>
+                <Link to={"/updatescore"} style={{ textDecoration: "none" }}>
                   <center>
                     <img
                       src="update score.png"

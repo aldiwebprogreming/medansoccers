@@ -22,7 +22,6 @@ export default function Logingoogle() {
         } else {
           navigate("/profil");
         }
-        rtrtrtr;
       })
       .catch((error) => {
         console.log(error);
