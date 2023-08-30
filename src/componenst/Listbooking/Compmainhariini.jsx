@@ -87,24 +87,27 @@ export default function Compmainhariini() {
 
   return (
     <div>
-      <div className="card mt-1 shadow">
-        <div className="card-body text-secondary">
-          <div className="d-flex justify-content-between">
-            <Link
-              to=""
-              onClick={actionViewTeam}
-              style={{ textDecoration: "none" }}
-            >
-              <p>Lihat team anda</p>
-            </Link>
+      {match == "" ? (
+        ""
+      ) : (
+        <div className="card mt-1 shadow">
+          <div className="card-body text-secondary">
+            <div className="d-flex justify-content-between">
+              <Link
+                to=""
+                onClick={actionViewTeam}
+                style={{ textDecoration: "none" }}
+              >
+                <p>Lihat team anda</p>
+              </Link>
 
-            <i
-              onClick={actionViewTeam}
-              className="fas fa-chevron-right text-primary"
-              style={{ textDecoration: "none" }}
-            ></i>
+              <i
+                onClick={actionViewTeam}
+                className="fas fa-chevron-right text-primary"
+                style={{ textDecoration: "none" }}
+              ></i>
 
-            {/* <Link
+              {/* <Link
               to=""
               onClick={actionViewLawan}
               style={{ textDecoration: "none" }}
@@ -113,89 +116,92 @@ export default function Compmainhariini() {
                 Team lawan <i className="far fa-user"></i>
               </p>
             </Link> */}
-          </div>
+            </div>
 
-          <div className="d-flex justify-content-between">
-            <h4>
-              <i
-                className={`fa-solid fa-shield-halved ${colorTeam(match.team)}`}
-              ></i>{" "}
-              {match.team}
-            </h4>
+            <div className="d-flex justify-content-between">
+              <h4>
+                <i
+                  className={`fa-solid fa-shield-halved ${colorTeam(
+                    match.team
+                  )}`}
+                ></i>{" "}
+                {match.team}
+              </h4>
 
-            <h4 className="fw-bold text-danger">VS</h4>
+              <h4 className="fw-bold text-danger">VS</h4>
 
-            <h4>
-              <i
-                className={`fa-solid fa-shield-halved ${colorTeam(
-                  match.lawan
-                )}`}
-              ></i>{" "}
-              {match.lawan}
-            </h4>
-          </div>
+              <h4>
+                <i
+                  className={`fa-solid fa-shield-halved ${colorTeam(
+                    match.lawan
+                  )}`}
+                ></i>{" "}
+                {match.lawan}
+              </h4>
+            </div>
 
-          {viewteam ? (
-            <>
-              <hr />
+            {viewteam ? (
+              <>
+                <hr />
 
-              <Alerslot />
-              <div className="d-flex justify-content-between">
-                <p>Team anda hari ini</p>
-                <p>
-                  <i className="far fa-user"></i>
-                </p>
-              </div>
-              <hr />
-              {team.map((list) => {
-                return (
-                  <div key={list.id}>
-                    <div className="mb-2">
-                      <div className="d-flex justify-content-between">
-                        <img
-                          src="pemain.png"
-                          class="img-fluid"
-                          alt="Responsive image"
-                          style={{ height: "50px" }}
-                        ></img>
+                <Alerslot />
+                <div className="d-flex justify-content-between">
+                  <p>Team anda hari ini</p>
+                  <p>
+                    <i className="far fa-user"></i>
+                  </p>
+                </div>
+                <hr />
+                {team.map((list) => {
+                  return (
+                    <div key={list.id}>
+                      <div className="mb-2">
+                        <div className="d-flex justify-content-between">
+                          <img
+                            src="pemain.png"
+                            class="img-fluid"
+                            alt="Responsive image"
+                            style={{ height: "50px" }}
+                          ></img>
 
-                        <p className="" style={{ marginLeft: "10px" }}>
-                          Hay {localStorage.getItem("nama")}, saya adalah team
-                          anda, apkah kamu ingin lihat statistik saya ?
-                        </p>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <p>
-                          <i className="far fa-user"></i> {list.nama}
-                        </p>
+                          <p className="" style={{ marginLeft: "10px" }}>
+                            Hay {localStorage.getItem("nama")}, saya adalah team
+                            anda, apkah kamu ingin lihat statistik saya ?
+                          </p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p>
+                            <i className="far fa-user"></i> {list.nama}
+                          </p>
 
-                        {/* <p>
+                          {/* <p>
                         <i className="far fa-calendar-days"></i> {list.tgl_main}
                       </p> */}
 
-                        <p>
-                          <i className="fas fa-chart-simple"></i> Statistik
-                        </p>
+                          <p>
+                            <i className="fas fa-chart-simple"></i> Statistik
+                          </p>
+                        </div>
                       </div>
+                      <hr />
                     </div>
-                    <hr />
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            ""
-          )}
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
 
-          {viewlawan ? (
-            <div>
-              <Complawanmainhariini />
-            </div>
-          ) : (
-            ""
-          )}
+            {viewlawan ? (
+              <div>
+                <Complawanmainhariini />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

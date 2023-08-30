@@ -11,7 +11,16 @@ export default function Compmain() {
   const [negara, setNegara] = useState("Inggris");
 
   const date = new Date();
-  const formattedDate = date.toLocaleDateString("en-GB");
+  let tgl = new Date();
+  let format_tgl =
+    tgl.getFullYear() +
+    "-" +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "-" +
+    (tgl.getDate() - 3);
+
+  const [tglsrc, setTglsrc] = useState(format_tgl);
+
   const resvonsive = {
     0: {
       items: 2.5,
@@ -27,15 +36,15 @@ export default function Compmain() {
   const handleLiga = (liga, negara) => {
     setIdliga(liga);
     setNegara(negara);
-    getScore(liga);
+    getScore(liga, format_tgl);
   };
 
-  const tgl = formattedDate.toString();
-
-  const getScore = async (liga) => {
+  const getScore = async (liga, tgl) => {
     try {
       const response = await axios.get(
-        "http://livescore-api.com/api-client/scores/history.json?from=2023-08-27&key=KUkqS41OTxrEPyZI&secret=0zkGxFaa3tVUzT5jNpKFuLuojV29u1Su&competition_id=" +
+        "http://livescore-api.com/api-client/scores/history.json?from=" +
+          tgl +
+          "&key=KUkqS41OTxrEPyZI&secret=0zkGxFaa3tVUzT5jNpKFuLuojV29u1Su&competition_id=" +
           liga
       );
 
@@ -43,12 +52,19 @@ export default function Compmain() {
       setScore(response.data.data.match);
     } catch (error) {
       console.log(error.message);
+      getScore(liga);
     }
   };
 
+  const handleDate = (event) => {
+    const date = event.target.value;
+    // setScore([]);
+    setTglsrc(date);
+    getScore(idliga, date);
+  };
+
   useEffect(() => {
-    getScore(idliga);
-    // console.log(tgl);
+    getScore(idliga, format_tgl);
   }, []);
 
   return (
@@ -162,9 +178,15 @@ export default function Compmain() {
           <div className="card-body">
             <div className="d-flex justify-content-between">
               <p className="text-danger">Update Score Liga {negara}</p>
-              <p className="text-danger">
-                <i className="fas fa-futbol"></i>
-              </p>
+
+              <div>
+                <input
+                  type="date"
+                  className="form-control"
+                  value={tglsrc}
+                  onChange={(e) => handleDate(e)}
+                />
+              </div>
             </div>
             <hr />
             {score.map((lt) => {
@@ -177,7 +199,8 @@ export default function Compmain() {
                     <div className="card border-danger mb">
                       <p className="text-danger fw-bold my-2">{lt.score}</p>
                     </div>
-                    <small className="text-primary">{lt.location}</small>
+                    <small className="text-primary">{lt.location}</small> <br />
+                    <small className="text-primary">{lt.date}</small>
                   </div>
                   <div
                     className="col-sm-4 col-4"

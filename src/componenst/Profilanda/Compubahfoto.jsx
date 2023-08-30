@@ -96,22 +96,35 @@ function MyVerticallyCenteredModal(props) {
           ""
         )}
       </Modal.Body>
-
       <hr />
+
       <div className="container mb-3">
-        <div className="d-flex justify-content-between">
+        {pesan ? (
           <button
             className="w-100 btn btn-secondary"
             onClick={props.onHide}
             style={{ marginRight: "10px" }}
           >
-            NO
+            Close
           </button>
+        ) : (
+          <>
+            {" "}
+            <div className="d-flex justify-content-between">
+              <button
+                className="w-100 btn btn-secondary"
+                onClick={props.onHide}
+                style={{ marginRight: "10px" }}
+              >
+                NO
+              </button>
 
-          <button onClick={handleUpload} className="w-100 btn btn-danger">
-            Yes
-          </button>
-        </div>
+              <button onClick={handleUpload} className="w-100 btn btn-danger">
+                Yes
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </Modal>
   );

@@ -122,7 +122,15 @@ export default function Complist() {
                   <div className="card-body">
                     Slot Bermain
                     <h4>
-                      {karir.jml_bermain} <i className="fas fa-futbol"></i>
+                      {karir.jml_bermain == null ? (
+                        <>
+                          0 <i className="fas fa-futbol"></i>
+                        </>
+                      ) : (
+                        <>
+                          {karir.jml_bermain} <i className="fas fa-futbol"></i>
+                        </>
+                      )}
                     </h4>
                   </div>
                 </div>
@@ -170,7 +178,14 @@ export default function Complist() {
             <Compmainhariini />{" "}
             {databookingmain.map((data) => {
               return (
-                <div className="card shadow mt-2" key={data.id}>
+                <div
+                  className={
+                    data.status_main == 1
+                      ? "card shadow mt-2 border-danger"
+                      : "card shadow mt-2"
+                  }
+                  key={data.id}
+                >
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
                       <Link to="/profilanda">
@@ -186,7 +201,7 @@ export default function Complist() {
                             src={profil}
                             class="img-fluid"
                             alt="Responsive image"
-                            style={{ height: "50px" }}
+                            style={{ height: "50px", width: "50px" }}
                           ></img>
                         )}
                       </Link>
@@ -201,8 +216,18 @@ export default function Complist() {
                         <i className="far fa-calendar-days"></i> {data.tgl_main}
                       </small>
                       <small className="text-danger">
-                        <i className="far fa-clock"></i> {data.jam_main}{" "}
-                        {data.jam_selesai} WIB - End
+                        {data.status_main == 0 ? (
+                          <>
+                            {" "}
+                            <i className="far fa-clock"></i> Selesai
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <i className="far fa-clock"></i> {data.jam_main} WIB
+                            - Selesai
+                          </>
+                        )}
                       </small>
                     </div>
                   </div>

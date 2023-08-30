@@ -128,9 +128,15 @@ export default function Compmain({ jml_main }) {
                 <div className="card bg-danger text-white">
                   <div className="card-body">
                     Slot Bermain
-                    <h4>
-                      {karir.jml_bermain} <i className="fas fa-futbol"></i>
-                    </h4>
+                    {karir.jml_bermain == null ? (
+                      <>
+                        0 <i className="fas fa-futbol"></i>
+                      </>
+                    ) : (
+                      <>
+                        {karir.jml_bermain} <i className="fas fa-futbol"></i>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
