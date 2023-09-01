@@ -130,11 +130,15 @@ export default function Compmain({ jml_main }) {
                     Slot Bermain
                     {karir.jml_bermain == null ? (
                       <>
-                        0 <i className="fas fa-futbol"></i>
+                        <h4>
+                          0 <i className="fas fa-futbol"></i>
+                        </h4>
                       </>
                     ) : (
                       <>
-                        {karir.jml_bermain} <i className="fas fa-futbol"></i>
+                        <h4>
+                          {karir.jml_bermain} <i className="fas fa-futbol"></i>
+                        </h4>
                       </>
                     )}
                   </div>
