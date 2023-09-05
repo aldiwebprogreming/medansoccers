@@ -32,56 +32,121 @@ export default function BookingLapangan() {
         title={lapangan.pasilitas}
       />
       <CompSlide gambar={lapangan.gambar} />
+
       <div className="container">
-        <div className="card mb-3 shadow">
-          <div className="card-header">
-            <h5 className="fw-bold">Fasilitas</h5>
-          </div>
+        <div
+          className="card shadow"
+          style={{ position: "relative", bottom: "50px", border: "none" }}
+        >
           <div className="card-body">
-            <p>{lapangan.pasilitas}</p>
+            <p className="fw-bold">Keterangan</p>
+            <p className="text-secondary">
+              {" "}
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo
+              suscipit libero rem fuga cum maxime delectus, in iure minima iste
+              fugiat est at consectetur consequatur molestiae similique
+              doloribus nulla! Accusamus.
+            </p>
+          </div>
+        </div>
+        <div
+          className="card mb-3 shadow"
+          style={{ border: "none", position: "relative", bottom: "20px" }}
+        >
+          <div className="card-body">
+            <p className="fw-bold">Fasilitas</p>
+            <div className="d-flex justify-content-between text-secondary mt-3">
+              <div>
+                <p>
+                  <i className="fa-solid fa-utensils"></i> Cafe & Resto
+                </p>
+              </div>
+
+              <div>
+                <p>
+                  <i className="fa-solid fa-mosque"></i> Musholla
+                </p>
+              </div>
+            </div>
+
+            <div className="d-flex justify-content-between text-secondary mt-3">
+              <div>
+                <p>
+                  <i className="fa-solid fa-car"></i> Parkir Mobil
+                </p>
+              </div>
+
+              <div>
+                <p>
+                  <i className="fa-solid fa-motorcycle"></i> Parkir Motor
+                </p>
+              </div>
+            </div>
+
+            <div className="d-flex justify-content-between text-secondary mt-3">
+              <div>
+                <p>
+                  <i className="fa-solid fa-door-open"></i> Ruang Ganti
+                </p>
+              </div>
+
+              <div>
+                <p>
+                  <i class="fa-solid fa-toilet-paper"></i> Toilet
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="card mb-3 shadow">
-          <div className="card-header">
-            <h5 className="fw-bold">Oprasional</h5>
-          </div>
+        <div
+          className="card mb-3 shadow"
+          style={{ border: "none", position: "relative", bottom: "20px" }}
+        >
           <div className="card-body">
-            <div className="d-flex justify-content-between">
-              <p>
-                <i className="fas fa-calendar-days"></i> Senin - Jum'at
+            <p className="fw-bold">Jam Oprasional</p>
+            <div className="d-flex justify-content-between mt-3">
+              <p className="text-secondary">
+                <i className="fas fa-calendar-days"></i> Senin - Minggu
               </p>
-              <p>
+              <p className="text-secondary">
                 {" "}
-                <i className="fas fa-clock"></i> 10.00 - 22.00 WIB
-              </p>
-            </div>
-            <div className="d-flex justify-content-between">
-              <p>
-                {" "}
-                <i className="fas fa-calendar-days"></i> Sabtu - Minggu
-              </p>
-              <p>
-                {" "}
-                <i className="fas fa-clock"></i> 10.00 - 24.00 WIB
+                <i className="far fa-clock"></i> 06.00 - 24.00 WIB
               </p>
             </div>
           </div>
         </div>
 
-        <div className="card mb-3 shadow">
-          <div className="card-header">
-            <h5 className="fw-bold">Lokasi</h5>
-          </div>
+        <div
+          className="card mb-3 shadow"
+          style={{ border: "none", position: "relative", bottom: "20px" }}
+        >
           <div className="card-body">
-            <p>
+            <p className="fw-bold">Lokasi Lapangan</p>
+            <p className="text-secondary">
               Jl. Setia ujung no 38. Km.1 medan binjai kec. sunggal,
               Deliserdanga, Sumatera utara
             </p>
           </div>
         </div>
       </div>
-      <Listjadwalbooking idlapangan={id} />
+
+      <div className="container">
+        <div
+          className="card shadow "
+          style={{ position: "relative", bottom: "20px" }}
+        >
+          <div className="card-body">
+            <div className="d-flex justify-content-between mt-3">
+              <p className="fw-bold text-secondary">Rp 300.000 / jam</p>
+            </div>
+            <button className="btn btn-danger btn-sm w-100">Booking</button>
+          </div>
+        </div>
+      </div>
+
+      {/* <Listjadwalbooking idlapangan={id} /> */}
+
       {/* <Formbooking /> */}
       {/* <div className="card">
         <div className="card-body">

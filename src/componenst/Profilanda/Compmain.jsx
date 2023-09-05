@@ -2,9 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Compubahfoto from "./Compubahfoto";
 import Compheader from "./Compheader";
+import Compdataasist from "./Compdataasist";
+import Compdatagoal from "./Compdatagoal";
+import Compdataplay from "./Compdataplay";
+// import { act } from "react-dom/test-utils";
 
 export default function Compmain() {
   const [profil, setPorfil] = useState([]);
+  const [play, setPlay] = useState(false);
+  const [asist, setAsist] = useState(false);
+  const [goal, setGoal] = useState(false);
+  const [win, setWin] = useState(false);
+  const [datamain, setDatamain] = useState([]);
+  const [jmlmain, setJmlmain] = useState();
   const urlapi = process.env.REACT_APP_BASE_URL;
 
   const getProfil = async () => {
@@ -14,7 +24,7 @@ export default function Compmain() {
       );
       setPorfil(response.data);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 
@@ -32,35 +42,48 @@ export default function Compmain() {
         >
           <div className="card shadow">
             <div className="card-body">
-              <div class="d-flex justify-content-between">
+              <div className="d-flex justify-content-between">
                 <p className="text-danger fw-bold">Statistik anda</p>
                 <p className="text-danger fw-bold">
                   <i className="far fa-user"></i>
                 </p>
               </div>
               <hr />
-              <div class="d-flex justify-content-between text-secondary">
+              <Compdataplay />
+              <hr />
+              {/* <div class="d-flex justify-content-between text-secondary">
                 <p>Win</p>
                 <p>
-                  12 Play <i className="far fa-futbol"></i>
+                  <a
+                    style={{ textDecoration: "none" }}
+                    onClick={() => action("Win")}
+                  >
+                    12 Win <i class="fas fa-chevron-right"></i>
+                  </a>
+
+                  <div className="collapse" id="collapseExampleplay">
+                    <div class="card card-body">
+                      Some placeholder content for the collapse component. This
+                      panel is hidden by default but revealed when the user
+                      activates the relevant trigger.
+                    </div>
+                  </div>
                 </p>
               </div>
+              {win ? (
+                <div className="card border-primary">
+                  <div className="card card-body"></div>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <hr /> */}
+              <Compdataasist />
               <hr />
-              <div class="d-flex justify-content-between text-secondary">
-                <p>Asist</p>
-                <p>
-                  12 Asist <i className="far fa-futbol"></i>
-                </p>
-              </div>
+              <Compdatagoal />
               <hr />
-              <div class="d-flex justify-content-between text-secondary">
-                <p>Goal</p>
-                <p>
-                  5 Goal <i className="far fa-futbol"></i>
-                </p>
-              </div>
-              <hr />
-              <div class="d-flex justify-content-between text-secondary">
+              <div className="d-flex justify-content-between text-secondary">
                 <p>Rank</p>
                 <p className="text-warning">
                   <i className="far fa-futbol"></i>{" "}
@@ -79,7 +102,7 @@ export default function Compmain() {
         >
           <div className="card shadow">
             <div className="card-body">
-              <div class="d-flex justify-content-between text-danger">
+              <div className="d-flex justify-content-between text-danger">
                 <p className="fw-bold">Profil anda</p>
                 <p>
                   <i className="far fa-user"></i>
@@ -91,7 +114,7 @@ export default function Compmain() {
                 <input
                   className="form-control mt-2 text-secondary"
                   value={profil.nama}
-                ></input>
+                />
               </div>
 
               <div className="form-group mt-3">

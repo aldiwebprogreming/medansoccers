@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Compheader({ img }) {
-  console.log(img);
+  // console.log(img);
   return (
     <div>
       <div

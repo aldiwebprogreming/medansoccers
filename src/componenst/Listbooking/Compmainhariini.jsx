@@ -174,9 +174,9 @@ export default function Compmainhariini() {
                             <i className="far fa-user"></i> {list.nama}
                           </p>
 
-                          {/* <p>
-                        <i className="far fa-calendar-days"></i> {list.tgl_main}
-                      </p> */}
+                          <p>
+                            <i className="fas fa-shirt"></i> {list.no_punggung}
+                          </p>
 
                           <p>
                             <i className="fas fa-chart-simple"></i> Statistik
