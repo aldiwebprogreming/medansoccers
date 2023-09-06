@@ -16,7 +16,7 @@ export default function Home() {
         id_user: localStorage.getItem("id"),
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error.message);
@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar judul="Medansoccers" aicon="false" />
+      <Navbar judul="Medansoccer" aicon="false" />
       <Header />
       <CardMenu />
       <div className="card">

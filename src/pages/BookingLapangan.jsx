@@ -131,7 +131,7 @@ export default function BookingLapangan() {
         </div>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div
           className="card shadow "
           style={{ position: "relative", bottom: "20px" }}
@@ -143,9 +143,9 @@ export default function BookingLapangan() {
             <button className="btn btn-danger btn-sm w-100">Booking</button>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* <Listjadwalbooking idlapangan={id} /> */}
+      <Listjadwalbooking idlapangan={id} />
 
       {/* <Formbooking /> */}
       {/* <div className="card">

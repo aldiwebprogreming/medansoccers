@@ -14,6 +14,20 @@ export default function Formbooking() {
   const [totalHarga, setTotalharga] = useState("");
   const [namaLapangan, setTNamalapangan] = useState("");
   const [alert, setAlert] = useState("");
+  const [jammain, setJammain] = useState([]);
+  const [idjambooking, setIdjambooking] = useState(0);
+  const [cekbookinglap, setCekbookinglap] = useState([]);
+
+  const date = new Date();
+  let tgl = new Date();
+  let format_tgl =
+    tgl.getFullYear() +
+    "-" +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + tgl.getDate()).slice(-2);
+
+  const [tglsrc, setTglsrc] = useState(format_tgl);
 
   const notify = () =>
     toast.success("Booking lapangan anda berhasil !", {
@@ -116,8 +130,37 @@ export default function Formbooking() {
     };
   };
 
+  const cekBookinglapangan = async (tgl) => {
+    try {
+      const response = await axios.get(
+        urlapi + "Cekbookinglapangan?id_lap=" + idlapangan + "&tgl=" + tgl
+      );
+      setCekbookinglap(response.data);
+      // console.log(response.data);
+    } catch (error) {}
+  };
+
+  const getJammain = async () => {
+    try {
+      const response = await axios.get(urlapi + "Jammain");
+      setJammain(response.data);
+      // console.log(response.data);
+    } catch (error) {}
+  };
+
+  const handleTglbooking = (tgl) => {
+    setTglsrc(tgl);
+    cekBookinglapangan(tgl);
+  };
+
+  const handleJambooking = (id) => {
+    setIdjambooking(id);
+  };
+
   useEffect(() => {
     getLapangan();
+    getJammain();
+    cekBookinglapangan(tglsrc);
   }, []);
 
   return (
@@ -133,9 +176,76 @@ export default function Formbooking() {
           </div>
         </div>
 
-        <div className="card my-3 shadow">
-          <div className="card-header text-danger">Form booking</div>
+        <div className="card my-3 shadow" style={{ border: "none" }}>
           <div className="card-body">
+            <div className="d-flex justify-content-between">
+              <p className="fw-bold">
+                <i className="far fa-calendar-days"></i> Jadwal Booking
+              </p>
+            </div>
+            <input
+              className="form-control"
+              value={tglsrc}
+              type="date"
+              onChange={(e) => handleTglbooking(e.target.value)}
+              min="2023.09-06"
+            />
+            <hr />
+
+            {jammain.map((jm, index) => {
+              return (
+                <div key={index}>
+                  <div
+                    className={
+                      idjambooking == jm.id
+                        ? "card mt-2 border-danger"
+                        : "card mt-2"
+                    }
+                    onClick={() => handleJambooking(jm.id)}
+                    key={jm.id}
+                  >
+                    <div className="card-body">
+                      <div className="d-flex justify-content-between">
+                        <p>{jm.jam_mulai} WIB</p>
+                        <p className="fw-bold text-center">
+                          -
+                          {cekbookinglap.map((bk, index) => {
+                            return (
+                              <div key={index}>
+                                {bk.jam_mulai == jm.jam_mulai ? (
+                                  <p className="text-danger">Booked</p>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            );
+                          })}
+                        </p>
+                        <p>{jm.jam_berakhir} WIB</p>
+
+                        <div
+                          className="form-check form-check-inline"
+                          style={{ display: "none" }}
+                        >
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value={jm.id}
+                            id="flexCheckDefault"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="card my-3 shadow" style={{ border: "none" }}>
+          <div className="card-body">
+            <p className="fw-bold">Form Booking </p>
             {alert == "tersedia" ? (
               <div className="alert alert-danger" role="alert">
                 Mohon maaf jadwal booking yang anda masukan telah tersedia
@@ -144,7 +254,7 @@ export default function Formbooking() {
               ""
             )}
 
-            <div className="row mb-3">
+            <div className="row mb-3 text-secondary">
               <div className="form-group col-md-6">
                 <label>Lapangan</label>
                 <input
@@ -164,7 +274,7 @@ export default function Formbooking() {
               </div>
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
               <label className="mb-2">Jam Booking</label>
               <select
                 className="form-control"
@@ -190,9 +300,9 @@ export default function Formbooking() {
                 value={tglbooking}
                 onChange={(e) => cekBookingTgl(e)}
               />
-            </div>
+            </div> */}
 
-            <div className="form-group mt-3">
+            <div className="form-group mt-3 text-secondary">
               <label className="mb-2">Nama Team</label>
               <input
                 type="text"

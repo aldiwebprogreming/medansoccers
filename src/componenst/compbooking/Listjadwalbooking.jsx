@@ -25,10 +25,10 @@ export default function Listjadwalbooking({ idlapangan }) {
     <div className="container mb-5">
       <div className="card shadow">
         <div className="card-header">
-          <p className="fw-bold">Jadwal hari ini </p>
+          {/* <p className="fw-bold">Jadwal hari ini </p> */}
         </div>
         <div className="card-body">
-          {booking == "" ? (
+          {/* {booking == "" ? (
             <div className="text-center">Jadwal bookingan hari ini kosong</div>
           ) : (
             <div>
@@ -57,7 +57,7 @@ export default function Listjadwalbooking({ idlapangan }) {
                 );
               })}
             </div>
-          )}
+          )} */}
 
           <Link
             to={"/formbooking/" + idlapangan}

@@ -129,6 +129,24 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
+                <Link to={"/statistik"} style={{ textDecoration: "none" }}>
+                  <center>
+                    <img
+                      src="statistik.png"
+                      class="img-fluid"
+                      alt="Responsive image"
+                    />
+                    <p
+                      className="text-danger font-weight-bold mt-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Statistik pemain
+                    </p>
+                  </center>
+                </Link>
+              </div>
+
+              <div className="col-sm-3 col-3">
                 <Link to={"/updatescore"} style={{ textDecoration: "none" }}>
                   <center>
                     <img

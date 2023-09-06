@@ -47,7 +47,7 @@ export default function Compmain({ jml_main }) {
       setKarir(response.data);
       setSisa(response.data.sisa_bermain);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       navigate("/member");
     }
   };
@@ -57,7 +57,7 @@ export default function Compmain({ jml_main }) {
       const response = await axios.get(
         urlapi + "main?id_user=" + localStorage.getItem("id")
       );
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setMainhariini(response.data.tersedia);
       setMain(response.data.data);
     } catch (error) {

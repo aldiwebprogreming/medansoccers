@@ -50,20 +50,20 @@ export default function Compmain() {
             <div className="d-flex justify-content-between fw-bold">
               <div>
                 <h3 className="fw-bold text-info">
-                  6 <i className="fas fa-user"></i>
+                  10<i className="fas fa-user"></i>
                 </h3>
                 <p>Play</p>
               </div>
 
               <div>
                 <h3 className="fw-bold text-success">
-                  10 <i className="fas fa-people-arrows"></i>
+                  0 <i className="fas fa-people-arrows"></i>
                 </h3>
                 <p>Asist</p>
               </div>
               <div>
                 <h3 className="fw-bold text-danger">
-                  12 <i className="far fa-futbol"></i>
+                  5 <i className="far fa-futbol"></i>
                 </h3>
                 <p>Goal</p>
               </div>
