@@ -14,10 +14,12 @@ export default function CardMenu() {
   return (
     <div>
       <div className="container">
-        <div className="card cardMenu shadow" style={{ border: "none" }}>
-          {load == false ? <Loadmenu /> : ""}
-
-          <div className={load ? "card-body" : "card-body d-none"}>
+        {load == false ? <Loadmenu /> : ""}
+        <div
+          className={load ? "card cardMenu shadow" : "d-none"}
+          style={{ border: "none" }}
+        >
+          <div className="card-body">
             <div className="row">
               <div className="col-sm-3 col-3">
                 <Link to={"/home"} style={{ textDecoration: "none" }}>
