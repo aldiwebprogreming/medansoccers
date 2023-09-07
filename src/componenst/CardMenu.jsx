@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
+import Loadmenu from "../skeleton/Loadmenu";
 
 export default function CardMenu() {
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(true);
+    }, 500);
+  }, []);
   return (
     <div>
       <div className="container">
-        <div className="card cardMenu">
-          <div className="card-body">
+        <div className="card cardMenu shadow" style={{ border: "none" }}>
+          {load == false ? <Loadmenu /> : ""}
+
+          <div className={load ? "card-body" : "card-body d-none"}>
             <div className="row">
               <div className="col-sm-3 col-3">
                 <Link to={"/home"} style={{ textDecoration: "none" }}>
@@ -57,18 +67,7 @@ export default function CardMenu() {
                   </center>
                 </Link>
               </div>
-              {/* 
-              <div className="col-sm-3 col-3">
-                <center>
-                  <img src="2.png" class="img-fluid" alt="Responsive image" />
-                  <p
-                    className="text-danger font-weight-bold mt-2"
-                    style={{ fontSize: "12px" }}
-                  >
-                    Sparing
-                  </p>
-                </center>
-              </div> */}
+
               <div className="col-sm-3 col-3">
                 <Link
                   to={"/jadwalmemberkarir"}

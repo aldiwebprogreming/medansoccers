@@ -42,7 +42,7 @@ export default function Compmainhariini() {
       );
       setMatch(response.data);
     } catch (error) {
-      console.log("error.message");
+      // console.log("error.message");
     }
   };
 
@@ -90,34 +90,8 @@ export default function Compmainhariini() {
       {match == "" ? (
         ""
       ) : (
-        <div className="card mt-1 shadow">
+        <div className="card mt-3 shadow" style={{ border: "none" }}>
           <div className="card-body text-secondary">
-            <div className="d-flex justify-content-between">
-              <Link
-                to=""
-                onClick={actionViewTeam}
-                style={{ textDecoration: "none" }}
-              >
-                <p>Lihat team anda</p>
-              </Link>
-
-              <i
-                onClick={actionViewTeam}
-                className="fas fa-chevron-right text-primary"
-                style={{ textDecoration: "none" }}
-              ></i>
-
-              {/* <Link
-              to=""
-              onClick={actionViewLawan}
-              style={{ textDecoration: "none" }}
-            >
-              <p>
-                Team lawan <i className="far fa-user"></i>
-              </p>
-            </Link> */}
-            </div>
-
             <div className="d-flex justify-content-between">
               <h4>
                 <i
@@ -140,13 +114,42 @@ export default function Compmainhariini() {
               </h4>
             </div>
 
+            <hr />
+            <div className="d-flex justify-content-between">
+              <Link
+                to=""
+                onClick={actionViewTeam}
+                style={{ textDecoration: "none" }}
+              >
+                <p>Lihat team anda</p>
+              </Link>
+
+              <i
+                onClick={actionViewTeam}
+                className={
+                  viewteam
+                    ? "fas fa-chevron-down text-primary"
+                    : "fas fa-chevron-right text-primary"
+                }
+                style={{ textDecoration: "none" }}
+              ></i>
+
+              {/* <Link
+              to=""
+              onClick={actionViewLawan}
+              style={{ textDecoration: "none" }}
+            >
+              <p>
+                Team lawan <i className="far fa-user"></i>
+              </p>
+            </Link> */}
+            </div>
+
             {viewteam ? (
               <>
-                <hr />
-
                 <Alerslot />
                 <div className="d-flex justify-content-between">
-                  <p>Team anda hari ini</p>
+                  <p className="fw-bold">Team anda hari ini</p>
                   <p>
                     <i className="far fa-user"></i>
                   </p>

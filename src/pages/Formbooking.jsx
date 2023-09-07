@@ -4,6 +4,9 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import Loadketentuanbooking from "../skeleton/Loadketentuanbooking";
+import Loadjambooking from "../skeleton/Loadjambooking";
+import Loadformbooking from "../skeleton/loadformbooking";
 
 export default function Formbooking() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -17,6 +20,7 @@ export default function Formbooking() {
   const [jammain, setJammain] = useState([]);
   const [idjambooking, setIdjambooking] = useState(0);
   const [cekbookinglap, setCekbookinglap] = useState([]);
+  const [load, setLoad] = useState(false);
 
   const date = new Date();
   let tgl = new Date();
@@ -33,6 +37,12 @@ export default function Formbooking() {
     toast.success("Booking lapangan anda berhasil !", {
       position: toast.POSITION.TOP_CENTER,
     });
+
+  const notifyCekbooking = () => {
+    toast.error("Jam booking sudah sudah di gunakan !", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
 
   const getLapangan = async () => {
     try {
@@ -89,6 +99,8 @@ export default function Formbooking() {
       .post(urlapi + "pay", {
         total: totalHarga,
         team: namateam,
+        nama: localStorage.getItem("nama"),
+        email: localStorage.getItem("email"),
       })
       .then((response) => {
         const token = response.data.token;
@@ -112,8 +124,8 @@ export default function Formbooking() {
     const addBooking = async (result) => {
       await axios
         .post(urlapi + "Addbooking", {
-          jam: jambooking,
-          tgl: tglbooking,
+          jam: idjambooking,
+          tgl: tglsrc,
           team: namateam,
           id_lapangan: idlapangan,
           kode_status: result.status_code,
@@ -123,11 +135,31 @@ export default function Formbooking() {
           setNamateam("");
           setTglbooking("");
           notify();
+          cekBookinglapangan(tglsrc);
         })
         .catch((error) => {
           console.log(error);
         });
     };
+  };
+
+  const handleButtonbooking = async () => {
+    try {
+      const response = await axios.get(
+        urlapi +
+          "Cekbookinglapangan2?idlap=" +
+          idlapangan +
+          "&tgl=" +
+          tglsrc +
+          "&idjam=" +
+          idjambooking
+      );
+      if (response.data.status == true) {
+        notifyCekbooking();
+      } else {
+        PayBooking();
+      }
+    } catch (error) {}
   };
 
   const cekBookinglapangan = async (tgl) => {
@@ -144,6 +176,7 @@ export default function Formbooking() {
     try {
       const response = await axios.get(urlapi + "Jammain");
       setJammain(response.data);
+      setLoad(true);
       // console.log(response.data);
     } catch (error) {}
   };
@@ -158,181 +191,162 @@ export default function Formbooking() {
   };
 
   useEffect(() => {
-    getLapangan();
-    getJammain();
-    cekBookinglapangan(tglsrc);
+    setTimeout(() => {
+      getLapangan();
+      getJammain();
+      cekBookinglapangan(tglsrc);
+    }, 300);
   }, []);
 
   return (
     <div>
       <Navbar judul="Booking" aicon="true" />
       <div className="card container mt-5">
-        <div className="card my-3 shadow">
-          <div className="card-header text-danger">Kententuan booking</div>
-          <div className="card-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam
-            labore magni, quis totam iusto id molestias nam unde optio possimus
-            odit nesciunt hic tenetur sit facere recusandae sunt autem sed!
-          </div>
-        </div>
-
-        <div className="card my-3 shadow" style={{ border: "none" }}>
-          <div className="card-body">
-            <div className="d-flex justify-content-between">
-              <p className="fw-bold">
-                <i className="far fa-calendar-days"></i> Jadwal Booking
+        {load ? (
+          <div className="card my-3 shadow" style={{ border: "none" }}>
+            <div className="card-body">
+              <p className="fw-bold">Kententuan booking</p>
+              <p className="text-secondary">
+                {" "}
+                Ketentuan dalam membooking lapangan adalah harus mengatur jam
+                bookin seefesien mungkin, Pastikan team dan lawan anda dapat
+                hadir tepak waktu, dan harus membayar uang booking sesuai yang
+                tertera di aplikasi
               </p>
             </div>
-            <input
-              className="form-control"
-              value={tglsrc}
-              type="date"
-              onChange={(e) => handleTglbooking(e.target.value)}
-              min="2023.09-06"
-            />
-            <hr />
+          </div>
+        ) : (
+          <Loadketentuanbooking />
+        )}
 
-            {jammain.map((jm, index) => {
-              return (
-                <div key={index}>
-                  <div
-                    className={
-                      idjambooking == jm.id
-                        ? "card mt-2 border-danger"
-                        : "card mt-2"
-                    }
-                    onClick={() => handleJambooking(jm.id)}
-                    key={jm.id}
-                  >
-                    <div className="card-body">
-                      <div className="d-flex justify-content-between">
-                        <p>{jm.jam_mulai} WIB</p>
-                        <p className="fw-bold text-center">
-                          -
-                          {cekbookinglap.map((bk, index) => {
-                            return (
-                              <div key={index}>
-                                {bk.jam_mulai == jm.jam_mulai ? (
-                                  <p className="text-danger">Booked</p>
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                            );
-                          })}
-                        </p>
-                        <p>{jm.jam_berakhir} WIB</p>
+        {load ? (
+          <div className="card my-3 shadow" style={{ border: "none" }}>
+            <div className="card-body">
+              <div className="d-flex justify-content-between">
+                <p className="fw-bold">
+                  <i className="far fa-calendar-days"></i> Jadwal Booking
+                </p>
+              </div>
+              <input
+                className="form-control"
+                value={tglsrc}
+                type="date"
+                onChange={(e) => handleTglbooking(e.target.value)}
+                min="2023.09-06"
+              />
+              <hr />
 
-                        <div
-                          className="form-check form-check-inline"
-                          style={{ display: "none" }}
-                        >
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value={jm.id}
-                            id="flexCheckDefault"
-                          />
+              {jammain.map((jm, index) => {
+                return (
+                  <div key={index}>
+                    <div
+                      className={
+                        idjambooking == jm.id
+                          ? "card mt-2 border-danger"
+                          : "card mt-2"
+                      }
+                      onClick={() => handleJambooking(jm.id)}
+                      key={jm.id}
+                    >
+                      <div className="card-body">
+                        <div className="d-flex justify-content-between">
+                          <p>{jm.jam_mulai} WIB</p>
+                          <p className="fw-bold text-center">
+                            -
+                            {cekbookinglap.map((bk, index) => {
+                              return (
+                                <div key={index}>
+                                  {bk.jam_mulai == jm.jam_mulai ? (
+                                    <p className="text-danger">Booked</p>
+                                  ) : (
+                                    ""
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </p>
+                          <p>{jm.jam_berakhir} WIB</p>
+
+                          <div
+                            className="form-check form-check-inline"
+                            style={{ display: "none" }}
+                          >
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value={jm.id}
+                              id="flexCheckDefault"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <Loadjambooking />
+        )}
+
+        {load ? (
+          <>
+            {" "}
+            <div className="card my-3 shadow" style={{ border: "none" }}>
+              <div className="card-body">
+                <p className="fw-bold">Form Booking </p>
+
+                <div className="row mb-3 text-secondary">
+                  <div className="form-group col-md-6">
+                    <label>Lapangan</label>
+                    <input
+                      type="text"
+                      value={namaLapangan}
+                      className="form-control mt-3"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label>Harga</label>
+                    <br />
+                    <input
+                      type="number"
+                      value={totalHarga}
+                      className="form-control mt-3"
+                    />
+                  </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
 
-        <div className="card my-3 shadow" style={{ border: "none" }}>
-          <div className="card-body">
-            <p className="fw-bold">Form Booking </p>
-            {alert == "tersedia" ? (
-              <div className="alert alert-danger" role="alert">
-                Mohon maaf jadwal booking yang anda masukan telah tersedia
-              </div>
-            ) : (
-              ""
-            )}
+                <div className="form-group mt-3 text-secondary">
+                  <label className="mb-2">Nama Team</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    required=""
+                    value={namateam}
+                    onChange={(e) => setNamateam(e.target.value)}
+                  />
+                </div>
 
-            <div className="row mb-3 text-secondary">
-              <div className="form-group col-md-6">
-                <label>Lapangan</label>
-                <input
-                  type="text"
-                  value={namaLapangan}
-                  className="form-control mt-3"
-                />
-              </div>
-              <div className="form-group col-md-6">
-                <label>Harga</label>
-                <br />
-                <input
-                  type="number"
-                  value={totalHarga}
-                  className="form-control mt-3"
-                />
+                <div className="form-group mt-3">
+                  <button
+                    className={`btn btn-danger w-100 ${
+                      alert == "tersedia" || namateam == "" ? "disabled" : ""
+                    }`}
+                    onClick={handleButtonbooking}
+                  >
+                    Booking sekarang
+                  </button>
+                  <script></script>
+
+                  <ToastContainer />
+                </div>
               </div>
             </div>
-
-            {/* <div className="form-group">
-              <label className="mb-2">Jam Booking</label>
-              <select
-                className="form-control"
-                name="jam"
-                onChange={(e) => cekBookingJam(e)}
-              >
-                <option>{jambooking}</option>
-                <option>10.00 - 12.00</option>
-                <option>12.00 - 14.00</option>
-                <option>14.00 - 16.00</option>
-                <option>16.00 - 18.00</option>
-                <option>18.00 - 20.00</option>
-                <option>20.00 - 22.00</option>
-                <option>22.00 - 24.00</option>
-              </select>
-            </div>
-
-            <div className="form-group mt-3">
-              <label className="mb-2">Tanggal Booking</label>
-              <input
-                type="date"
-                className="form-control"
-                value={tglbooking}
-                onChange={(e) => cekBookingTgl(e)}
-              />
-            </div> */}
-
-            <div className="form-group mt-3 text-secondary">
-              <label className="mb-2">Nama Team</label>
-              <input
-                type="text"
-                className="form-control"
-                required=""
-                value={namateam}
-                onChange={(e) => setNamateam(e.target.value)}
-              />
-            </div>
-
-            <div className="form-group mt-3">
-              <button
-                className={`btn btn-danger w-100 ${
-                  alert == "tersedia" ||
-                  namateam == "" ||
-                  jambooking == "" ||
-                  tglbooking == ""
-                    ? "disabled"
-                    : ""
-                }`}
-                onClick={PayBooking}
-              >
-                Booking sekarang
-              </button>
-              <script></script>
-
-              <ToastContainer />
-            </div>
-          </div>
-        </div>
+          </>
+        ) : (
+          <Loadformbooking />
+        )}
       </div>
     </div>
   );

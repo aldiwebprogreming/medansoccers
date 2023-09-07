@@ -96,7 +96,10 @@ export default function Complist() {
         className="container"
         style={{ position: "relative", bottom: "130px" }}
       >
-        <div className="card shadow" style={{ height: "250px" }}>
+        <div
+          className="card shadow"
+          style={{ height: "250px", border: "none" }}
+        >
           <div className="card-body">
             <div class="d-flex justify-content-between">
               <p className="text-danger fw-bold">Berlangganan</p>
@@ -153,17 +156,19 @@ export default function Complist() {
             </div>
           </div>
         </div>
-        <div className="card mt-2 shadow">
+        <div className="card mt-3 shadow" style={{ border: "none" }}>
           <div className="card-body">
             <div className="d-flex justify-content-between">
-              <p className="text-danger">Daftar booking main anda</p>
+              <p className="fw-bold">Daftar booking main anda</p>
               <p className="text-danger">
                 <i className="fas fa-futbol"></i>
               </p>
             </div>
             <p className="text-success">
-              Ayoo {localStorage.getItem("nama")}, mainkan sisa slot main anda
-              sekarang <br />
+              <div class="alert alert-danger" role="alert">
+                Ayoo <strong>{localStorage.getItem("nama")} </strong>, mainkan
+                sisa slot main anda
+              </div>
               <div className="d-flex justify-content-between">
                 <Link
                   to="/jadwalmemberkarir"
@@ -172,7 +177,7 @@ export default function Complist() {
                 >
                   Gunakan sisa slot member karir anda sekarang
                 </Link>
-                <i className="fas fa-arrow-right text-primary"></i>
+                {/* <i className="fas fa-arrow-right text-primary"></i> */}
               </div>
             </p>
           </div>
@@ -251,7 +256,7 @@ export default function Complist() {
                 className="img-fluid mt-5"
                 alt="Responsive image"
               ></img>
-              <h4 className="mt-3 text-danger fw-bold">
+              <h4 className="mt-3 fw-bold">
                 Hay, {localStorage.getItem("nama")}
               </h4>
               <p>

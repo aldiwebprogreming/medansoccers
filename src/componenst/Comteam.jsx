@@ -3,8 +3,8 @@ import React from "react";
 export default function Comteam() {
   return (
     <div>
-      <p className="text-danger">Team favorit saat ini </p>
-      <div className="card flex-row shadow">
+      <p className="fw-bold">Team favorit saat ini </p>
+      <div className="card flex-row shadow" style={{ border: "none" }}>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfzx66w7FdUkWsRPZfNgAu5iPyBtdCFaCC0hoe8zHSJv1FbqiDX7xa20qyEs4pAm5HX8I&usqp=CAU"
           className="card-img-left shadow"
@@ -35,8 +35,7 @@ export default function Comteam() {
         />
         <div className="card-body">
           <div className="d-flex justify-content-between">
-            <h5 className="" style={{ fontWeight: "bold" }}>
-            </h5>
+            <h5 className="" style={{ fontWeight: "bold" }}></h5>
             <h5 className="text-dangar">
               <i className="fa-solid fa-arrow-right"></i>
             </h5>

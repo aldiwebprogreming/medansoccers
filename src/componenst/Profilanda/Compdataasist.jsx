@@ -29,13 +29,13 @@ export default function Compdataasist() {
           asist ? "text-primary" : "text-secondary"
         }`}
       >
-        <p>Asist</p>
+        <p>Assist</p>
         <p>
           <a
             style={{ textDecoration: "none" }}
             onClick={() => setAsist(!asist)}
           >
-            {jmlasist.jml_asist ? jmlasist.jml_asist : 0} Asist{" "}
+            {jmlasist.jml_asist ? jmlasist.jml_asist : 0} Assist{" "}
             <i
               className={asist ? "fas fa-chevron-down" : "fas fa-chevron-right"}
             ></i>

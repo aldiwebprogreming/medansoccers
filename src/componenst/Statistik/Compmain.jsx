@@ -59,7 +59,7 @@ export default function Compmain() {
                 <h3 className="fw-bold text-success">
                   0 <i className="fas fa-people-arrows"></i>
                 </h3>
-                <p>Asist</p>
+                <p>Assist</p>
               </div>
               <div>
                 <h3 className="fw-bold text-danger">
@@ -117,7 +117,7 @@ export default function Compmain() {
                 onClick={() => handleAsist()}
                 style={{ cursor: "pointer" }}
               >
-                Top Asist
+                Top Assist
               </small>
 
               <small
