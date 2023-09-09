@@ -6,9 +6,12 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loadcardberlangganan from "../../skeleton/Loadcardberlangganan";
+import Loadbermainhariini from "../../skeleton/Loadbermainhariini";
 
 export default function Compmain({ jml_main }) {
   const urlapi = process.env.REACT_APP_BASE_URL;
+  const [load, setLoad] = useState(false);
 
   const notify = () =>
     toast.error(
@@ -46,6 +49,7 @@ export default function Compmain({ jml_main }) {
       );
       setKarir(response.data);
       setSisa(response.data.sisa_bermain);
+      setLoad(true);
     } catch (error) {
       // console.log(error.message);
       navigate("/member");
@@ -85,16 +89,18 @@ export default function Compmain({ jml_main }) {
   };
 
   useEffect(() => {
-    getKarir();
-    getMain();
-    const date = new Date();
-    const jam = date.getHours();
+    setTimeout(() => {
+      getKarir();
+      getMain();
+      const date = new Date();
+      const jam = date.getHours();
 
-    if (jam) {
-      setBtnmain(true);
-    } else {
-      setBtnmain(false);
-    }
+      if (jam) {
+        setBtnmain(true);
+      } else {
+        setBtnmain(false);
+      }
+    }, 300);
   }, []);
 
   return (
@@ -103,60 +109,68 @@ export default function Compmain({ jml_main }) {
         className="container"
         style={{ position: "relative", bottom: "130px" }}
       >
-        <div className="card shadow" style={{ height: "250px" }}>
-          <div className="card-body">
-            <div class="d-flex justify-content-between">
-              <p className="text-danger fw-bold">Berlangganan</p>
-              <p className="text-danger fw-bold">
-                <i className="fas fa-calendar-days"></i> {karir.waktu_member}{" "}
-                Bulan
-              </p>
-            </div>
-            <div class="d-flex justify-content-between">
-              <small className="text-danger">
-                <center>Tanggal mulai : {karir.tgl_mulai}</center>
-              </small>
+        {load ? (
+          <div
+            className="card shadow"
+            style={{ height: "250px", border: "none" }}
+          >
+            <div className="card-body">
+              <div class="d-flex justify-content-between">
+                <p className="text-danger fw-bold">Berlangganan</p>
+                <p className="text-danger fw-bold">
+                  <i className="fas fa-calendar-days"></i> {karir.waktu_member}{" "}
+                  Bulan
+                </p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <small className="text-danger">
+                  <center>Tanggal mulai : {karir.tgl_mulai}</center>
+                </small>
 
-              <small className="text-danger">
-                <center>Tanggal berakhir : {karir.tgl_selesai}</center>
-              </small>
-            </div>
+                <small className="text-danger">
+                  <center>Tanggal berakhir : {karir.tgl_selesai}</center>
+                </small>
+              </div>
 
-            <hr />
-            <div className="row mb-5">
-              <div className="col-sm-6 col-6">
-                <div className="card bg-danger text-white">
-                  <div className="card-body">
-                    Slot Bermain
-                    {karir.jml_bermain == null ? (
-                      <>
-                        <h4>
-                          0 <i className="fas fa-futbol"></i>
-                        </h4>
-                      </>
-                    ) : (
-                      <>
-                        <h4>
-                          {karir.jml_bermain} <i className="fas fa-futbol"></i>
-                        </h4>
-                      </>
-                    )}
+              <hr />
+              <div className="row mb-5">
+                <div className="col-sm-6 col-6">
+                  <div className="card bg-danger text-white">
+                    <div className="card-body">
+                      Slot Bermain
+                      {karir.jml_bermain == null ? (
+                        <>
+                          <h4>
+                            0 <i className="fas fa-futbol"></i>
+                          </h4>
+                        </>
+                      ) : (
+                        <>
+                          <h4>
+                            {karir.jml_bermain}{" "}
+                            <i className="fas fa-futbol"></i>
+                          </h4>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-sm-6 col-6">
-                <div className="card bg-danger text-white">
-                  <div className="card-body">
-                    Sisa Bermain
-                    <h4>
-                      {sisa} <i className="fas fa-futbol"></i>
-                    </h4>
+                <div className="col-sm-6 col-6">
+                  <div className="card bg-danger text-white">
+                    <div className="card-body">
+                      Sisa Bermain
+                      <h4>
+                        {sisa} <i className="fas fa-futbol"></i>
+                      </h4>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <Loadcardberlangganan />
+        )}
       </div>
       {sisa == 0 ? (
         <div className="container text-center">
@@ -187,7 +201,7 @@ export default function Compmain({ jml_main }) {
             >
               <img
                 src="slide22.svg"
-                class="img-fluid"
+                className="img-fluid"
                 alt="Responsive image"
               ></img>
               <h4 className="text-center text-danger mt-3 fw-bold">
@@ -220,8 +234,6 @@ export default function Compmain({ jml_main }) {
               className="container"
               style={{ position: "relative", bottom: "70px" }}
             >
-              {/* <p className="text-danger">Tentukan main anda hari ini </p> */}
-
               <img src="main.png" className="img-fluid" alt="..."></img>
               <p className="text-center text-secondary">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.

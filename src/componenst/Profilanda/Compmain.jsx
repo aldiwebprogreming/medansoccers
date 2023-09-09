@@ -5,6 +5,7 @@ import Compheader from "./Compheader";
 import Compdataasist from "./Compdataasist";
 import Compdatagoal from "./Compdatagoal";
 import Compdataplay from "./Compdataplay";
+import Loadprofil from "../../skeleton/Loadprofil";
 // import { act } from "react-dom/test-utils";
 
 export default function Compmain() {
@@ -16,6 +17,7 @@ export default function Compmain() {
   const [datamain, setDatamain] = useState([]);
   const [jmlmain, setJmlmain] = useState();
   const urlapi = process.env.REACT_APP_BASE_URL;
+  const [load, setLoad] = useState(false);
 
   const getProfil = async () => {
     try {
@@ -29,7 +31,10 @@ export default function Compmain() {
   };
 
   useEffect(() => {
-    getProfil();
+    setTimeout(() => {
+      getProfil();
+      setLoad(true);
+    }, 300);
   }, []);
 
   return (
@@ -40,64 +45,41 @@ export default function Compmain() {
           className="container"
           style={{ position: "relative", bottom: "50px" }}
         >
-          <div className="card shadow">
-            <div className="card-body">
-              <div className="d-flex justify-content-between">
-                <p className="text-danger fw-bold">Statistik anda</p>
-                <p className="text-danger fw-bold">
-                  <i className="far fa-user"></i>
-                </p>
-              </div>
-              <hr />
-              <Compdataplay />
-              <hr />
-              {/* <div class="d-flex justify-content-between text-secondary">
-                <p>Win</p>
-                <p>
-                  <a
-                    style={{ textDecoration: "none" }}
-                    onClick={() => action("Win")}
-                  >
-                    12 Win <i class="fas fa-chevron-right"></i>
-                  </a>
-
-                  <div className="collapse" id="collapseExampleplay">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This
-                      panel is hidden by default but revealed when the user
-                      activates the relevant trigger.
-                    </div>
-                  </div>
-                </p>
-              </div>
-              {win ? (
-                <div className="card border-primary">
-                  <div className="card card-body"></div>
+          {load == false ? (
+            <Loadprofil />
+          ) : (
+            <div className="card shadow">
+              <div className="card-body">
+                <div className="d-flex justify-content-between">
+                  <p className="text-danger fw-bold">Statistik anda</p>
+                  <p className="text-danger fw-bold">
+                    <i className="far fa-user"></i>
+                  </p>
                 </div>
-              ) : (
-                ""
-              )}
-
-              <hr /> */}
-              <Compdataasist />
-              <hr />
-              <Compdatagoal />
-              <hr />
-              <div className="d-flex justify-content-between text-secondary">
-                <p>Rank</p>
-                <p className="text-warning">
-                  <i className="far fa-futbol"></i>{" "}
-                  <i className="far fa-futbol"></i>{" "}
-                  <i className="far fa-futbol"></i>{" "}
-                  <i className="far fa-futbol"></i>{" "}
-                  <i className="far fa-futbol"></i>
-                </p>
+                <hr />
+                <Compdataplay />
+                <hr />
+                <Compdataasist />
+                <hr />
+                <Compdatagoal />
+                <hr />
+                <div className="d-flex justify-content-between text-secondary">
+                  <p>Rank</p>
+                  <p className="text-warning">
+                    <i className="far fa-futbol"></i>{" "}
+                    <i className="far fa-futbol"></i>{" "}
+                    <i className="far fa-futbol"></i>{" "}
+                    <i className="far fa-futbol"></i>{" "}
+                    <i className="far fa-futbol"></i>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
+
         <div
-          className="container mb-5"
+          className={load ? "container mb-5" : "d-none"}
           style={{ position: "relative", bottom: "30px" }}
         >
           <div className="card shadow">
@@ -170,7 +152,8 @@ export default function Compmain() {
             </div>
           </div>
         </div>
-        <Compubahfoto />
+
+        {load ? <Compubahfoto /> : ""}
       </div>
     </>
   );

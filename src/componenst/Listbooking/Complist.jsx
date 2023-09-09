@@ -3,6 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Compmainhariini from "./Compmainhariini";
+import Loadbermainhariini from "../../skeleton/Loadbermainhariini";
+import Loadcardberlangganan from "../../skeleton/Loadcardberlangganan";
+import Loadcardmain from "../../skeleton/Loadcardmain";
+import Loadcardteam from "../../skeleton/Loadcardteam";
 
 export default function Complist() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -11,6 +15,7 @@ export default function Complist() {
   const [databookingmain, setDatabookingmain] = useState([]);
   const [datamain, setDatamain] = useState(true);
   const [profil, setProfil] = useState("");
+  const [load, setLoad] = useState(false);
   //   const [main, setMain] = useState([]);
 
   const getKarir = async () => {
@@ -85,9 +90,12 @@ export default function Complist() {
   };
 
   useEffect(() => {
-    getKarir();
-    getBooking();
-    getProfil();
+    setTimeout(() => {
+      getKarir();
+      getBooking();
+      getProfil();
+      setLoad(true);
+    }, 300);
   }, []);
 
   return (
@@ -96,96 +104,117 @@ export default function Complist() {
         className="container"
         style={{ position: "relative", bottom: "130px" }}
       >
-        <div
-          className="card shadow"
-          style={{ height: "250px", border: "none" }}
-        >
-          <div className="card-body">
-            <div class="d-flex justify-content-between">
-              <p className="text-danger fw-bold">Berlangganan</p>
-              <p className="text-danger fw-bold">
-                <i className="fas fa-calendar-days"></i> {karir.waktu_member}{" "}
-                Bulan
-              </p>
-            </div>
-            <div class="d-flex justify-content-between">
-              <small className="text-danger">
-                <center>Tanggal mulai : {karir.tgl_mulai}</center>
-              </small>
+        {load ? (
+          <div
+            className="card shadow"
+            style={{ height: "250px", border: "none" }}
+          >
+            <div className="card-body">
+              <div class="d-flex justify-content-between">
+                <p className="text-danger fw-bold">Berlangganan</p>
+                <p className="text-danger fw-bold">
+                  <i className="fas fa-calendar-days"></i> {karir.waktu_member}{" "}
+                  Bulan
+                </p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <small className="text-danger">
+                  <center>Tanggal mulai : {karir.tgl_mulai}</center>
+                </small>
 
-              <small className="text-danger">
-                <center>Tanggal berakhir : {karir.tgl_selesai}</center>
-              </small>
-            </div>
+                <small className="text-danger">
+                  <center>Tanggal berakhir : {karir.tgl_selesai}</center>
+                </small>
+              </div>
 
-            <hr />
-            <div className="row mb-5">
-              <div className="col-sm-6 col-6">
-                <div className="card bg-danger text-white">
-                  <div className="card-body">
-                    Slot Bermain
-                    <h4>
-                      {karir.jml_bermain == null ? (
-                        <>
-                          <h4>
-                            0 <i className="fas fa-futbol"></i>
-                          </h4>
-                        </>
-                      ) : (
-                        <>
-                          <h4>
-                            {karir.jml_bermain}{" "}
-                            <i className="fas fa-futbol"></i>
-                          </h4>
-                        </>
-                      )}
-                    </h4>
+              <hr />
+              <div className="row mb-5">
+                <div className="col-sm-6 col-6">
+                  <div className="card bg-danger text-white">
+                    <div className="card-body">
+                      Slot Bermain
+                      <h4>
+                        {karir.jml_bermain == null ? (
+                          <>
+                            <h4>
+                              0 <i className="fas fa-futbol"></i>
+                            </h4>
+                          </>
+                        ) : (
+                          <>
+                            <h4>
+                              {karir.jml_bermain}{" "}
+                              <i className="fas fa-futbol"></i>
+                            </h4>
+                          </>
+                        )}
+                      </h4>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-sm-6 col-6">
-                <div className="card bg-danger text-white">
-                  <div className="card-body">
-                    Sisa Bermain
-                    <h4>
-                      {sisa} <i className="fas fa-futbol"></i>
-                    </h4>
+                <div className="col-sm-6 col-6">
+                  <div className="card bg-danger text-white">
+                    <div className="card-body">
+                      Sisa Bermain
+                      <h4>
+                        {sisa} <i className="fas fa-futbol"></i>
+                      </h4>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="card mt-3 shadow" style={{ border: "none" }}>
-          <div className="card-body">
-            <div className="d-flex justify-content-between">
-              <p className="fw-bold">Daftar booking main anda</p>
-              <p className="text-danger">
-                <i className="fas fa-futbol"></i>
-              </p>
-            </div>
-            <p className="text-success">
-              <div class="alert alert-danger" role="alert">
-                Ayoo <strong>{localStorage.getItem("nama")} </strong>, mainkan
-                sisa slot main anda
-              </div>
+        ) : (
+          <Loadcardberlangganan />
+        )}
+
+        {load ? (
+          <div className="card mt-3 shadow" style={{ border: "none" }}>
+            <div className="card-body">
               <div className="d-flex justify-content-between">
-                <Link
-                  to="/jadwalmemberkarir"
-                  className=""
-                  style={{ textDecoration: "none" }}
-                >
-                  Gunakan sisa slot member karir anda sekarang
-                </Link>
-                {/* <i className="fas fa-arrow-right text-primary"></i> */}
+                <p className="fw-bold">Daftar booking main anda</p>
+                <p className="text-danger">
+                  <i className="fas fa-futbol"></i>
+                </p>
               </div>
-            </p>
+              <p className="text-success">
+                <div class="alert alert-danger" role="alert">
+                  Ayoo <strong>{localStorage.getItem("nama")} </strong>, mainkan
+                  sisa slot main anda
+                </div>
+                <div className="d-flex justify-content-between">
+                  <Link
+                    to="/jadwalmemberkarir"
+                    className=""
+                    style={{ textDecoration: "none" }}
+                  >
+                    Gunakan sisa slot member karir anda sekarang
+                  </Link>
+                  {/* <i className="fas fa-arrow-right text-primary"></i> */}
+                </div>
+              </p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <Loadcardmain />
+        )}
+
+        {load == false ? (
+          <>
+            {" "}
+            <Loadcardteam />
+            <Loadcardteam />
+            <Loadcardteam />
+          </>
+        ) : (
+          ""
+        )}
 
         {datamain ? (
           <div>
-            <Compmainhariini />{" "}
+            <Compmainhariini />
+
             {databookingmain.map((data) => {
               return (
                 <div

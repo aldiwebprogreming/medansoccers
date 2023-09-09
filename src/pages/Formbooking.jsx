@@ -21,6 +21,8 @@ export default function Formbooking() {
   const [idjambooking, setIdjambooking] = useState(0);
   const [cekbookinglap, setCekbookinglap] = useState([]);
   const [load, setLoad] = useState(false);
+  const [loadjam, setLoadjam] = useState(false);
+  const [alerttglsudahlewat, setAlerttglsudahlewat] = useState(false);
 
   const date = new Date();
   let tgl = new Date();
@@ -32,6 +34,7 @@ export default function Formbooking() {
     ("0" + tgl.getDate()).slice(-2);
 
   const [tglsrc, setTglsrc] = useState(format_tgl);
+  const [tglsekarang, setTglsekarang] = useState(format_tgl);
 
   const notify = () =>
     toast.success("Booking lapangan anda berhasil !", {
@@ -184,11 +187,21 @@ export default function Formbooking() {
   const handleTglbooking = (tgl) => {
     setTglsrc(tgl);
     cekBookinglapangan(tgl);
+    if (tgl < tglsekarang) {
+      setAlerttglsudahlewat(true);
+    } else {
+      setAlerttglsudahlewat(false);
+    }
   };
 
   const handleJambooking = (id) => {
     setIdjambooking(id);
   };
+
+  const Time = new Date();
+  const hour = ("0" + Time.getHours()).slice(-2);
+  const menit = Time.getMinutes();
+  const jam = hour + "." + menit;
 
   useEffect(() => {
     setTimeout(() => {
@@ -236,15 +249,37 @@ export default function Formbooking() {
               />
               <hr />
 
+              <p
+                className={
+                  alerttglsudahlewat ? "text-center text-secondary" : "d-none"
+                }
+                style={{ marginTop: "100px", marginBottom: "100px" }}
+              >
+                <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
+                <br />
+                Tanggal yang ada pilih sudah lewat
+              </p>
+
               {jammain.map((jm, index) => {
                 return (
-                  <div key={index}>
+                  <div
+                    key={index}
+                    className={
+                      jam > jm.jam_mulai && tglsrc == tglsekarang
+                        ? "d-none"
+                        : tglsrc < tglsekarang
+                        ? "d-none"
+                        : ""
+                    }
+                  >
+                    ,,
                     <div
                       className={
                         idjambooking == jm.id
                           ? "card mt-2 border-danger"
                           : "card mt-2"
                       }
+                      disabled
                       onClick={() => handleJambooking(jm.id)}
                       key={jm.id}
                     >
@@ -293,7 +328,12 @@ export default function Formbooking() {
         {load ? (
           <>
             {" "}
-            <div className="card my-3 shadow" style={{ border: "none" }}>
+            <div
+              className={`card my-3 shadow ${
+                alerttglsudahlewat ? "d-none" : ""
+              }`}
+              style={{ border: "none" }}
+            >
               <div className="card-body">
                 <p className="fw-bold">Form Booking </p>
 
