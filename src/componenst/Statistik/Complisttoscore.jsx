@@ -7,14 +7,29 @@ export default function Complistopscore() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(
-        urlapi + "Topscore?id_user=" + localStorage.getItem("id")
-      );
+      const response = await axios.get(urlapi + "Topscore");
 
       setScore(response.data);
     } catch (error) {
       //   console.log(error.message);
     }
+  };
+
+  const Getmain = ({ iduser }) => {
+    const [jmlmain, setJmlmain] = useState(0);
+
+    const getdataMain = async () => {
+      try {
+        const response = await axios.get(urlapi + "Listmain?id_user=" + iduser);
+        setJmlmain(response.data.jml);
+      } catch (error) {}
+    };
+
+    useEffect(() => {
+      getdataMain();
+    }, []);
+
+    return <>{jmlmain}</>;
   };
 
   useEffect(() => {
@@ -37,7 +52,8 @@ export default function Complistopscore() {
 
               <div className="col-md-4 col-4 text-center">
                 <h5 className="text-danger fw-bold">
-                  10 <i className="far fa-user"></i>
+                  <Getmain iduser={ls.id_user} />{" "}
+                  <i className="far fa-user"></i>
                 </h5>
                 <p className="text-secondary fw-bold">Play</p>
               </div>

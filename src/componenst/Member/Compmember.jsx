@@ -129,16 +129,12 @@ export default function Compmember({ props }) {
                 Apa itu member karir ?
               </h4>
               <p className="text-secondary">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati quam eaque, autem quis, harum quaerat veniam labore
-                dolore nulla similique cumque esse quasi repellendus illum
-                placeat saepe atque id itaque?
-              </p>
-              <p className="text-secondary">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati quam eaque, autem quis, harum quaerat veniam labore
-                dolore nulla similique cumque esse quasi repellendus illum
-                placeat saepe atque id itaque?
+                Member karir adalah fitur untuk bermain secara random dengan
+                team yang telah di sediakan oleh aplikasi medan mini soccer,
+                masing - masing team terdiri dari 10 pemain yang mana 10 pemain
+                tersebut sebelumnya sudah melakukan join member karir di
+                aplikasi medan mini soccer dan anda hanya dapat bermain satu
+                kali dalam satu hari.
               </p>
 
               {sisamain == 0 ? (
@@ -161,16 +157,11 @@ export default function Compmember({ props }) {
                 centered
               >
                 <Modal.Header closeButton>
-                  <Modal.Title>Member karir</Modal.Title>
+                  <Modal.Title>Pay member karir</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Illo omnis aspernatur, exercitationem asperiores, reiciendis
-                    cupiditate amet aperiam eveniet quam impedit, dolores facere
-                    libero ab quaerat consectetur earum sapiente beatae.
-                    Consectetur!
-                  </p>
+                  <img src="pay.png" class="img-fluid" alt="..." />
+
                   <div className="d-flex justify-content-between">
                     <h4 className="text-danger">Rp 200.000</h4>
                     <div>
@@ -185,20 +176,20 @@ export default function Compmember({ props }) {
                     </div>
                   </div>
                   <div className="d-flex justify-content-between mt-3">
-                    <p className="fw-bold">Total Pembayaran :</p>
+                    <p className="fw-bold">Total :</p>
                     <p className="fw-bold">
                       Rp {total * qty}
                       {".000"}
                     </p>
                   </div>
-                  <p className="">
+                  {/* <p className="">
                     Dapatkan potongan harga dengan memasukan kode voucher
-                  </p>
-                  <input
+                  </p> */}
+                  {/* <input
                     type="text"
                     className="form-control"
                     placeholder="Kode voucher"
-                  />
+                  /> */}
                 </Modal.Body>
                 <Modal.Footer>
                   <Button
@@ -207,7 +198,7 @@ export default function Compmember({ props }) {
                     className="w-100"
                     variant="primary"
                   >
-                    Pay Member Karir <i className="fas fa-receipt"></i>
+                    Bayar sekarng <i className="fas fa-receipt"></i>
                   </Button>
                 </Modal.Footer>
               </Modal>

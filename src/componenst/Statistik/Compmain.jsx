@@ -5,12 +5,17 @@ import Complistopscore from "./Complisttoscore";
 import Complistopasist from "./Complistopasist";
 import Complisttopkiper from "./Complisttopkiper";
 import Loadstatistik from "../../skeleton/Loadstatistik";
+import axios from "axios";
 
 export default function Compmain() {
+  const urlapi = process.env.REACT_APP_BASE_URL;
   const [listwin, setListwin] = useState(true);
   const [listscore, setListscore] = useState(false);
   const [listasist, setListasist] = useState(false);
   const [listkiper, setListkiper] = useState(false);
+  const [main, setMain] = useState(0);
+  const [goal, setGoal] = useState(0);
+  const [assist, setAssist] = useState(0);
   const [load, setLoad] = useState(false);
 
   const handleScore = () => {
@@ -41,11 +46,41 @@ export default function Compmain() {
     setListkiper(!listkiper);
   };
 
+  const getMain = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Listmain?id_user=" + localStorage.getItem("id")
+      );
+      setMain(response.data.jml);
+    } catch (error) {}
+  };
+
+  const getAssist = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Topassist?id_user=" + localStorage.getItem("id")
+      );
+      setAssist(response.data.total);
+    } catch (error) {}
+  };
+
+  const getGoal = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Topscore?id_user=" + localStorage.getItem("id")
+      );
+      setGoal(response.data.total);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setLoad(true);
+      getMain();
+      getAssist();
+      getGoal();
     }, 300);
-  });
+  }, []);
 
   return (
     <div>
@@ -63,20 +98,20 @@ export default function Compmain() {
                 <div className="d-flex justify-content-between fw-bold">
                   <div>
                     <h3 className="fw-bold text-info">
-                      10<i className="fas fa-user"></i>
+                      {main} <i className="fas fa-user"></i>
                     </h3>
                     <p>Play</p>
                   </div>
 
                   <div>
                     <h3 className="fw-bold text-success">
-                      0 <i className="fas fa-people-arrows"></i>
+                      {assist} <i className="fas fa-people-arrows"></i>
                     </h3>
                     <p>Assist</p>
                   </div>
                   <div>
                     <h3 className="fw-bold text-danger">
-                      5 <i className="far fa-futbol"></i>
+                      {goal} <i className="far fa-futbol"></i>
                     </h3>
                     <p>Goal</p>
                   </div>

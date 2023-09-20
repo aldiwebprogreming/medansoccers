@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Loadketentuanbooking from "../skeleton/Loadketentuanbooking";
 import Loadjambooking from "../skeleton/Loadjambooking";
 import Loadformbooking from "../skeleton/loadformbooking";
+import Pembayaran from "./Pembayaran";
 
 export default function Formbooking() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -132,6 +133,7 @@ export default function Formbooking() {
           team: namateam,
           id_lapangan: idlapangan,
           kode_status: result.status_code,
+          t,
         })
         .then((response) => {
           setJambooking("Pilih jam booking");
@@ -272,7 +274,6 @@ export default function Formbooking() {
                         : ""
                     }
                   >
-                    ,,
                     <div
                       className={
                         idjambooking == jm.id
@@ -337,6 +338,11 @@ export default function Formbooking() {
               <div className="card-body">
                 <p className="fw-bold">Form Booking </p>
 
+                <p>
+                  Pembayaran booking lapangan hanya dapat di lakukan dengan
+                  <strong> BANK TRANSFER</strong> dengan nomor rekening tujuan
+                  <strong> REK BCA : 6475383951 a/n Pendy Or Handoko </strong>
+                </p>
                 <div className="row mb-3 text-secondary">
                   <div className="form-group col-md-6">
                     <label>Lapangan</label>
@@ -369,14 +375,22 @@ export default function Formbooking() {
                 </div>
 
                 <div className="form-group mt-3">
-                  <button
+                  <Pembayaran
+                    idlapangan={idlapangan}
+                    lapangan={namaLapangan}
+                    harga={totalHarga}
+                    namateam={namateam}
+                    jambooking={idjambooking}
+                    tgl={tglsrc}
+                  />
+                  {/* <button
                     className={`btn btn-danger w-100 ${
                       alert == "tersedia" || namateam == "" ? "disabled" : ""
                     }`}
                     onClick={handleButtonbooking}
                   >
                     Booking sekarang
-                  </button>
+                  </button> */}
                   <script></script>
 
                   <ToastContainer />

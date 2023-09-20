@@ -208,8 +208,8 @@ export default function Compmain({ jml_main }) {
                 Hay, {localStorage.getItem("nama")}
               </h4>
               <p className="text-center text-danger">
-                Hari ini anda berhasil melakukan booking main.<br></br> Kami
-                mengharapkan anda datang pada hari ini <br></br>
+                Booking main anda berhasil. Kami mengharapkan anda datang pada
+                hari ini
                 <hr />
                 <div class="d-flex justify-content-center">
                   <Link
@@ -236,10 +236,10 @@ export default function Compmain({ jml_main }) {
             >
               <img src="main.png" className="img-fluid" alt="..."></img>
               <p className="text-center text-secondary">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Praesentium minus cum nemo molestias perspiciatis? Voluptas,
-                esse? Placeat, magni veniam deserunt ex quibusdam, adipisci
-                dolorum quas expedita aperiam repellendus velit facere!
+                Selamat datang di Member Karir {localStorage.getItem("nama")}
+                <br />
+                Mulai bermain hari ini untuk mendapatkan team baru anda dan
+                statistik terbaik anda
               </p>
 
               {btnmain ? (

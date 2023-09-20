@@ -233,7 +233,7 @@ export default function Complist() {
                             src="pemain.png"
                             class="img-fluid"
                             alt="Responsive image"
-                            style={{ height: "50px" }}
+                            style={{ height: "50px", width: "55px" }}
                           ></img>
                         ) : (
                           <img
@@ -249,7 +249,10 @@ export default function Complist() {
                         pada Tanggal :
                       </p>
                     </div>
-                    <div className="d-flex justify-content-around  fw-bold">
+                    <div
+                      className="d-flex justify-content-around  fw-bold"
+                      style={{ fontSize: "12px" }}
+                    >
                       <small> {renderTeam(data.team)}</small>
                       <small className="text-danger">
                         <i className="fas fa-shirt"></i> {data.no_punggung}

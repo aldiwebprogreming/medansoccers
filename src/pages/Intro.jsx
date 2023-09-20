@@ -65,14 +65,12 @@ export default function Intro() {
             alt=""
             style={{ height: "500px" }}
           />
-          <h5 className="text-center fw-bold text-danger mt-1">
+          <h5 className="text-center fw-bold text-danger mt-3">
             Selamat Datang di Medan Mini Soccer
           </h5>
           <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempore
-            illum voluptatum nesciunt ipsa error voluptates omnis aut expedita
-            mollitia facere nemo nisi, temporibus obcaecati libero esse ex, non
-            nulla?
+            Aplikasi mini soccer satu-satunya di Kota Medan, yuk buruan install
+            aplikasinya di smartpone anda
           </p>
         </div>
         <div className="item">
@@ -86,10 +84,8 @@ export default function Intro() {
             Daftar Member Karir
           </h5>
           <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempore
-            illum voluptatum nesciunt ipsa error voluptates omnis aut expedita
-            mollitia facere nemo nisi, temporibus obcaecati libero esse ex, non
-            nulla?
+            Fitur Member karir yang dapat mempermudah anda mendapatkan team baru
+            anda untuk meningkatkan karir anda
           </p>
         </div>
         <div className="item">
@@ -103,22 +99,18 @@ export default function Intro() {
             Booking Lapangan
           </h5>
           <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempore
-            illum voluptatum nesciunt ipsa error voluptates omnis aut expedita
-            mollitia facere nemo nisi, temporibus obcaecati libero esse ex, non
-            nulla?
+            Fitur Booking lapangan yang mempermudah anda untuk memesan lapangan
+            dengan cepat tanpa harus keluar rumah
           </p>
         </div>
         <div className="item">
           <img className="img-fluid mt-5" src="login.svg" />
           <h5 className="text-center fw-bold text-danger mt-3">
-            Login dengan akun google
+            Mulai dengan Medan mini soccer
           </h5>
           <p className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo
-            itaque dignissimos quidem veritatis laboriosam esse incidunt ratione
-            labore nesciunt odit cupiditate, ipsam distinctio aperiam provident
-            consectetur voluptas, autem maxime magni?
+            Tunggu apalagi yuk buruan daftar di Medan mini soccer dan dapatkan
+            kemudahan dalam bermain mini soccer,
           </p>
           <center>
             <Logingoogle />

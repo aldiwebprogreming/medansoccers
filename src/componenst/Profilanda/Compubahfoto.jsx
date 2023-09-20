@@ -27,7 +27,7 @@ function MyVerticallyCenteredModal(props) {
 
   const handleChangeImg = (e) => {
     setImg(e.target.files[0]);
-    console.log(e);
+    // console.log(e);
     setvalueimg(e.target.value);
     setNameImg(e.target.files[0].name);
   };

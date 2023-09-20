@@ -58,6 +58,7 @@ export default function Compprofil() {
                 src="happy.svg"
                 className="img-fluid"
                 alt="Responsive image"
+                s
                 style={{ height: "300px" }}
               />
             </center>
