@@ -168,10 +168,13 @@ export default function Pembayaran({
                       <h5 className="mt-4 text-secondary">
                         <strong>Hei, {localStorage.getItem("nama")} </strong>
                         <br></br>
-                        Pembayaran anda berhasil dikirm silahkan mengunggu
-                        pesetujuan pembayaran anda
+                        Pembayaran anda berhasil dikirm silahkan menunggu
+                        persetujuan pembayaran anda
                       </h5>
-                      <a href="/" className="btn btn-danger mt-5">
+                      <a
+                        href={"/formbooking/" + idlapangan}
+                        className="btn btn-danger mt-5"
+                      >
                         Tutup popup
                       </a>
                     </center>

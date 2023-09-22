@@ -8,6 +8,7 @@ import Loadketentuanbooking from "../skeleton/Loadketentuanbooking";
 import Loadjambooking from "../skeleton/Loadjambooking";
 import Loadformbooking from "../skeleton/loadformbooking";
 import Pembayaran from "./Pembayaran";
+import Databookinglapangan from "./Databookinglapangan";
 
 export default function Formbooking() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -24,6 +25,9 @@ export default function Formbooking() {
   const [load, setLoad] = useState(false);
   const [loadjam, setLoadjam] = useState(false);
   const [alerttglsudahlewat, setAlerttglsudahlewat] = useState(false);
+  const [hiddenbutton, setHiddenbutton] = useState(true);
+  const [pagebooking, setPagebooking] = useState(true);
+  const [pagedatabooking, setPagedatabooking] = useState(false);
 
   const date = new Date();
   let tgl = new Date();
@@ -133,7 +137,6 @@ export default function Formbooking() {
           team: namateam,
           id_lapangan: idlapangan,
           kode_status: result.status_code,
-          t,
         })
         .then((response) => {
           setJambooking("Pilih jam booking");
@@ -198,12 +201,43 @@ export default function Formbooking() {
 
   const handleJambooking = (id) => {
     setIdjambooking(id);
+    cekdataBooking(id);
+  };
+
+  const cekdataBooking = async (id) => {
+    try {
+      const response = await axios.get(
+        urlapi +
+          "Cekbookinglapangan2?idlap=" +
+          idlapangan +
+          "&tgl=" +
+          tglsrc +
+          "&idjam=" +
+          id
+      );
+      if (response.data.status == true) {
+        setHiddenbutton(false);
+        notifyCekbooking();
+      } else {
+        setHiddenbutton(true);
+      }
+    } catch (error) {}
   };
 
   const Time = new Date();
   const hour = ("0" + Time.getHours()).slice(-2);
   const menit = Time.getMinutes();
   const jam = hour + "." + menit;
+
+  const showBooking = () => {
+    setPagebooking(true);
+    setPagedatabooking(false);
+  };
+
+  const showDatabooking = () => {
+    setPagebooking(false);
+    setPagedatabooking(true);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -238,88 +272,123 @@ export default function Formbooking() {
           <div className="card my-3 shadow" style={{ border: "none" }}>
             <div className="card-body">
               <div className="d-flex justify-content-between">
-                <p className="fw-bold">
+                <p
+                  className={`fw-bold ${pagebooking ? "text-primary" : ""}`}
+                  onClick={() => showBooking()}
+                  style={{ cursor: "pointer" }}
+                >
                   <i className="far fa-calendar-days"></i> Jadwal Booking
                 </p>
+
+                <p
+                  className={`fw-bold ${pagedatabooking ? "text-primary" : ""}`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => showDatabooking()}
+                >
+                  <i className="far fa-futbol"></i> Data Booking
+                </p>
               </div>
-              <input
-                className="form-control"
-                value={tglsrc}
-                type="date"
-                onChange={(e) => handleTglbooking(e.target.value)}
-                min="2023.09-06"
-              />
-              <hr />
 
-              <p
-                className={
-                  alerttglsudahlewat ? "text-center text-secondary" : "d-none"
-                }
-                style={{ marginTop: "100px", marginBottom: "100px" }}
-              >
-                <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
-                <br />
-                Tanggal yang ada pilih sudah lewat
-              </p>
+              <div className={pagedatabooking ? "" : "d-none"}>
+                <Databookinglapangan />
+              </div>
 
-              {jammain.map((jm, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={
-                      jam > jm.jam_mulai && tglsrc == tglsekarang
-                        ? "d-none"
-                        : tglsrc < tglsekarang
-                        ? "d-none"
-                        : ""
-                    }
-                  >
+              <div className={pagebooking ? "" : "d-none"}>
+                <input
+                  className="form-control"
+                  value={tglsrc}
+                  type="date"
+                  onChange={(e) => handleTglbooking(e.target.value)}
+                  min="2023.09-06"
+                />
+                <hr />
+
+                <p
+                  className={
+                    alerttglsudahlewat ? "text-center text-secondary" : "d-none"
+                  }
+                  style={{ marginTop: "100px", marginBottom: "100px" }}
+                >
+                  <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
+                  <br />
+                  Tanggal yang ada pilih sudah lewat
+                </p>
+
+                {jammain.map((jm, index) => {
+                  return (
                     <div
+                      key={index}
                       className={
-                        idjambooking == jm.id
-                          ? "card mt-2 border-danger"
-                          : "card mt-2"
+                        jam > jm.jam_mulai && tglsrc == tglsekarang
+                          ? "d-none"
+                          : tglsrc < tglsekarang
+                          ? "d-none"
+                          : ""
                       }
-                      disabled
-                      onClick={() => handleJambooking(jm.id)}
-                      key={jm.id}
                     >
-                      <div className="card-body">
-                        <div className="d-flex justify-content-between">
-                          <p>{jm.jam_mulai} WIB</p>
-                          <p className="fw-bold text-center">
-                            -
-                            {cekbookinglap.map((bk, index) => {
-                              return (
-                                <div key={index}>
-                                  {bk.jam_mulai == jm.jam_mulai ? (
-                                    <p className="text-danger">Booked</p>
-                                  ) : (
-                                    ""
-                                  )}
-                                </div>
-                              );
-                            })}
-                          </p>
-                          <p>{jm.jam_berakhir} WIB</p>
+                      <div
+                        className={
+                          idjambooking == jm.id
+                            ? "card mt-2 border-danger"
+                            : "card mt-2"
+                        }
+                        disabled
+                        onClick={() => handleJambooking(jm.id)}
+                        key={jm.id}
+                      >
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between">
+                            <p>{jm.jam_mulai} WIB</p>
+                            <p className="fw-bold text-center">
+                              -
+                              {cekbookinglap.map((bk, index) => {
+                                return (
+                                  <div key={index}>
+                                    {bk.jam_mulai == jm.jam_mulai &&
+                                    bk.status_pembayaran == "200" ? (
+                                      <>
+                                        <label className="text-danger">
+                                          Booked
+                                        </label>
+                                        <br></br>
+                                        <small>
+                                          {localStorage.getItem("id") ==
+                                          bk.iduser ? (
+                                            <small>
+                                              {localStorage.getItem("nama")}
+                                            </small>
+                                          ) : (
+                                            ""
+                                          )}
+                                        </small>
+                                      </>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </p>
+                            <p>{jm.jam_berakhir} WIB</p>
 
-                          <div
-                            className="form-check form-check-inline"
-                            style={{ display: "none" }}
-                          >
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value={jm.id}
-                              id="flexCheckDefault"
-                            />
+                            <div
+                              className="form-check form-check-inline"
+                              style={{ display: "none" }}
+                            >
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                value={jm.id}
+                                id="flexCheckDefault"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         ) : (
@@ -327,8 +396,7 @@ export default function Formbooking() {
         )}
 
         {load ? (
-          <>
-            {" "}
+          <div className={pagebooking ? "" : "d-none"}>
             <div
               className={`card my-3 shadow ${
                 alerttglsudahlewat ? "d-none" : ""
@@ -375,14 +443,23 @@ export default function Formbooking() {
                 </div>
 
                 <div className="form-group mt-3">
-                  <Pembayaran
-                    idlapangan={idlapangan}
-                    lapangan={namaLapangan}
-                    harga={totalHarga}
-                    namateam={namateam}
-                    jambooking={idjambooking}
-                    tgl={tglsrc}
-                  />
+                  {hiddenbutton == true && namateam != "" ? (
+                    <>
+                      <Pembayaran
+                        idlapangan={idlapangan}
+                        lapangan={namaLapangan}
+                        harga={totalHarga}
+                        namateam={namateam}
+                        jambooking={idjambooking}
+                        tgl={tglsrc}
+                      />
+                    </>
+                  ) : (
+                    <button className="btn btn-danger w-100 " disabled>
+                      Booking sekarang
+                    </button>
+                  )}
+
                   {/* <button
                     className={`btn btn-danger w-100 ${
                       alert == "tersedia" || namateam == "" ? "disabled" : ""
@@ -392,16 +469,15 @@ export default function Formbooking() {
                     Booking sekarang
                   </button> */}
                   <script></script>
-
-                  <ToastContainer />
                 </div>
               </div>
             </div>
-          </>
+          </div>
         ) : (
           <Loadformbooking />
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

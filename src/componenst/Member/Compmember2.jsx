@@ -3,11 +3,10 @@ import React, { useEffect } from "react";
 
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-
+import Modal from "react-bootstrap/Modal";
 import Compalert from "./Compalert";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Compbayar from "./Compbayar";
 
 export default function Compmember({ props }) {
   const [show, setShow] = useState(false);
@@ -15,17 +14,11 @@ export default function Compmember({ props }) {
   const [datauser, setDatauser] = useState([]);
   const urlapi = process.env.REACT_APP_BASE_URL;
   const [sisamain, setSisamain] = useState(null);
-  const handleClose = () => {
-    setShow(false);
-    setPagebayar(false);
-    setPageqty(true);
-  };
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(200);
-  const [pageqty, setPageqty] = useState(true);
-  const [pagebayar, setPagebayar] = useState(false);
 
   const tambah = () => {
     setQty(qty + 1);
@@ -109,7 +102,7 @@ export default function Compmember({ props }) {
       setSisamain(response.data.sisa_bermain);
       setDatauser(response.data);
     } catch (error) {
-      // console.log(error.message);
+      console.log(error.message);
     }
   };
 
@@ -119,11 +112,6 @@ export default function Compmember({ props }) {
     } else {
       return <Compalert statuscode="201" pdfurl={datauser.pdf_url} />;
     }
-  };
-
-  const handlepage = () => {
-    setPageqty(false);
-    setPagebayar(true);
   };
 
   useEffect(() => {
@@ -155,87 +143,61 @@ export default function Compmember({ props }) {
                   Beli slot member karir <i className="fas fa-futbol"></i>
                 </Button>
               ) : (
-                <Button variant="danger w-100" onClick={handleShow}>
-                  Daftar member karir
+                <Button variant="danger" className="w-100" onClick={handleShow}>
+                  Daftar member karir <i className="fas fa-futbol"></i>
                 </Button>
               )}
 
-              <Offcanvas
+              <Modal
+                {...props}
                 show={show}
                 onHide={handleClose}
-                placement="bottom"
-                style={{ height: "500px", white: "200px" }}
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
               >
-                <Offcanvas.Header closeButton>
-                  <div className="container">
-                    <Offcanvas.Title>Member karir</Offcanvas.Title>
-                  </div>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  {/* componen bayar */}
-                  <div className={pagebayar == true ? "" : "d-none"}>
-                    <Compbayar qty={qty} total={total} />
-                  </div>
-                  {/* end */}
+                <Modal.Header closeButton>
+                  <Modal.Title>Pay member karir</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <img src="pay.png" class="img-fluid" alt="..." />
 
-                  <div className={`container ${pageqty ? "" : "d-none"}`}>
-                    <p>
-                      Pembayaran member karir untuk saat ini hanya dapat di
-                      lakukan dengan
-                      <strong> BANK TRANSFER</strong> dengan nomor rekening
-                      tujuan
-                      <strong>
-                        {" "}
-                        REK BCA : 6475383951 a/n Pendy Or Handoko{" "}
-                      </strong>
+                  <div className="d-flex justify-content-between">
+                    <h4 className="text-danger">Rp 200.000</h4>
+                    <div>
+                      <button onClick={kurang} className="btn btn-danger">
+                        -
+                      </button>{" "}
+                      <label className="fw-bold">{qty} Bulan</label>
+                      {"  "}
+                      <button onClick={tambah} className="btn btn-danger">
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between mt-3">
+                    <p className="fw-bold">Total :</p>
+                    <p className="fw-bold">
+                      Rp {total * qty}
+                      {".000"}
                     </p>
-                    <hr></hr>
-                    <div className="d-flex justify-content-between">
-                      <h4 className="text-danger">
-                        <strong>Rp 200.000</strong>
-                      </h4>
-                      <div>
-                        <button onClick={kurang} className="btn btn-danger">
-                          -
-                        </button>{" "}
-                        <label className="fw-bold">{qty} Bulan</label>
-                        {"  "}
-                        <button onClick={tambah} className="btn btn-danger">
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Kode voucher"
-                      className="form-control mt-3"
-                    />
-                    <small className="text-secondary">
-                      Dapatkan potongan harga dengan memasukan kode voucher
-                    </small>
-
-                    <div class="fixed-bottom">
-                      <div className="container">
-                        <div className="container">
-                          <h5 className="">
-                            <strong>
-                              {" "}
-                              Rp {total * qty}
-                              {".000"}
-                            </strong>
-                          </h5>
-                          <button
-                            onClick={() => handlepage()}
-                            className="btn btn-danger w-100"
-                          >
-                            Bayar sekarang
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                </Offcanvas.Body>
-              </Offcanvas>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    type="submit"
+                    onClick={PayMember}
+                    className="w-100"
+                    variant="primary"
+                  >
+                    Bayar sekarng <i className="fas fa-receipt"></i>
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              {/* <button className="btn btn-danger w-100">
+            Daftar member karir <i className="fas fa-futbol"></i>
+          </button> */}
             </div>
           </div>
         </div>
