@@ -1,5 +1,5 @@
 import React from "react";
-import Compheader from "./Compheader";
+
 import { useState } from "react";
 import { auth, provider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
@@ -25,11 +25,18 @@ export default function Complogin() {
         <div className="col-sm-1"></div>
         <div className="col-sm-10">
           {nama == "" ? (
-            <div className="card shadow">
-              <div className="card-header">
-                <p className="text-danger text-center">Login Medan soccers</p>
-              </div>
-              <div className="card-body">
+            <div className="mt-5">
+              <div
+                className="card-body"
+                style={{ marginTop: "100px", height: "100%" }}
+              >
+                <h4 className="text-center">
+                  Login <br></br>
+                  <strong className="text-danger">Medan Mini Soccer </strong>
+                </h4>
+                <p className="text-center text-secondary mt-3">
+                  Masuka email dan password anda dengan benar
+                </p>
                 <div className="form-group">
                   <label class="form-label">Email address</label>
                   <input
@@ -51,18 +58,12 @@ export default function Complogin() {
                 </div>
 
                 <button className="btn btn-danger  w-100 mt-4">
-                  <i className="fa fa-user"></i> Login Yukk
+                  <i className="fa fa-user"></i> Login sekarang
                 </button>
 
-                <button
-                  onClick={loginGoogle}
-                  className="btn btn-danger  w-100 mt-2"
-                >
-                  <i class="fa-brands fa-google"></i> Login dengan akun google
-                </button>
                 <hr />
                 <p className="text-danger mt-4 text-center">
-                  Belum punya akun ? Daftar sekarang
+                  Belum punya akun ? <Link to="/register">Daftar sekarang</Link>
                 </p>
               </div>
             </div>

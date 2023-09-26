@@ -54,7 +54,7 @@ export default function Compbayar({ qty, total }) {
         bukti: url,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setAlert(true);
         // setAwal(true);
         // getMember();

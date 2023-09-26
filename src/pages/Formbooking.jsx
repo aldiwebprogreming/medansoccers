@@ -47,7 +47,7 @@ export default function Formbooking() {
     });
 
   const notifyCekbooking = () => {
-    toast.error("Jam booking sudah sudah di gunakan !", {
+    toast.error("Jam booking sudah di gunakan !", {
       position: toast.POSITION.BOTTOM_CENTER,
     });
   };

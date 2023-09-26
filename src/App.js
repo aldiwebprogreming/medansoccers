@@ -17,6 +17,7 @@ import Listbookingkarir from "./pages/Listbookingkarir";
 import Profilanda from "./pages/Profilanda";
 import Score from "./pages/Score";
 import Statistik from "./pages/Statistik";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                   element={<Listbookingkarir />}
                 />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/profil" element={<Profil />} />
                 <Route path="/profilanda" element={<Profilanda />} />
                 <Route path="/statistik" element={<Statistik />} />

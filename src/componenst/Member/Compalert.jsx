@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Compalert({ pdfurl, statuscode }) {
+export default function Compalert({ statuscode }) {
   return (
     <div>
       <div className="card" style={{ borderRadius: "0px" }}>
@@ -17,18 +17,11 @@ export default function Compalert({ pdfurl, statuscode }) {
               <h5 className="mt-3 text-danger fw-bold">
                 Hay, {localStorage.getItem("nama")}
               </h5>
-              <p>
+              <p className="text-secondary">
                 Status pembayaran member karir anda masih tertunda, silahkan
-                melakukan pembayaran dengan metode yang telah di tentukan{" "}
+                menunggu persetujuan pembayaran anda
               </p>
-              <a
-                target="_blank"
-                href={pdfurl}
-                style={{ textDecoration: "none" }}
-              >
-                Lihat instruksi pembayaran{" "}
-                <i className="fas fa-arrow-right"></i>
-              </a>
+
               <br />
               {/* <button className="btn btn-danger mt-2">
                 <i className="fas fa-mony"></i> Ulangi Pembayaran anda

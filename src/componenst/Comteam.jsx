@@ -1,51 +1,50 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function Comteam() {
+  const urlapi = process.env.REACT_APP_BASE_URL;
+  const [topscore, setTopscore] = useState([]);
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(urlapi + "Topscore");
+      setTopscore(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
-      <p className="fw-bold">Team favorit saat ini </p>
-      <div className="card flex-row shadow" style={{ border: "none" }}>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfzx66w7FdUkWsRPZfNgAu5iPyBtdCFaCC0hoe8zHSJv1FbqiDX7xa20qyEs4pAm5HX8I&usqp=CAU"
-          className="card-img-left shadow"
-          alt=""
-          style={{ height: "100px" }}
-        />
-        <div className="card-body">
-          <div className="d-flex justify-content-between">
-            <h5 className="" style={{ fontWeight: "bold" }}>
-              Famos FC
-            </h5>{" "}
-            <h5 className="text-dangar">
-              <i class="fa-solid fa-arrow-right"></i>
-            </h5>
-          </div>
-          <p className="card-text text-warning">
-            <i className="fas fa-trophy"></i> Top Winning
-          </p>
-        </div>
-      </div>
+      <p className="fw-bold">Top Score Saat Ini </p>
 
-      <div className="card flex-row mt-2 shadow">
-        <img
-          src="https://1.bp.blogspot.com/-5iAIM4d_RrQ/XyqtWxx-G6I/AAAAAAAAJZQ/J1YoadQIUocxd5WDeiJPmYsB7j6s0wOUgCLcBGAsYHQ/s600/Oxford_United_FC.png"
-          className="card-img-left shadow"
-          alt=""
-          style={{ height: "100px" }}
-        />
-        <div className="card-body">
-          <div className="d-flex justify-content-between">
-            <h5 className="" style={{ fontWeight: "bold" }}></h5>
-            <h5 className="text-dangar">
-              <i className="fa-solid fa-arrow-right"></i>
-            </h5>
+      {topscore.map((ls, index) => {
+        return (
+          <div
+            className="card flex-row shadow mt-3"
+            key={index}
+            style={{ border: "none" }}
+          >
+            <img
+              src="pemain.png"
+              className="card-img-left shadow"
+              alt=""
+              style={{ height: "100px" }}
+            />
+            <div className="card-body">
+              <div className="d-flex justify-content-between">
+                <h5 className="text-secondary" style={{ fontWeight: "bold" }}>
+                  {ls.nama}
+                </h5>{" "}
+              </div>
+              <p className="card-text text-danger fw-bold">
+                <i className="fas fa-futbol"></i> {ls.total} Goal
+              </p>
+            </div>
           </div>
-          <p className="card-text text-warning">
-            {" "}
-            <i className="fas fa-trophy"></i> Top Winning
-          </p>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, useParams } from "react-router-dom";
 
 export default function Databookinglapangan() {
   const [booking, setBooking] = useState([]);
@@ -48,8 +49,21 @@ export default function Databookinglapangan() {
 
   return (
     <div>
-      {booking == null ? (
-        <div>Data booking anda berhsil</div>
+      {booking == "" ? (
+        <div>
+          <center>
+            <img
+              src="/trash-bin.png"
+              className="img-fluid"
+              alt=""
+              style={{ height: "100px" }}
+            ></img>
+          </center>
+          <p className="text-center text-secondary mt-3" style={{}}>
+            <strong>Hay {localStorage.getItem("nama")}</strong>
+            <br></br>Data booking anda kosong, silahkan booking sekarang
+          </p>
+        </div>
       ) : (
         <>
           {booking.map((data, index) => {

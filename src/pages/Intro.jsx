@@ -5,7 +5,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import Logingoogle from "../componenst/Logingoogle";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Intro() {
   const navigate = useNavigate();
@@ -114,6 +114,9 @@ export default function Intro() {
           </p>
           <center>
             <Logingoogle />
+            <Link to="/login" className="btn btn-danger mt-2">
+              <i className="fas fa-user"></i> Login dengan akun yang berbeda
+            </Link>
           </center>
         </div>
       </OwlCarousel>
