@@ -41,7 +41,7 @@ export default function Compprofil() {
         SetUcapan(true);
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 
@@ -147,14 +147,30 @@ export default function Compprofil() {
                   />
                 </div>
 
-                <div className="form-group mt-3">
-                  <label>NIK</label>
-                  <input
-                    type="number"
-                    className="form-control mt-2"
-                    onChange={(e) => SetNik(e.target.value)}
-                  />
-                </div>
+                {localStorage.getItem(nik) == "" ? (
+                  <>
+                    <div className="form-group mt-3">
+                      <label>NIK</label>
+                      <input
+                        type="number"
+                        className="form-control mt-2"
+                        onChange={(e) => SetNik(e.target.value)}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="form-group mt-3">
+                      <label>NIK</label>
+                      <input
+                        type="number"
+                        className="form-control mt-2"
+                        onChange={(e) => SetNik(e.target.value)}
+                        value={localStorage.getItem("nik")}
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div className="form-group mt-3">
                   <label>Posisi Bermain</label>

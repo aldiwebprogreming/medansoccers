@@ -3,10 +3,17 @@ import React from "react";
 import { useState } from "react";
 import { auth, provider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Complogin() {
+  const urlapi = process.env.REACT_APP_BASE_URL;
   const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [alertakun, setAlertakun] = useState(false);
+
+  const navigate = useNavigate();
 
   const loginGoogle = () => {
     signInWithPopup(auth, provider)
@@ -17,6 +24,23 @@ export default function Complogin() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get(
+        urlapi + "Login?email=" + email + "&pass=" + pass
+      );
+      console.log(response.data);
+      localStorage.setItem("nama", response.data.nama);
+      localStorage.setItem("email", response.data.email);
+      localStorage.setItem("id", response.data.id_auth);
+      localStorage.setItem("nik", response.data.nik);
+
+      navigate("/profil");
+    } catch (error) {
+      setAlertakun(true);
+    }
   };
 
   return (
@@ -37,6 +61,17 @@ export default function Complogin() {
                 <p className="text-center text-secondary mt-3">
                   Masuka email dan password anda dengan benar
                 </p>
+
+                <div
+                  className={`alert alert-danger ${alertakun ? "" : "d-none"}`}
+                  role="alert"
+                >
+                  <p className="text-center">
+                    <strong>Upps, </strong> Akun yang anda masukan salah, cek
+                    email dan password anda
+                  </p>
+                </div>
+
                 <div className="form-group">
                   <label class="form-label">Email address</label>
                   <input
@@ -44,9 +79,10 @@ export default function Complogin() {
                     class="form-control"
                     id="exampleFormControlInput1"
                     placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   ></input>
                 </div>
-
                 <div className="form-group mt-4">
                   <label class="form-label">Password</label>
                   <input
@@ -54,12 +90,28 @@ export default function Complogin() {
                     class="form-control"
                     id="exampleFormControlInput1"
                     placeholder="*******"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                   ></input>
                 </div>
-
-                <button className="btn btn-danger  w-100 mt-4">
-                  <i className="fa fa-user"></i> Login sekarang
-                </button>
+                {email == "" || pass == "" ? (
+                  <>
+                    {" "}
+                    <button disabled className="btn btn-danger  w-100 mt-4">
+                      <i className="fa fa-user"></i> Login sekarang
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <button
+                      onClick={handleLogin}
+                      className="btn btn-danger  w-100 mt-4"
+                    >
+                      <i className="fa fa-user"></i> Login sekarang
+                    </button>
+                  </>
+                )}
 
                 <hr />
                 <p className="text-danger mt-4 text-center">
