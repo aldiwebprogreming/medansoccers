@@ -32,7 +32,7 @@ export default function Intro() {
         navigate("/home");
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       navigate("/");
     }
   };
