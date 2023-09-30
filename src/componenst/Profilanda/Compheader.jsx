@@ -5,8 +5,15 @@ export default function Compheader({ img }) {
   return (
     <div>
       <div
-        className="card bg-danger text-white"
-        style={{ borderRadius: "0px" }}
+        className="card text-white"
+        style={{
+          borderRadius: "0px",
+          backgroundImage:
+            "url('https://p4.wallpaperbetter.com/wallpaper/398/874/541/champions-league-stadium-wallpaper-preview.jpg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "containt",
+          backgroundPosition: "center",
+        }}
       >
         <div className="container my-5">
           <center>
@@ -14,7 +21,7 @@ export default function Compheader({ img }) {
               <img
                 src="pemain.png"
                 className="img-fluid mt-4"
-                alt="Responsive image"
+                alt=""
                 style={{
                   height: "150px",
                   borderRadius: "100%",
@@ -25,7 +32,7 @@ export default function Compheader({ img }) {
               <img
                 src={img}
                 className="img-fluid mt-4"
-                alt="Responsive image"
+                alt=""
                 style={{
                   height: "150px",
                   borderRadius: "100%",

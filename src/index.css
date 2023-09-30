@@ -10,8 +10,10 @@ body {
 }
 
 .headerred {
-  height: 250px;
-  background-image: url("https://thumbs.dreamstime.com/b/soccer-ball-red-background-football-banner-template-soccer-ball-red-background-football-banner-118479304.jpg");
+  height: 270px;
+  background-image: url("https://p4.wallpaperbetter.com/wallpaper/398/874/541/champions-league-stadium-wallpaper-preview.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .cardMenu {
   position: relative;

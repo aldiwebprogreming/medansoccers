@@ -51,8 +51,8 @@ export default function Compmain() {
             <div className="card shadow">
               <div className="card-body">
                 <div className="d-flex justify-content-between">
-                  <p className="text-danger fw-bold">Statistik anda</p>
-                  <p className="text-danger fw-bold">
+                  <p className="text-primary fw-bold">Statistik anda</p>
+                  <p className="text-primary fw-bold">
                     <i className="far fa-user"></i>
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export default function Compmain() {
         >
           <div className="card shadow">
             <div className="card-body">
-              <div className="d-flex justify-content-between text-danger">
+              <div className="d-flex justify-content-between text-primary">
                 <p className="fw-bold">Profil anda</p>
                 <p>
                   <i className="far fa-user"></i>

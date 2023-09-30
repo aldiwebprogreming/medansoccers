@@ -8,7 +8,7 @@ export default function Compregister() {
   const urlapi = process.env.REACT_APP_BASE_URL;
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
-  const [noktp, setNoktp] = useState("");
+  const [nohp, setNohp] = useState("");
   const [pass, setPass] = useState("");
   const [ulangipass, setUlangipass] = useState("");
   const [alertpass, setAlertpass] = useState(false);
@@ -34,7 +34,7 @@ export default function Compregister() {
       .post(urlapi + "User", {
         nama: nama,
         email: email,
-        noktp: noktp,
+        nohp: nohp,
         pass: pass,
         kodeveri: kode,
       })
@@ -42,7 +42,7 @@ export default function Compregister() {
         setNama("");
         setEmail("");
         setPass("");
-        setNoktp("");
+        setNohp("");
         setUlangipass("");
 
         // menjalakan aksi send email
@@ -214,14 +214,14 @@ export default function Compregister() {
                   </div>
 
                   <div className="form-group mt-4">
-                    <label class="form-label">NO KTP</label>
+                    <label class="form-label">No Hp</label>
                     <input
                       type="number"
                       class="form-control"
                       id="exampleFormControlInput1"
                       placeholder="2253343434322"
-                      onChange={(e) => setNoktp(e.target.value)}
-                      value={noktp}
+                      onChange={(e) => setNohp(e.target.value)}
+                      value={nohp}
                     ></input>
                   </div>
 
@@ -254,7 +254,7 @@ export default function Compregister() {
 
                   {nama == "" ||
                   email == "" ||
-                  noktp == "" ||
+                  nohp == "" ||
                   pass == "" ||
                   ulangipass == "" ||
                   alertpass == true ? (

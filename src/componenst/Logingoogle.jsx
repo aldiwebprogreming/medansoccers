@@ -20,7 +20,8 @@ export default function Logingoogle() {
         if (profil) {
           navigate("/home");
         } else {
-          navigate("/profil");
+          adduser(result.user.displayName, result.user.email, result.user.uid);
+          navigate("/home");
         }
       })
       .catch((error) => {
@@ -37,6 +38,21 @@ export default function Logingoogle() {
     } catch (error) {
       setProfil(false);
     }
+  };
+
+  const adduser = async (nama, email, id) => {
+    await axios
+      .post(urlapi + "User", {
+        nama: nama,
+        email: email,
+        idauth: id,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   useEffect(() => {

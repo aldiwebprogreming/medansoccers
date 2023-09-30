@@ -455,7 +455,7 @@ export default function Formbooking() {
                       />
                     </>
                   ) : (
-                    <button className="btn btn-danger w-100 " disabled>
+                    <button className="btn btn-primary w-100 " disabled>
                       Booking sekarang
                     </button>
                   )}

@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div>
       <div
-        className="card bg-danger text-white"
+        className="card bg-primary text-white"
         style={{ borderRadius: "0px" }}
       >
         <div className="container my-5">

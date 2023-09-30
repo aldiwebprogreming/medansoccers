@@ -80,7 +80,7 @@ export default function Pembayaran({
 
   return (
     <>
-      <Button variant="danger w-100" onClick={handleShow}>
+      <Button variant="primary w-100" onClick={handleShow}>
         Booking sekerang
       </Button>
 
@@ -150,7 +150,7 @@ export default function Pembayaran({
                     </Form.Group>
 
                     <button
-                      className="btn btn-danger w-100"
+                      className="btn btn-primary w-100"
                       onClick={() => handleBooking()}
                     >
                       Bayar sekarang

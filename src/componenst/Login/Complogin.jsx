@@ -35,9 +35,8 @@ export default function Complogin() {
       localStorage.setItem("nama", response.data.nama);
       localStorage.setItem("email", response.data.email);
       localStorage.setItem("id", response.data.id_auth);
-      localStorage.setItem("nik", response.data.nik);
 
-      navigate("/profil");
+      navigate("/home");
     } catch (error) {
       setAlertakun(true);
     }

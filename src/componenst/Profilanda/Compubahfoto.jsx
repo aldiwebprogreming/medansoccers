@@ -119,7 +119,7 @@ function MyVerticallyCenteredModal(props) {
                 NO
               </button>
 
-              <button onClick={handleUpload} className="w-100 btn btn-danger">
+              <button onClick={handleUpload} className="w-100 btn btn-primary">
                 Yes
               </button>
             </div>
@@ -137,7 +137,7 @@ export default function Compubahfoto() {
     <div className="container" style={{ position: "relative", bottom: "50px" }}>
       <Button
         className="w-100"
-        variant="danger"
+        variant="primary"
         onClick={() => setModalShow(true)}
       >
         Ubah foto profil anda <i className="far fa-circle-user"></i>

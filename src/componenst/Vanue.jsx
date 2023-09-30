@@ -45,7 +45,7 @@ export default function Vanue() {
                     <p class="card-text">{lap.pasilitas}</p>
                     <Link
                       to={"/bookinglapangan/" + lap.slug + "/" + lap.id}
-                      class="btn btn-danger btn-sm w-100"
+                      class="btn btn-primary btn-sm w-100"
                     >
                       Booking
                     </Link>

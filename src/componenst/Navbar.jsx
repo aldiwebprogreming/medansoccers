@@ -5,7 +5,7 @@ export default function Navbar({ judul, aicon }) {
   return (
     <div>
       <nav
-        className="navbar navbar-danger bg-danger shadow mb-5"
+        className="navbar navbar-danger bg-primary shadow mb-5"
         style={{ position: "fixed", zIndex: "9999", width: "663px" }}
       >
         <div className="container">

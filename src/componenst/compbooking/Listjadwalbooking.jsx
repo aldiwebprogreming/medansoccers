@@ -27,9 +27,9 @@ export default function Listjadwalbooking({ idlapangan }) {
         <div className="card-body">
           <Link
             to={"/formbooking/" + idlapangan}
-            className="btn btn-danger mt-3 w-100"
+            className="btn btn-primary mt-3 w-100"
           >
-            Booking lapangan
+            Pilih jam booking anda
           </Link>
         </div>
       </div>
