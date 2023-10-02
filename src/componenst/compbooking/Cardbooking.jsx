@@ -49,13 +49,13 @@ export default function Cardbooking() {
                         <div className="col-6 col-md-7">
                           <div className="card-body d-flex flex-column">
                             <div className="h-100">
-                              <label className="fw-bold text-danger">
+                              <label className="fw-bold text-secondary">
                                 {lap.lapangan}
                               </label>
-                              <br></br>
-                              <small className="fw-bold text-success">
+
+                              {/* <small className="fw-bold text-success">
                                 {"Rp."} {lap.harga_perjam} / Jam
-                              </small>
+                              </small> */}
                               <br></br>
                               <p className="text-secondary"> {lap.pasilitas}</p>
                             </div>

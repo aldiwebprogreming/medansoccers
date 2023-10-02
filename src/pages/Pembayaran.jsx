@@ -80,7 +80,11 @@ export default function Pembayaran({
 
   return (
     <>
-      <Button variant="primary w-100" onClick={handleShow}>
+      <Button
+        variant="btn w-100"
+        onClick={handleShow}
+        style={{ backgroundColor: "#2b2e5a", color: "white" }}
+      >
         Booking sekerang
       </Button>
 
@@ -150,8 +154,9 @@ export default function Pembayaran({
                     </Form.Group>
 
                     <button
-                      className="btn btn-primary w-100"
+                      className="btn w-100"
                       onClick={() => handleBooking()}
+                      style={{ backgroundColor: "#2b2e5a", color: "white" }}
                     >
                       Bayar sekarang
                     </button>
@@ -173,7 +178,8 @@ export default function Pembayaran({
                       </h5>
                       <a
                         href={"/formbooking/" + idlapangan}
-                        className="btn btn-danger mt-5"
+                        className="btn mt-5"
+                        style={{ backgroundColor: "#2b2e5a", color: "white" }}
                       >
                         Tutup popup
                       </a>

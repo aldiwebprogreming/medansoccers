@@ -4,8 +4,12 @@ export default function CompHeader() {
   return (
     <div>
       <div
-        className="card bg-danger text-white"
-        style={{ borderRadius: "0px" }}
+        className="card text-white"
+        style={{
+          borderRadius: "0px",
+          backgroundColor: "#2b2e5a",
+          color: "white",
+        }}
       >
         <div className="container my-5">
           <h3 className="card-title mt-5">Tentang Medan Soccers</h3>

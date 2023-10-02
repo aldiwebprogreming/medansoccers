@@ -61,7 +61,11 @@ export default function Logingoogle() {
   return (
     <div>
       {nama}
-      <button className="btn btn-danger" onClick={login}>
+      <button
+        className="btn fw-bold"
+        onClick={login}
+        style={{ backgroundColor: "white", color: "black" }}
+      >
         <i className="fab fa-google"></i> Yuuk login dengna akun google anda
       </button>
     </div>

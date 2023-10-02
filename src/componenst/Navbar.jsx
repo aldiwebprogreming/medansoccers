@@ -5,8 +5,14 @@ export default function Navbar({ judul, aicon }) {
   return (
     <div>
       <nav
-        className="navbar navbar-danger bg-primary shadow mb-5"
-        style={{ position: "fixed", zIndex: "9999", width: "663px" }}
+        className="navbar navbar-danger  shadow mb-5"
+        style={{
+          position: "fixed",
+          zIndex: "9999",
+          width: "663px",
+          backgroundColor: "#2b2e5a",
+          color: "white",
+        }}
       >
         <div className="container">
           <div className="d-flex justify-content-between">

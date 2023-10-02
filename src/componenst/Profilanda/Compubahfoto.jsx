@@ -70,7 +70,7 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Ubah foto profil anda <i className="far fa-circle-user"></i>
+          Ubah foto profil anda {"  "} <i className="far fa-circle-user"></i>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -119,7 +119,11 @@ function MyVerticallyCenteredModal(props) {
                 NO
               </button>
 
-              <button onClick={handleUpload} className="w-100 btn btn-primary">
+              <button
+                onClick={handleUpload}
+                className="btn w-100"
+                style={{ backgroundColor: "#2b2e5a", color: "white" }}
+              >
                 Yes
               </button>
             </div>
@@ -134,13 +138,14 @@ export default function Compubahfoto() {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
-    <div className="container" style={{ position: "relative", bottom: "50px" }}>
+    <div className="container" style={{ position: "relative", bottom: "60px" }}>
       <Button
         className="w-100"
-        variant="primary"
+        variant="btn"
         onClick={() => setModalShow(true)}
+        style={{ backgroundColor: "#2b2e5a", color: "white" }}
       >
-        Ubah foto profil anda <i className="far fa-circle-user"></i>
+        Update foto profil anda {"  "} <i className="far fa-circle-user"></i>
       </Button>
 
       <MyVerticallyCenteredModal

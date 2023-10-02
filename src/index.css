@@ -10,14 +10,14 @@ body {
 }
 
 .headerred {
-  height: 270px;
+  height: 300px;
   background-image: url("https://p4.wallpaperbetter.com/wallpaper/398/874/541/champions-league-stadium-wallpaper-preview.jpg");
   background-position: center;
   background-repeat: no-repeat;
 }
 .cardMenu {
   position: relative;
-  bottom: 50px;
+  bottom: 100px;
 }
 
 .cardMenu img {
@@ -47,11 +47,11 @@ body {
 }
 
 .owl-next h5 {
-  color: red;
+  color: white;
 }
 
 .owl-prev h5 {
-  color: red;
+  color: white;
 }
 
 .owl-prev {

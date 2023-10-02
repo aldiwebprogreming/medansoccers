@@ -11,6 +11,7 @@ import axios from "axios";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Loadmenu from "../skeleton/Loadmenu";
+import Benner from "../componenst/Benner";
 
 export default function Home() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -38,11 +39,12 @@ export default function Home() {
 
       <CardMenu />
 
-      <div className="card">
+      <div className="" style={{ position: "relative", bottom: "70px" }}>
         <div className="card-body">
           <Vanue />
           <hr />
-          <Comteam />
+          {/* <Comteam /> */}
+          <Benner />
         </div>
       </div>
       {/* <Footer /> */}

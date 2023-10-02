@@ -4,8 +4,8 @@ export default function Header() {
   return (
     <div>
       <div
-        className="card bg-primary text-white"
-        style={{ borderRadius: "0px" }}
+        className="card  text-white"
+        style={{ borderRadius: "0px", backgroundColor: "#2b2e5a" }}
       >
         <div className="container my-5">
           <h3 className="card-title mt-4">Booking lapangan</h3>

@@ -199,9 +199,10 @@ export default function Formbooking() {
     }
   };
 
-  const handleJambooking = (id) => {
+  const handleJambooking = (id, harga) => {
     setIdjambooking(id);
     cekdataBooking(id);
+    setTotalharga(harga);
   };
 
   const cekdataBooking = async (id) => {
@@ -237,6 +238,13 @@ export default function Formbooking() {
   const showDatabooking = () => {
     setPagebooking(false);
     setPagedatabooking(true);
+  };
+
+  const formatrupiah = (numb) => {
+    const format = numb.toString().split("").reverse().join("");
+    const convert = format.match(/\d{1,3}/g);
+    const rupiah = "Rp " + convert.join(".").split("").reverse().join("");
+    return rupiah;
   };
 
   useEffect(() => {
@@ -329,11 +337,11 @@ export default function Formbooking() {
                       <div
                         className={
                           idjambooking == jm.id
-                            ? "card mt-2 border-danger"
+                            ? "card mt-2 border-primary"
                             : "card mt-2"
                         }
                         disabled
-                        onClick={() => handleJambooking(jm.id)}
+                        onClick={() => handleJambooking(jm.id, jm.harga)}
                         key={jm.id}
                       >
                         <div className="card-body">
@@ -369,6 +377,7 @@ export default function Formbooking() {
                                 );
                               })}
                             </p>
+
                             <p>{jm.jam_berakhir} WIB</p>
 
                             <div
@@ -383,6 +392,9 @@ export default function Formbooking() {
                               />
                             </div>
                           </div>
+                          <small className="fw-bold text-secondary">
+                            {formatrupiah(jm.harga)}
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -420,7 +432,7 @@ export default function Formbooking() {
                       className="form-control mt-3"
                     />
                   </div>
-                  <div className="form-group col-md-6">
+                  <div className="form-group mt-3 col-md-6">
                     <label>Harga</label>
                     <br />
                     <input
@@ -455,7 +467,11 @@ export default function Formbooking() {
                       />
                     </>
                   ) : (
-                    <button className="btn btn-primary w-100 " disabled>
+                    <button
+                      className="btn  w-100 "
+                      disabled
+                      style={{ backgroundColor: "#2b2e5a", color: "white" }}
+                    >
                       Booking sekarang
                     </button>
                   )}

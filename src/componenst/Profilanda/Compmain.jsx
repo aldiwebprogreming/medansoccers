@@ -6,6 +6,7 @@ import Compdataasist from "./Compdataasist";
 import Compdatagoal from "./Compdatagoal";
 import Compdataplay from "./Compdataplay";
 import Loadprofil from "../../skeleton/Loadprofil";
+import { ToastContainer, toast } from "react-toastify";
 // import { act } from "react-dom/test-utils";
 
 export default function Compmain() {
@@ -19,15 +20,51 @@ export default function Compmain() {
   const urlapi = process.env.REACT_APP_BASE_URL;
   const [load, setLoad] = useState(false);
 
+  const [jk, setJk] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [tgllahir, setTgllahir] = useState("");
+  const [nohp, setNohp] = useState();
+  const [posisi, setPosisi] = useState("");
+
+  const notifupdate = () => {
+    toast.success("Profil anda berhasil di update !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
   const getProfil = async () => {
     try {
       const response = await axios.get(
         urlapi + "profil?id=" + localStorage.getItem("id")
       );
       setPorfil(response.data);
+      setNohp(response.data.nohp);
+      setTgllahir(response.data.tgl_lahir);
+      setAlamat(response.data.alamat);
+      setPosisi(response.data.posisi);
+      setJk(response.data.jk);
     } catch (error) {
       // console.log(error.message);
     }
+  };
+
+  const updateProfil = async () => {
+    await axios
+      .post(urlapi + "Updateprofil2", {
+        idauth: localStorage.getItem("id"),
+        alamat: alamat,
+        jk: jk,
+        tgllahir: tgllahir,
+        nohp: nohp,
+        posisi: posisi,
+      })
+      .then((response) => {
+        // console.log(response.data);
+        notifupdate();
+      })
+      .catch((error) => {
+        // console.log(error.message);
+      });
   };
 
   useEffect(() => {
@@ -62,8 +99,8 @@ export default function Compmain() {
                 <Compdataasist />
                 <hr />
                 <Compdatagoal />
-                <hr />
-                <div className="d-flex justify-content-between text-secondary">
+
+                {/* <div className="d-flex justify-content-between text-secondary">
                   <p>Rank</p>
                   <p className="text-warning">
                     <i className="far fa-futbol"></i>{" "}
@@ -72,7 +109,7 @@ export default function Compmain() {
                     <i className="far fa-futbol"></i>{" "}
                     <i className="far fa-futbol"></i>
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           )}
@@ -92,7 +129,7 @@ export default function Compmain() {
               </div>
               <hr />
               <div className="form-group">
-                <label>Nama</label>
+                <label className="fw-bold">Nama</label>
                 <input
                   className="form-control mt-2 text-secondary"
                   value={profil.nama}
@@ -100,7 +137,7 @@ export default function Compmain() {
               </div>
 
               <div className="form-group mt-3">
-                <label>Email</label>
+                <label className="fw-bold">Email</label>
                 <input
                   className="form-control mt-2 text-secondary"
                   value={profil.email}
@@ -108,53 +145,76 @@ export default function Compmain() {
               </div>
 
               <div className="form-group mt-3">
-                <label>Jenis kelamin</label>
-                <input
-                  className="form-control mt-2 text-secondary"
-                  value={profil.jk}
-                ></input>
+                <label className="fw-bold">Jenis kelamin</label>
+                <select
+                  className="form-control mt-2"
+                  onChange={(e) => setJk(e.target.value)}
+                >
+                  <option disabled>-- Pilih jenis kelamin --</option>
+                  <option value={jk}>{jk}</option>
+                  <option>Laki-laki</option>
+                  <option>Perempuan</option>
+                </select>
               </div>
 
               <div className="form-group mt-3">
-                <label>Tanggal lahir</label>
+                <label className="fw-bold">Tanggal lahir</label>
                 <input
                   type="date"
                   className="form-control mt-2 text-secondary"
-                  value={profil.tgl_lahir}
+                  onChange={(e) => setTgllahir(e.target.value)}
+                  value={tgllahir}
                 ></input>
               </div>
 
               <div className="form-group mt-3">
-                <label>Alamat</label>
-                <input
-                  type="text"
-                  className="form-control mt-2 text-secondary"
-                  value={profil.alamat}
-                ></input>
+                <label className="fw-bold">Alamat</label>
+                <textarea
+                  className="form-control mt-2"
+                  onChange={(e) => setAlamat(e.target.value)}
+                  value={alamat}
+                ></textarea>
               </div>
 
               <div className="form-group mt-3">
-                <label>NIK</label>
+                <label className="fw-bold">No Hp</label>
                 <input
                   type="number"
                   className="form-control mt-2 text-secondary"
-                  value={profil.nik}
+                  onChange={(e) => setNohp(e.target.value)}
+                  value={nohp}
                 ></input>
               </div>
 
               <div className="form-group mt-3">
-                <label>Posisi bermain</label>
-                <input
-                  className="form-control mt-2 text-secondary"
-                  value={profil.posisi}
-                ></input>
+                <label className="fw-bold">Posisi bermain</label>
+                <select
+                  className="form-control mt-2"
+                  onChange={(e) => setPosisi(e.target.value)}
+                >
+                  <option disabled>-- Pilih posisi bermain --</option>
+                  <option value={posisi}>{posisi}</option>
+                  <option>Penyerang</option>
+                  <option>Sayap</option>
+                  <option>Pertahanan</option>
+                  <option>Penjaga Gawang</option>
+                </select>
               </div>
+
+              <button
+                className="btn w-100 mt-3"
+                onClick={() => updateProfil()}
+                style={{ backgroundColor: "#2b2e5a", color: "white" }}
+              >
+                Updata profil anda
+              </button>
             </div>
           </div>
         </div>
 
         {load ? <Compubahfoto /> : ""}
       </div>
+      <ToastContainer />
     </>
   );
 }
