@@ -3,7 +3,7 @@ import Compregister from "../componenst/Register/Compregister";
 
 export default function Register() {
   return (
-    <div>
+    <div className="register">
       <Compregister />
     </div>
   );

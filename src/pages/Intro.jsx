@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -10,6 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Intro() {
   const navigate = useNavigate();
   const urlapi = process.env.REACT_APP_BASE_URL;
+  const [supportsPWA, setSupportsPWA] = useState(false);
+  const [promptInstall, setPromptInstall] = useState(null);
 
   const resvonsive = {
     0: {
@@ -39,7 +41,28 @@ export default function Intro() {
 
   useEffect(() => {
     Cekuser();
+    const handler = (e) => {
+      e.preventDefault();
+      console.log("we are being triggered :D");
+      setSupportsPWA(true);
+      setPromptInstall(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("transitionend", handler);
   }, []);
+
+  const onClick = (evt) => {
+    evt.preventDefault();
+    if (!promptInstall) {
+      return;
+    }
+    promptInstall.prompt();
+  };
+
+  // if (!supportsPWA) {
+  //   return null;
+  // }
 
   return (
     <div
@@ -49,7 +72,7 @@ export default function Intro() {
         borderRadius: "0px",
       }}
     >
-      <div className="" style={{ marginTop: "100px", marginBottom: "100px" }}>
+      <div className="" style={{ marginTop: "100px", marginBottom: "150px" }}>
         <OwlCarousel
           className="owl-theme"
           loop
@@ -79,6 +102,16 @@ export default function Intro() {
               Aplikasi mini soccer satu-satunya di Kota Medan, yuk buruan
               install aplikasinya di smartpone anda
             </p>
+
+            <center>
+              <button
+                className="btn fw-bold"
+                onClick={onClick}
+                style={{ backgroundColor: "white" }}
+              >
+                Install aplikasi di perangkat anda
+              </button>
+            </center>
           </div>
           <div className="item">
             <img
@@ -139,8 +172,8 @@ export default function Intro() {
                 className="text-white"
                 style={{ textDecoration: "none" }}
               >
-                Login dengan akun email
-                <i className="fas fa-angel-right"></i>
+                Login dengan akun email anda{" "}
+                <i className="fas fa-arrow-right"></i>
               </Link>
             </center>
           </div>

@@ -53,11 +53,11 @@ export default function Complogin() {
                 className="card-body"
                 style={{ marginTop: "100px", height: "100%" }}
               >
-                <h4 className="text-center">
+                <h4 className="text-center fw-bold text-white">
                   Login <br></br>
-                  <strong className="text-danger">Medan Mini Soccer </strong>
+                  <p className="mt-2">Medan Mini Soccer</p>
                 </h4>
-                <p className="text-center text-secondary mt-3">
+                <p className="text-center text-white mt-3">
                   Masuka email dan password anda dengan benar
                 </p>
 
@@ -72,7 +72,9 @@ export default function Complogin() {
                 </div>
 
                 <div className="form-group">
-                  <label class="form-label">Email address</label>
+                  <label class="form-label fw-bold text-white">
+                    Email address
+                  </label>
                   <input
                     type="email"
                     class="form-control"
@@ -83,7 +85,7 @@ export default function Complogin() {
                   ></input>
                 </div>
                 <div className="form-group mt-4">
-                  <label class="form-label">Password</label>
+                  <label class="form-label fw-bold text-white">Password</label>
                   <input
                     type="password"
                     class="form-control"
@@ -96,7 +98,11 @@ export default function Complogin() {
                 {email == "" || pass == "" ? (
                   <>
                     {" "}
-                    <button disabled className="btn btn-danger  w-100 mt-4">
+                    <button
+                      disabled
+                      className="btn w-100 mt-4"
+                      style={{ backgroundColor: "white" }}
+                    >
                       <i className="fa fa-user"></i> Login sekarang
                     </button>
                   </>
@@ -105,7 +111,8 @@ export default function Complogin() {
                     {" "}
                     <button
                       onClick={handleLogin}
-                      className="btn btn-danger  w-100 mt-4"
+                      className="btn w-100 fw-bold mt-4"
+                      style={{ backgroundColor: "white", color: "#2b2e5a" }}
                     >
                       <i className="fa fa-user"></i> Login sekarang
                     </button>
@@ -113,8 +120,11 @@ export default function Complogin() {
                 )}
 
                 <hr />
-                <p className="text-danger mt-4 text-center">
-                  Belum punya akun ? <Link to="/register">Daftar sekarang</Link>
+                <p className="text-white mt-4 text-center">
+                  Belum punya akun ?{" "}
+                  <Link className="text-white" to="/register">
+                    Daftar sekarang
+                  </Link>
                 </p>
               </div>
             </div>

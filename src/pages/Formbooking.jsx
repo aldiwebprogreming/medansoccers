@@ -180,9 +180,9 @@ export default function Formbooking() {
     } catch (error) {}
   };
 
-  const getJammain = async () => {
+  const getJammain = async (tgl) => {
     try {
-      const response = await axios.get(urlapi + "Jammain");
+      const response = await axios.get(urlapi + "Jammain?tgl=" + tgl);
       setJammain(response.data);
       setLoad(true);
       // console.log(response.data);
@@ -191,6 +191,7 @@ export default function Formbooking() {
 
   const handleTglbooking = (tgl) => {
     setTglsrc(tgl);
+    getJammain(tgl);
     cekBookinglapangan(tgl);
     if (tgl < tglsekarang) {
       setAlerttglsudahlewat(true);
@@ -424,7 +425,7 @@ export default function Formbooking() {
                   <strong> REK BCA : 6475383951 a/n Pendy Or Handoko </strong>
                 </p>
                 <div className="row mb-3 text-secondary">
-                  <div className="form-group col-md-6">
+                  <div className="form-group mt-3 col-md-6">
                     <label>Lapangan</label>
                     <input
                       type="text"

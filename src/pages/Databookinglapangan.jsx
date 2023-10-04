@@ -94,23 +94,31 @@ export default function Databookinglapangan() {
                           ? "Berhasil"
                           : "Tertunda"}
                       </small>
+                      <br></br>
+                      <small className="text-primary">
+                        Jam booking : {data.jam_booking} WIB
+                      </small>
                       <hr></hr>
                       <p className="d-flex justify-content-between">
-                        <small>
+                        <small className="fw-bold">
                           {format_tgl == data.tgl ? "Hari ini" : data.tgl}
                         </small>
 
-                        <small>
+                        <small className="fw-bold">
                           {data.status_pembayaran == 200
                             ? "Berhasil"
                             : "Tertunda"}
                         </small>
 
-                        <i
-                          className="fas fa-trash text-danger"
-                          onClick={() => deleteData(data.id)}
-                          style={{ cursor: "pointer" }}
-                        ></i>
+                        {data.status_pembayaran == 200 ? (
+                          ""
+                        ) : (
+                          <i
+                            className="fas fa-trash text-danger"
+                            onClick={() => deleteData(data.id)}
+                            style={{ cursor: "pointer" }}
+                          ></i>
+                        )}
                       </p>
                     </div>
                   </div>

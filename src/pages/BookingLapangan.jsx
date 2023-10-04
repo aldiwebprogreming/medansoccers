@@ -48,13 +48,7 @@ export default function BookingLapangan() {
             >
               <div className="card-body">
                 <p className="fw-bold">Keterangan</p>
-                <p className="text-secondary">
-                  {" "}
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo
-                  suscipit libero rem fuga cum maxime delectus, in iure minima
-                  iste fugiat est at consectetur consequatur molestiae similique
-                  doloribus nulla! Accusamus.
-                </p>
+                <p className="text-secondary"> {lapangan.pasilitas}</p>
               </div>
             </div>
             <div

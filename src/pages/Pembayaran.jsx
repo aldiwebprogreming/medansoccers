@@ -38,15 +38,16 @@ export default function Pembayaran({
     setLoading(true);
     const imgRef = ref(imageDb, `files/${nameImg}`);
     uploadBytes(imgRef, img);
-    // console.log(imgRef._location.path_);
+    console.log(imgRef._location.path_);
 
     setTimeout(() => {
       getDownloadURL(ref(imageDb, `files/${nameImg}`)).then((url) => {
+        console.log("prosess");
         setLoading(false);
         setForm(false);
         addbooking(url);
       });
-    }, 3000);
+    }, 5000);
   };
 
   const addbooking = async (url) => {

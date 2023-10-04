@@ -31,7 +31,7 @@ export default function Header() {
             <img
               src="pemain.png"
               class="img-fluid"
-              alt="Responsive image"
+              alt=""
               style={{
                 height: "50px",
                 borderStyle: "solid",
@@ -42,7 +42,7 @@ export default function Header() {
             <img
               src={profil.image}
               class="img-fluid"
-              alt="Responsive image"
+              alt=""
               style={{
                 height: "50px",
                 borderStyle: "solid",

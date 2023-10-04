@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Loadmenu from "../skeleton/Loadmenu";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function CardMenu() {
   const [load, setLoad] = useState(false);
+
+  const notify = () =>
+    toast.warning("Untuk saat ini fitur belum tersedia !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
 
   useEffect(() => {
     setTimeout(() => {
@@ -71,8 +77,14 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
-                <Link
+                {/* <Link
                   to={"/jadwalmemberkarir"}
+                  style={{ textDecoration: "none" }}
+                > */}
+
+                <Link
+                  to="#"
+                  onClick={notify}
                   style={{ textDecoration: "none" }}
                 >
                   <center>
@@ -92,8 +104,13 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
-                <Link
+                {/* <Link
                   to={"/listbookingkarir"}
+                  style={{ textDecoration: "none" }}
+                > */}
+                <Link
+                  to="#"
+                  onClick={notify}
                   style={{ textDecoration: "none" }}
                 >
                   <center>
@@ -130,7 +147,12 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
-                <Link to={"/statistik"} style={{ textDecoration: "none" }}>
+                {/* <Link to={"/statistik"} style={{ textDecoration: "none" }}> */}
+                <Link
+                  to="#"
+                  onClick={notify}
+                  style={{ textDecoration: "none" }}
+                >
                   <center>
                     <img
                       src="statistik.png"
@@ -148,7 +170,12 @@ export default function CardMenu() {
               </div>
 
               <div className="col-sm-3 col-3">
-                <Link to={"/updatescore"} style={{ textDecoration: "none" }}>
+                {/* <Link to={"/updatescore"} style={{ textDecoration: "none" }}> */}
+                <Link
+                  to="#"
+                  onClick={notify}
+                  style={{ textDecoration: "none" }}
+                >
                   <center>
                     <img
                       src="update score.png"
@@ -168,6 +195,7 @@ export default function CardMenu() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

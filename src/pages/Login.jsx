@@ -3,7 +3,7 @@ import Complogin from "../componenst/Login/Complogin";
 
 export default function Login() {
   return (
-    <div>
+    <div className="login">
       <Complogin />
     </div>
   );

@@ -1,7 +1,17 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Compheader({ img }) {
   // console.log(img);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("nama");
+    localStorage.removeItem("email");
+    localStorage.removeItem("id");
+    window.location.replace("/");
+  };
   return (
     <div>
       <div
@@ -45,8 +55,16 @@ export default function Compheader({ img }) {
             Hay, {localStorage.getItem("nama")}
           </h4>
           <p className="text-center">
-            Apakah anda sudah melengkapi data profil
+            Apakah anda sudah melengkapi data profilere<br></br>
+            <span
+              class="badge text-bg-primary"
+              onClick={logout}
+              style={{ cursor: "pointer" }}
+            >
+              Logout
+            </span>
           </p>
+          <center></center>
         </div>
       </div>
     </div>

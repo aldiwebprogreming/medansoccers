@@ -63,3 +63,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.login {
+  background-image: linear-gradient(to bottom, #2b2e5a, #454791, #d2e9e5);
+  height: 750px;
+  border-radius: 0px;
+}
+
+.register {
+  background-image: linear-gradient(to bottom, #2b2e5a, #454791, #d2e9e5);
+  height: 700px;
+  border-radius: 0px;
+}

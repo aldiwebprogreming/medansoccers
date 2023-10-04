@@ -18,6 +18,7 @@ import Profilanda from "./pages/Profilanda";
 import Score from "./pages/Score";
 import Statistik from "./pages/Statistik";
 import Register from "./pages/Register";
+import Verifikasi from "./pages/Varifikasi";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/verifikasi" element={<Verifikasi />} />
                 <Route path="/profil" element={<Profil />} />
                 <Route path="/profilanda" element={<Profilanda />} />
                 <Route path="/statistik" element={<Statistik />} />
