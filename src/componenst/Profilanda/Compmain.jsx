@@ -202,7 +202,7 @@ export default function Compmain() {
               </div>
 
               <button
-                className="btn w-100 mt-3"
+                className="btn w-100 mt-3 rounded-pill"
                 onClick={() => updateProfil()}
                 style={{ backgroundColor: "#2b2e5a", color: "white" }}
               >

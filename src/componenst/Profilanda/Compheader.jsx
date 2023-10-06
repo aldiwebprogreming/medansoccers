@@ -55,7 +55,7 @@ export default function Compheader({ img }) {
             Hay, {localStorage.getItem("nama")}
           </h4>
           <p className="text-center">
-            Apakah anda sudah melengkapi data profilere<br></br>
+            Apakah anda sudah melengkapi data profil<br></br>
             <span
               class="badge text-bg-primary"
               onClick={logout}

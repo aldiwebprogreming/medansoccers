@@ -64,9 +64,13 @@ export default function Logingoogle() {
       <button
         className="btn fw-bold"
         onClick={login}
-        style={{ backgroundColor: "white", color: "black" }}
+        style={{
+          backgroundColor: "white",
+          color: "black",
+          borderRadius: "20px",
+        }}
       >
-        <i className="fab fa-google"></i> Yuuk login dengna akun google anda
+        <i className="fab fa-google"></i> Login dengan akun google anda
       </button>
     </div>
   );

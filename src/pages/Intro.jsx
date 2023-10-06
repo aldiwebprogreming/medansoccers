@@ -41,6 +41,7 @@ export default function Intro() {
 
   useEffect(() => {
     Cekuser();
+
     const handler = (e) => {
       e.preventDefault();
       console.log("we are being triggered :D");
@@ -48,7 +49,6 @@ export default function Intro() {
       setPromptInstall(e);
     };
     window.addEventListener("beforeinstallprompt", handler);
-
     return () => window.removeEventListener("transitionend", handler);
   }, []);
 
@@ -104,13 +104,14 @@ export default function Intro() {
             </p>
 
             <center>
-              <button
+              <a
+                href="/install"
+                to="/install"
                 className="btn fw-bold"
-                onClick={onClick}
-                style={{ backgroundColor: "white" }}
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 Install aplikasi di perangkat anda
-              </button>
+              </a>
             </center>
           </div>
           <div className="item">
@@ -169,10 +170,14 @@ export default function Intro() {
 
               <Link
                 to="/login"
-                className="text-white"
-                style={{ textDecoration: "none" }}
+                className="text-dark fw-bold btn"
+                style={{
+                  textDecoration: "none",
+                  backgroundColor: "white",
+                  borderRadius: "20px",
+                }}
               >
-                Login dengan akun email anda{" "}
+                Login dengan akun mini soccer anda{" "}
                 <i className="fas fa-arrow-right"></i>
               </Link>
             </center>

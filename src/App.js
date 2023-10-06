@@ -19,6 +19,7 @@ import Score from "./pages/Score";
 import Statistik from "./pages/Statistik";
 import Register from "./pages/Register";
 import Verifikasi from "./pages/Varifikasi";
+import Install from "./pages/Install";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/profilanda" element={<Profilanda />} />
                 <Route path="/statistik" element={<Statistik />} />
                 <Route path="/updatescore" element={<Score />} />
+                <Route path="/install" element={<Install />} />
               </Routes>
             </Router>
           </div>

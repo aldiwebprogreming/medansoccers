@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar judul="Medansoccer" aicon="false" />
+      <Navbar judul="Medanminisoccer" aicon="false" />
       <Header />
 
       <CardMenu />

@@ -82,11 +82,11 @@ export default function Pembayaran({
   return (
     <>
       <Button
-        variant="btn w-100"
+        variant="btn w-100 rounded-pill"
         onClick={handleShow}
         style={{ backgroundColor: "#2b2e5a", color: "white" }}
       >
-        Booking sekerang
+        Booking sekarang
       </Button>
 
       <Offcanvas
@@ -121,11 +121,26 @@ export default function Pembayaran({
                 {form ? (
                   <>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Control
+                      {/* <Form.Control
                         type="text"
                         onChange={(e) => setNorek(e.target.value)}
-                        placeholder="Nomor rekening anda"
-                      />
+                        placeholder="n"
+                      /> */}
+                      <select
+                        className="form-control"
+                        required
+                        onChange={(e) => setNorek(e.target.value)}
+                      >
+                        <option value="">-- Pilih Nama Bank Anda --</option>
+                        <option>BRI</option>
+                        <option>BNI</option>
+                        <option>BCA</option>
+                        <option>Mandiri</option>
+                        <option>Bank Sumut</option>
+                        <option>Danamon</option>
+                        <option>CIMB Niaga</option>
+                        <option>Lainya</option>
+                      </select>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -155,7 +170,7 @@ export default function Pembayaran({
                     </Form.Group>
 
                     <button
-                      className="btn w-100"
+                      className="btn w-100 rounded-pill"
                       onClick={() => handleBooking()}
                       style={{ backgroundColor: "#2b2e5a", color: "white" }}
                     >

@@ -469,7 +469,7 @@ export default function Formbooking() {
                     </>
                   ) : (
                     <button
-                      className="btn  w-100 "
+                      className="btn  w-100 rounded-pill "
                       disabled
                       style={{ backgroundColor: "#2b2e5a", color: "white" }}
                     >

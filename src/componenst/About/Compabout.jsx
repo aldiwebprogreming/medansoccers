@@ -27,27 +27,21 @@ export default function Compabout() {
           <div className="card shadow" style={{ border: "none" }}>
             <div className="card-header">
               <div class="d-flex justify-content-between">
-                <p className="fw-bold">Tentang Medan Soccers</p>
+                <p className="fw-bold">Tentang Medan Mini Soccers</p>
                 <p className="text-danger">
                   <i className="fas fa-list"></i>
                 </p>
               </div>
             </div>
             <div className="card-body text-secondary">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto
-              velit illo vitae beatae. Voluptatibus perferendis nobis repellat
-              blanditiis, sint tempore ut animi voluptas omnis quos obcaecati
-              beataasse dignissimos saepe at. Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. <br />
-              <br />
-              Aliquam accusantium, eius qui sunt, perferendis voluptas
-              voluptatibus, maxime quae ut quas vel. Alias quam id vitae
-              doloribus natus consequatur dolorem similique?
-              <br />
-              <br />
-              Aliquam accusantium, eius qui sunt, perferendis voluptas
-              voluptatibus, maxime quae ut quas vel. Alias quam id vitae
-              doloribus natus consequatur dolorem similique?
+              Medan mini soccer adalah aplikasi bermain mini soccer yang
+              mempunyai fasilitas lapangan terlengkap di kota medan, medan mini
+              soccer mempunyai fitur booking lapangan, member karir dan
+              statistik pemain, anda dapat bermain dengan mudah dan mendapatkan
+              teman baru anda di medan mini soccer <br />
+              <br></br>
+              Ayooo buruan masyarakat medan bermain sekarang di medan mini
+              soccer dan dapatkan teman baru anda di sini.
             </div>
           </div>
         </>

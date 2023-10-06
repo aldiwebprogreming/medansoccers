@@ -39,7 +39,7 @@ export default function Compregister() {
     } catch (error) {
       // console.log(error.message);
       setAlertemail(false);
-          }
+    }
   };
 
   const addData = async (e) => {
@@ -79,7 +79,7 @@ export default function Compregister() {
       .then(
         (result) => {
           if (result.text == "OK") {
-            navigate("/verifikasi");
+            navigate("/login");
           }
         },
         (error) => {

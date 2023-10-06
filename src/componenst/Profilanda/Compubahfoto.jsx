@@ -140,7 +140,7 @@ export default function Compubahfoto() {
   return (
     <div className="container" style={{ position: "relative", bottom: "60px" }}>
       <Button
-        className="w-100"
+        className="w-100 rounded-pill"
         variant="btn"
         onClick={() => setModalShow(true)}
         style={{ backgroundColor: "#2b2e5a", color: "white" }}

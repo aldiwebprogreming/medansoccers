@@ -126,9 +126,16 @@ export default function BookingLapangan() {
               <div className="card-body">
                 <p className="fw-bold">Lokasi Lapangan</p>
                 <p className="text-secondary">
-                  Jl. Setia ujung no 38. Km.1 medan binjai kec. sunggal,
-                  Deliserdanga, Sumatera utara
+                  Jl. Ngumban Surbakti 36, Sempakata, Kec. Medan Selayang, Kota
+                  Medan, Sumatera Utara 20131
                 </p>
+                <div class="embed-responsive embed-responsive-4by3 row">
+                  <iframe
+                    className="embed-responsive-item col-lg-12 col-md-12 col-sm-12"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31857.608273296017!2d98.62073169412184!3d3.541035869879191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312f6a9c128c65%3A0x8c59390c4980a172!2sMedan%20Mini%20Soccer!5e0!3m2!1sid!2sid!4v1696565303319!5m2!1sid!2sid"
+                    style={{ border: "0px" }}
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>

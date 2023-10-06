@@ -27,7 +27,7 @@ export default function Listjadwalbooking({ idlapangan }) {
         <div className="card-body">
           <Link
             to={"/formbooking/" + idlapangan}
-            className="btn mt-3 w-100"
+            className="btn mt-3 w-100 rounded-pill"
             style={{ backgroundColor: "#2b2e5a", color: "white" }}
           >
             Pilih jam booking anda
