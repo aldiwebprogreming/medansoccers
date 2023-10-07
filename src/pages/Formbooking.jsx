@@ -393,9 +393,23 @@ export default function Formbooking() {
                               />
                             </div>
                           </div>
-                          <small className="fw-bold text-secondary">
-                            {formatrupiah(jm.harga)}
-                          </small>
+                          <div className="d-flex justify-content-between">
+                            <small className="fw-bold text-secondary">
+                              {formatrupiah(jm.harga)}
+                            </small>{" "}
+                            <span
+                              className={
+                                jm.time == "Promo"
+                                  ? "badge text-bg-primary"
+                                  : jm.time == "Hot"
+                                  ? "badge text-bg-danger"
+                                  : "badge text-bg-success"
+                              }
+                              style={{ width: "50px" }}
+                            >
+                              {jm.time}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>

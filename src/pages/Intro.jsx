@@ -178,7 +178,7 @@ export default function Intro() {
                 }}
               >
                 Login dengan akun mini soccer anda{" "}
-                <i className="fas fa-arrow-right"></i>
+                <i className="fas fa-angle-right"></i>
               </Link>
             </center>
           </div>

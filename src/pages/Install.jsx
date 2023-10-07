@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import { Link } from "react-router-dom";
 
 export default function Install() {
   const [supportsPWA, setSupportsPWA] = useState(true);
@@ -51,7 +52,7 @@ export default function Install() {
         borderRadius: "0px",
       }}
     >
-      <div className="" style={{ marginTop: "100px", marginBottom: "150px" }}>
+      <div className="" style={{ marginTop: "200px", marginBottom: "200px" }}>
         <OwlCarousel
           className="owl-theme"
           loop
@@ -96,6 +97,11 @@ export default function Install() {
           >
             Install sekarang juga diperangkat anda
           </button>
+          <p className="mt-3">
+            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+              <i className="fas fa-angle-left"></i> Back to home
+            </Link>
+          </p>
         </center>
       </div>
       {/* <button

@@ -103,7 +103,7 @@ export default function Complogin() {
                       className="btn w-100 mt-4"
                       style={{ backgroundColor: "white" }}
                     >
-                      <i className="fa fa-user"></i> Login sekarang
+                      <i className="far fa-user"></i> Login sekarang
                     </button>
                   </>
                 ) : (
@@ -114,7 +114,7 @@ export default function Complogin() {
                       className="btn w-100 fw-bold mt-4"
                       style={{ backgroundColor: "white", color: "#2b2e5a" }}
                     >
-                      <i className="fa fa-user"></i> Login sekarang
+                      <i className="far fa-user"></i> Login sekarang
                     </button>
                   </>
                 )}

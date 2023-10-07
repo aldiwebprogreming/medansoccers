@@ -189,7 +189,7 @@ export default function Compregister() {
                     disabled
                     style={{ backgroundColor: "white" }}
                   >
-                    <i className="fa fa-user"></i> Daftar sekarang
+                    <i className="far fa-user"></i> Daftar sekarang
                   </button>
                 </>
               ) : (
@@ -199,7 +199,7 @@ export default function Compregister() {
                     className="btn fw-bold w-100 mt-4"
                     style={{ backgroundColor: "white", color: "#2b2e5a" }}
                   >
-                    <i className="fa fa-user"></i> Daftar sekarang
+                    <i className="far fa-user"></i> Daftar sekarang
                   </button>
                 </>
               )}
