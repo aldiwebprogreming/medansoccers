@@ -104,14 +104,14 @@ export default function Intro() {
             </p>
 
             <center>
-              <a
+              {/* <a
                 href="/install"
                 to="/install"
                 className="btn fw-bold"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 Install aplikasi di perangkat anda
-              </a>
+              </a> */}
             </center>
           </div>
           <div className="item">
@@ -168,7 +168,7 @@ export default function Intro() {
               <Logingoogle />
               <hr />
 
-              <Link
+              {/* <Link
                 to="/login"
                 className="text-dark fw-bold btn"
                 style={{
@@ -179,7 +179,7 @@ export default function Intro() {
               >
                 Login dengan akun mini soccer anda{" "}
                 <i className="fas fa-angle-right"></i>
-              </Link>
+              </Link> */}
             </center>
           </div>
         </OwlCarousel>

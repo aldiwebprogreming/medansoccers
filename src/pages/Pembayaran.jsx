@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { imageDb } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import emailjs from "@emailjs/browser";
 
 export default function Pembayaran({
   tgl,
@@ -14,6 +15,7 @@ export default function Pembayaran({
   idlapangan,
   lapangan,
   jambooking,
+  wa,
 }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -64,14 +66,36 @@ export default function Pembayaran({
         bukti: url,
         norek: norek,
         atasnama: atasnama,
+        wa: wa,
       })
 
       .then((response) => {
         console.log(response.data);
+        sendEmail();
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error.message);
       });
+  };
+
+  const sendEmail = () => {
+    emailjs
+      .sendForm(
+        "service_n7e95l9",
+        "template_rtxscmo",
+        form.current,
+        "tUMt5CVpHNxC_5-TH"
+      )
+      .then(
+        (result) => {
+          if (result.text == "OK") {
+            console.log("sukses");
+          }
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   const handlebtnpopup = () => {

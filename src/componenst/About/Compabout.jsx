@@ -34,6 +34,12 @@ export default function Compabout() {
               </div>
             </div>
             <div className="card-body text-secondary">
+              <img
+                src="img/benner1.png"
+                class="img-fluid mb-3"
+                alt=""
+                style={{ borderRadius: "5px" }}
+              ></img>
               Medan mini soccer adalah aplikasi bermain mini soccer yang
               mempunyai fasilitas lapangan terlengkap di kota medan, medan mini
               soccer mempunyai fitur booking lapangan, member karir dan

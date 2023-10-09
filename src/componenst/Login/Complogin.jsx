@@ -58,7 +58,7 @@ export default function Complogin() {
                   <p className="mt-2">Medan Mini Soccer</p>
                 </h4>
                 <p className="text-center text-white mt-3">
-                  Masuka email dan password anda dengan benar
+                  Masukan email dan password anda dengan benar
                 </p>
 
                 <div

@@ -18,6 +18,7 @@ export default function Formbooking() {
   const [namateam, setNamateam] = useState("");
   const [totalHarga, setTotalharga] = useState("");
   const [namaLapangan, setTNamalapangan] = useState("");
+  const [wa, setWa] = useState("");
   const [alert, setAlert] = useState("");
   const [jammain, setJammain] = useState([]);
   const [idjambooking, setIdjambooking] = useState(0);
@@ -271,6 +272,12 @@ export default function Formbooking() {
                 hadir tepak waktu, dan harus membayar uang booking sesuai yang
                 tertera di aplikasi
               </p>
+              <img
+                src="/img/bennerbooking.png"
+                className="img-fluid"
+                alt=""
+                style={{ borderRadius: "5px" }}
+              ></img>
             </div>
           </div>
         ) : (
@@ -447,30 +454,56 @@ export default function Formbooking() {
                       className="form-control mt-3"
                     />
                   </div>
-                  <div className="form-group mt-3 col-md-6">
+                  <div className="form-group  mt-3 col-md-6">
                     <label>Harga</label>
                     <br />
                     <input
                       type="number"
                       value={totalHarga}
-                      className="form-control mt-3"
+                      placeholder="xxxxxxx"
+                      className="form-control mt-3 "
                     />
                   </div>
                 </div>
 
-                <div className="form-group mt-3 text-secondary">
-                  <label className="mb-2">Nama Team</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required=""
-                    value={namateam}
-                    onChange={(e) => setNamateam(e.target.value)}
-                  />
+                <div className="row mb-3 text-secondary">
+                  <div className=" col-md-6 form-group mt-3 text-secondary">
+                    <label className="mb-2">Nama Team</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      placeholder="Sinar FC"
+                      value={namateam}
+                      onChange={(e) => setNamateam(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-group col-md-6 mt-3 text-secondary">
+                    <label className="mb-2">No Whatsapp</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      required=""
+                      placeholder="08xxxxxxxx"
+                      value={wa}
+                      onChange={(e) => setWa(e.target.value)}
+                    />
+                    <small
+                      className="text-primary"
+                      style={{ fontSize: "10px" }}
+                    >
+                      Masukan nomor Whatsapp anda dengan benar untuk mendapatkan
+                      notifikasi pembayaran anda
+                    </small>
+                  </div>
                 </div>
 
                 <div className="form-group mt-3">
-                  {hiddenbutton == true && namateam != "" ? (
+                  {hiddenbutton == true &&
+                  namateam != "" &&
+                  wa != "" &&
+                  totalHarga != "" ? (
                     <>
                       <Pembayaran
                         idlapangan={idlapangan}
@@ -478,6 +511,7 @@ export default function Formbooking() {
                         harga={totalHarga}
                         namateam={namateam}
                         jambooking={idjambooking}
+                        wa={wa}
                         tgl={tglsrc}
                       />
                     </>

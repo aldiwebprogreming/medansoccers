@@ -95,7 +95,7 @@ export default function Install() {
               borderRadius: "20px",
             }}
           >
-            Install sekarang juga diperangkat anda
+            Instal sekarang juga diperangkat anda
           </button>
           <p className="mt-3">
             <Link to="/" style={{ color: "white", textDecoration: "none" }}>

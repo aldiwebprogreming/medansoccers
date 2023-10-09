@@ -20,6 +20,7 @@ import Statistik from "./pages/Statistik";
 import Register from "./pages/Register";
 import Verifikasi from "./pages/Varifikasi";
 import Install from "./pages/Install";
+import Sendwa from "./pages/Sendwa";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
                 <Route path="/statistik" element={<Statistik />} />
                 <Route path="/updatescore" element={<Score />} />
                 <Route path="/install" element={<Install />} />
+                <Route path="/wa" element={<Sendwa />} />
               </Routes>
             </Router>
           </div>
