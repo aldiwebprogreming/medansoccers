@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loadlapangan from "../skeleton/Loadlapangan";
 import Loadlabel from "../skeleton/Loadlabel";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Vanue() {
   const [lapangan, setLapangan] = useState([]);
@@ -17,6 +18,11 @@ export default function Vanue() {
       console.log(error.message);
     }
   };
+
+  const notify = () =>
+    toast.warning("Untuk saat ini lapangan belum tersedia !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,13 +49,29 @@ export default function Vanue() {
                   <div class="card-body">
                     <p class="card-title text-center fw-bold">{lap.lapangan}</p>
                     <p class="card-text">{lap.pasilitas}</p>
-                    <Link
-                      to={"/bookinglapangan/" + lap.slug + "/" + lap.id}
-                      class="btn btn-sm w-100"
-                      style={{ backgroundColor: "#2b2e5a", color: "white" }}
-                    >
-                      Booking
-                    </Link>
+
+                    {}
+                    {lap.id == 2 || lap.id == 4 ? (
+                      <>
+                        <Link
+                          onClick={notify}
+                          class="btn btn-sm w-100"
+                          style={{ backgroundColor: "#2b2e5a", color: "white" }}
+                        >
+                          Booking
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Link
+                          to={"/bookinglapangan/" + lap.slug + "/" + lap.id}
+                          class="btn btn-sm w-100"
+                          style={{ backgroundColor: "#2b2e5a", color: "white" }}
+                        >
+                          Booking
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

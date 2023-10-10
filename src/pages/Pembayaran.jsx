@@ -28,6 +28,7 @@ export default function Pembayaran({
   const [img, setImg] = useState("");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(true);
+  const [alertwa, setAlertwa] = useState(false);
 
   const handleChangeImg = (e) => {
     setImg(e.target.files[0]);
@@ -45,11 +46,11 @@ export default function Pembayaran({
     setTimeout(() => {
       getDownloadURL(ref(imageDb, `files/${nameImg}`)).then((url) => {
         console.log("prosess");
-        setLoading(false);
+
         setForm(false);
         addbooking(url);
       });
-    }, 5000);
+    }, 15000);
   };
 
   const addbooking = async (url) => {
@@ -71,31 +72,32 @@ export default function Pembayaran({
 
       .then((response) => {
         console.log(response.data);
-        sendEmail();
+        sendwa(response.data.kode_booking);
       })
       .catch((error) => {
         // console.log(error.message);
       });
   };
 
-  const sendEmail = () => {
-    emailjs
-      .sendForm(
-        "service_n7e95l9",
-        "template_rtxscmo",
-        form.current,
-        "tUMt5CVpHNxC_5-TH"
-      )
-      .then(
-        (result) => {
-          if (result.text == "OK") {
-            console.log("sukses");
-          }
-        },
-        (error) => {
-          console.log(error.text);
-        }
+  const sendwa = async (kodebooking) => {
+    try {
+      const response = await axios.get(
+        urlapi +
+          "Sendwa?jam=" +
+          jambooking +
+          "&tgl=" +
+          tgl +
+          "&kodebooking=" +
+          kodebooking
       );
+      console.log(response.data);
+      setLoading(false);
+      if (response.data.status == false) {
+        setAlertwa(true);
+      }
+    } catch (error) {
+      console.log(console.error("message"));
+    }
   };
 
   const handlebtnpopup = () => {
@@ -139,6 +141,9 @@ export default function Pembayaran({
                 </div>
                 <br></br>
                 <label>Loading....</label>
+                <p className="text-center">
+                  Mohon untuk menunggu proses pembayaran
+                </p>
               </div>
             ) : (
               <div>
@@ -204,25 +209,62 @@ export default function Pembayaran({
                 ) : (
                   <>
                     <center>
-                      <img
-                        src="/sukses.png"
-                        className="img-fluid"
-                        alt=""
-                        style={{ height: "100px" }}
-                      ></img>
-                      <h5 className="mt-4 text-secondary">
-                        <strong>Hei, {localStorage.getItem("nama")} </strong>
-                        <br></br>
-                        Pembayaran anda berhasil dikirm silahkan menunggu
-                        persetujuan pembayaran anda
-                      </h5>
-                      <a
-                        href={"/formbooking/" + idlapangan}
-                        className="btn mt-5"
-                        style={{ backgroundColor: "#2b2e5a", color: "white" }}
-                      >
-                        Tutup popup
-                      </a>
+                      {alertwa ? (
+                        <div>
+                          <img
+                            src="/close.png"
+                            className="img-fluid"
+                            alt=""
+                            style={{ height: "100px" }}
+                          ></img>
+                          <h5 className="mt-4 text-secondary">
+                            <strong>
+                              Hei, {localStorage.getItem("nama")}{" "}
+                            </strong>
+                            <br></br>
+                            Pembayaran anda gagal, mohon untuk mencob lagi
+                            <center>
+                              <a
+                                href={"/formbooking/" + idlapangan}
+                                className="btn mt-5"
+                                style={{
+                                  backgroundColor: "#2b2e5a",
+                                  color: "white",
+                                }}
+                              >
+                                Coba lagi
+                              </a>
+                            </center>
+                          </h5>
+                        </div>
+                      ) : (
+                        <>
+                          <img
+                            src="/sukses.png"
+                            className="img-fluid"
+                            alt=""
+                            style={{ height: "100px" }}
+                          ></img>
+                          <h5 className="mt-4 text-secondary">
+                            <strong>
+                              Hei, {localStorage.getItem("nama")}{" "}
+                            </strong>
+                            <br></br>
+                            Pembayaran anda berhasil dikirm silahkan menunggu
+                            persetujuan pembayaran anda
+                          </h5>
+                          <a
+                            href={"/formbooking/" + idlapangan}
+                            className="btn mt-5"
+                            style={{
+                              backgroundColor: "#2b2e5a",
+                              color: "white",
+                            }}
+                          >
+                            Tutup popup
+                          </a>
+                        </>
+                      )}
                     </center>
                   </>
                 )}

@@ -378,6 +378,13 @@ export default function Formbooking() {
                                           )}
                                         </small>
                                       </>
+                                    ) : localStorage.getItem("id") ==
+                                        bk.iduser &&
+                                      bk.jam_mulai == jm.jam_mulai &&
+                                      bk.status_pembayaran == "201" ? (
+                                      <small className="text-danger">
+                                        Menunggu Approve
+                                      </small>
                                     ) : (
                                       ""
                                     )}

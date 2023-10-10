@@ -21,6 +21,7 @@ import Register from "./pages/Register";
 import Verifikasi from "./pages/Varifikasi";
 import Install from "./pages/Install";
 import Sendwa from "./pages/Sendwa";
+import Setujui from "./pages/Setujui";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/updatescore" element={<Score />} />
                 <Route path="/install" element={<Install />} />
                 <Route path="/wa" element={<Sendwa />} />
+                <Route path="/setujui/:iduser" element={<Setujui />} />
               </Routes>
             </Router>
           </div>
