@@ -93,7 +93,9 @@ export default function Pembayaran({
       console.log(response.data);
       setLoading(false);
       if (response.data.status == false) {
-        setAlertwa(true);
+        setAlertwa(false);
+      } else {
+        setAlertwa(false);
       }
     } catch (error) {
       console.log(console.error("message"));

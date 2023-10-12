@@ -43,9 +43,19 @@ export default function Vanue() {
         <div className="row">
           {lapangan.map((lap) => {
             return (
-              <div className="col-sm-4 mt-3" key={lap.id}>
+              <div className="col-sm-12 mt-3" key={lap.id}>
                 <div class={load ? "card shadow" : "d-none"}>
-                  <img class="card-img-top" src={lap.gambar} />
+                  <Link
+                    to={"/bookinglapangan/" + lap.slug + "/" + lap.id}
+                    class=""
+                    style={{
+                      backgroundColor: "#2b2e5a",
+                      color: "white",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <img class="card-img-top" src={lap.gambar} />
+                  </Link>
                   <div class="card-body">
                     <p class="card-title text-center fw-bold">{lap.lapangan}</p>
                     <p class="card-text">{lap.pasilitas}</p>
@@ -56,7 +66,10 @@ export default function Vanue() {
                         <Link
                           onClick={notify}
                           class="btn btn-sm w-100"
-                          style={{ backgroundColor: "#2b2e5a", color: "white" }}
+                          style={{
+                            backgroundColor: "#2b2e5a",
+                            color: "white",
+                          }}
                         >
                           Booking
                         </Link>
@@ -66,7 +79,10 @@ export default function Vanue() {
                         <Link
                           to={"/bookinglapangan/" + lap.slug + "/" + lap.id}
                           class="btn btn-sm w-100"
-                          style={{ backgroundColor: "#2b2e5a", color: "white" }}
+                          style={{
+                            backgroundColor: "#2b2e5a",
+                            color: "white",
+                          }}
                         >
                           Booking
                         </Link>

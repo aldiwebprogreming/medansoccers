@@ -349,7 +349,7 @@ export default function Formbooking() {
                             : "card mt-2"
                         }
                         disabled
-                        onClick={() => handleJambooking(jm.id, jm.harga)}
+                        onClick={() => handleJambooking(jm.id, jm.harga_diskon)}
                         key={jm.id}
                       >
                         <div className="card-body">
@@ -408,21 +408,34 @@ export default function Formbooking() {
                             </div>
                           </div>
                           <div className="d-flex justify-content-between">
-                            <small className="fw-bold text-secondary">
-                              {formatrupiah(jm.harga)}
-                            </small>{" "}
-                            <span
-                              className={
-                                jm.time == "Promo"
-                                  ? "badge text-bg-primary"
-                                  : jm.time == "Hot"
-                                  ? "badge text-bg-danger"
-                                  : "badge text-bg-success"
-                              }
-                              style={{ width: "50px" }}
-                            >
-                              {jm.time}
-                            </span>
+                            <div>
+                              <small className="fw-bold text-secondary">
+                                <s>{formatrupiah(jm.harga)}</s>
+                              </small>{" "}
+                            </div>
+
+                            <div>
+                              <span
+                                className={
+                                  jm.time == "Promo"
+                                    ? "badge text-bg-primary"
+                                    : jm.time == "Hot"
+                                    ? "badge text-bg-danger"
+                                    : "badge text-bg-success"
+                                }
+                                style={{ width: "50px" }}
+                              >
+                                {jm.time}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="d-flex justify-content-between mt-2">
+                            <span className="badge text-bg-dark fw-bold">
+                              {formatrupiah(jm.harga_diskon)}
+                            </span>{" "}
+                            <span className="badge text-bg-dark fw-bold">
+                              SOFT OPENING
+                            </span>{" "}
                           </div>
                         </div>
                       </div>
@@ -458,17 +471,17 @@ export default function Formbooking() {
                     <input
                       type="text"
                       value={namaLapangan}
-                      className="form-control mt-3"
+                      className="form-control mt-3 fw-bold"
                     />
                   </div>
                   <div className="form-group  mt-3 col-md-6">
                     <label>Harga</label>
                     <br />
                     <input
-                      type="number"
+                      type="text"
                       value={totalHarga}
                       placeholder="xxxxxxx"
-                      className="form-control mt-3 "
+                      className="form-control mt-3 fw-bold "
                     />
                   </div>
                 </div>

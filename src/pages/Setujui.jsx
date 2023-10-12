@@ -13,6 +13,9 @@ export default function Setujui() {
       const response = await axios.get(urlapi + "Pembayaran?kode=" + iduser);
       setDatabooking(response.data);
       console.log(response.data);
+      if (response.data.status == 200) {
+        setAlert(true);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -24,14 +27,24 @@ export default function Setujui() {
         kode: iduser,
       })
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         if (response.data.status == true) {
           setAlert(true);
+          sendwa();
         }
       })
       .catch((error) => {
         console.log(error.message);
       });
+  };
+
+  const sendwa = async () => {
+    try {
+      const response = await axios.get(urlapi + "Notifapprove?kode=" + iduser);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
