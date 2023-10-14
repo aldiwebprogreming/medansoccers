@@ -22,6 +22,7 @@ import Verifikasi from "./pages/Varifikasi";
 import Install from "./pages/Install";
 import Sendwa from "./pages/Sendwa";
 import Setujui from "./pages/Setujui";
+import Lupapassword from "./pages/Lupapassword";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                   element={<Listbookingkarir />}
                 />
                 <Route path="/login" element={<Login />} />
+                <Route path="/lupapassword" element={<Lupapassword />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verifikasi" element={<Verifikasi />} />
                 <Route path="/profil" element={<Profil />} />

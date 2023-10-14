@@ -13,6 +13,7 @@ export default function Compregister() {
   const [ulangipass, setUlangipass] = useState("");
   const [alertpass, setAlertpass] = useState(false);
   const [alertemail, setAlertemail] = useState(false);
+  const [sukses, setSukses] = useState(false);
   const form = useRef();
   const navigate = useNavigate();
   // const [kodeveri, setKodeveri] = useState("");
@@ -60,6 +61,7 @@ export default function Compregister() {
         setUlangipass("");
 
         // menjalakan aksi send email
+        setSukses(true);
         sendEmail();
       })
 
@@ -91,7 +93,7 @@ export default function Compregister() {
   return (
     <div>
       <div className="container">
-        <div className="mt-5">
+        <div className={sukses ? "d-none mt-5" : "mt-5"}>
           <form ref={form} onSubmit={addData}>
             <div
               className="card-body"
@@ -210,6 +212,40 @@ export default function Compregister() {
               </p>
             </div>
           </form>
+        </div>
+        <div className={sukses == false ? "d-none mt-5" : "mt-5"}>
+          <div
+            className="card-body"
+            style={{ marginTop: "100px", height: "100%" }}
+          >
+            <h4 className="text-center fw-bold text-white">
+              Register
+              <p className="mt-2">Medan Mini Soccer </p>
+            </h4>
+            <center>
+              <img
+                src="/sukses.png"
+                className="img-fluid"
+                alt=""
+                style={{ height: "100px" }}
+              ></img>
+            </center>
+            <p className="text-center" style={{ color: "white" }}>
+              Akun Medan Mini Soccer anda berhasil dibuat <br />
+              Silahkan login dengan email dan password yang sudah anda daftarkan
+            </p>
+            <Link
+              to={"/login"}
+              className="btn w-100 fw-bold"
+              style={{
+                backgroundColor: "white",
+                color: "black",
+                borderRadius: "20px",
+              }}
+            >
+              Login sekarang
+            </Link>
+          </div>
         </div>
       </div>
     </div>

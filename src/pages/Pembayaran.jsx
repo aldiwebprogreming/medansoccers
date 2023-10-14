@@ -188,7 +188,8 @@ export default function Pembayaran({
                         onChange={(e) => handleChangeImg(e)}
                       />
                       <Form.Text className="text-muted">
-                        Masukan bukti pembayaran anda dengna benar dan jelas
+                        Masukan bukti pembayaran anda dengan benar dan jelas
+                        dengan format Gambar (JPG, JPEG dan PNG)
                       </Form.Text>
                     </Form.Group>
 
@@ -224,7 +225,7 @@ export default function Pembayaran({
                               Hei, {localStorage.getItem("nama")}{" "}
                             </strong>
                             <br></br>
-                            Pembayaran anda gagal, mohon untuk mencob lagi
+                            Pembayaran anda gagal, mohon untuk mencoba lagi
                             <center>
                               <a
                                 href={"/formbooking/" + idlapangan}
@@ -252,7 +253,7 @@ export default function Pembayaran({
                               Hei, {localStorage.getItem("nama")}{" "}
                             </strong>
                             <br></br>
-                            Pembayaran anda berhasil dikirm silahkan menunggu
+                            Pembayaran anda berhasil dikirim silahkan menunggu
                             persetujuan pembayaran anda
                           </h5>
                           <a

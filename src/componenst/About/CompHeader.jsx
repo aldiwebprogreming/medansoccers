@@ -12,9 +12,9 @@ export default function CompHeader() {
         }}
       >
         <div className="container my-5">
-          <h3 className="card-title mt-5">Tentang Medan Mini Soccers</h3>
+          <h3 className="card-title mt-5">Tentang Medan Mini Soccer</h3>
           <p className="card-text">
-            Apa yang kamu ketahui tentantang medan mini soccers
+            Apa yang kamu ketahui tentang medan mini soccer
           </p>
         </div>
       </div>

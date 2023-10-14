@@ -27,7 +27,7 @@ export default function Compabout() {
           <div className="card shadow" style={{ border: "none" }}>
             <div className="card-header">
               <div class="d-flex justify-content-between">
-                <p className="fw-bold">Tentang Medan Mini Soccers</p>
+                <p className="fw-bold">Tentang Medan Mini Soccer</p>
                 <p className="text-danger">
                   <i className="fas fa-list"></i>
                 </p>

@@ -10,6 +10,10 @@ import Loadformbooking from "../skeleton/loadformbooking";
 import Pembayaran from "./Pembayaran";
 import Databookinglapangan from "./Databookinglapangan";
 
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 export default function Formbooking() {
   const urlapi = process.env.REACT_APP_BASE_URL;
   const { idlapangan } = useParams();
@@ -29,6 +33,18 @@ export default function Formbooking() {
   const [hiddenbutton, setHiddenbutton] = useState(true);
   const [pagebooking, setPagebooking] = useState(true);
   const [pagedatabooking, setPagedatabooking] = useState(false);
+
+  const resvonsive = {
+    0: {
+      items: 1.2,
+    },
+    600: {
+      items: 1.2,
+    },
+    1000: {
+      items: 1.2,
+    },
+  };
 
   const date = new Date();
   let tgl = new Date();
@@ -268,16 +284,32 @@ export default function Formbooking() {
               <p className="text-secondary">
                 {" "}
                 Ketentuan dalam membooking lapangan adalah harus mengatur jam
-                bookin seefesien mungkin, Pastikan team dan lawan anda dapat
+                booking seefesien mungkin, Pastikan team dan lawan anda dapat
                 hadir tepak waktu, dan harus membayar uang booking sesuai yang
                 tertera di aplikasi
               </p>
-              <img
-                src="/img/bennerbooking.png"
-                className="img-fluid"
-                alt=""
-                style={{ borderRadius: "5px" }}
-              ></img>
+              <OwlCarousel
+                className="owl-theme"
+                loop
+                margin={4}
+                nav={false}
+                responsive={resvonsive}
+                dotsEach
+                autoplay
+              >
+                <img
+                  src="/img/bennerbooking.png"
+                  className="img-fluid"
+                  alt=""
+                  style={{ borderRadius: "5px" }}
+                ></img>
+                <img
+                  src="/img/dp.png"
+                  className="img-fluid"
+                  alt=""
+                  style={{ borderRadius: "5px" }}
+                ></img>
+              </OwlCarousel>
             </div>
           </div>
         ) : (
@@ -463,7 +495,13 @@ export default function Formbooking() {
                 <p>
                   Pembayaran booking lapangan hanya dapat di lakukan dengan
                   <strong> BANK TRANSFER</strong> dengan nomor rekening tujuan
-                  <strong> REK BCA : 6475383951 a/n Pendy Or Handoko </strong>
+                  <strong>
+                    {" "}
+                    REK BCA : 6475383951 a/n Pendy Or Handoko,{" "}
+                  </strong>{" "}
+                  Pembayaran Booking Lapangan <strong>Wajib DP 50% </strong>dari
+                  Harga yang sudah di tentukan, dengan syarat pelunasan{" "}
+                  <strong>(H-1) 1 hari sebelum jadwal main</strong>
                 </p>
                 <div className="row mb-3 text-secondary">
                   <div className="form-group mt-3 col-md-6">

@@ -100,7 +100,7 @@ export default function Intro() {
             </h5>
             <p className="text-center mx-2 text-white">
               Aplikasi mini soccer satu-satunya di Kota Medan, yuk buruan
-              install aplikasinya di smartpone anda
+              booking lapangan di medan mini soccer
             </p>
 
             <center>
@@ -165,10 +165,10 @@ export default function Intro() {
               kemudahan dalam bermain mini soccer,
             </p>
             <center>
-              <Logingoogle />
+              {/* <Logingoogle /> */}
               <hr />
 
-              {/* <Link
+              <Link
                 to="/login"
                 className="text-dark fw-bold btn"
                 style={{
@@ -179,7 +179,7 @@ export default function Intro() {
               >
                 Login dengan akun mini soccer anda{" "}
                 <i className="fas fa-angle-right"></i>
-              </Link> */}
+              </Link>
             </center>
           </div>
         </OwlCarousel>

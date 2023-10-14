@@ -94,7 +94,21 @@ export default function BookingLapangan() {
 
                   <div>
                     <p>
+                      <i class="fa-solid fa-shower"></i> Water Heater
+                    </p>
+                  </div>
+                </div>
+
+                <div className="d-flex justify-content-between text-secondary mt-3">
+                  <div>
+                    <p>
                       <i class="fa-solid fa-toilet-paper"></i> Toilet
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      <i className="fa-solid fa-futbol"></i> Rumput
+                      Bersertifikat FIFA
                     </p>
                   </div>
                 </div>

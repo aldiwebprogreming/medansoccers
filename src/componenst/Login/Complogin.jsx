@@ -126,6 +126,11 @@ export default function Complogin() {
                     Daftar sekarang
                   </Link>
                 </p>
+                <p className="text-center">
+                  <Link className="text-white" to="/lupapassword">
+                    Lupa password ?
+                  </Link>
+                </p>
               </div>
             </div>
           ) : (

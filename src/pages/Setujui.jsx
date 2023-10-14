@@ -58,8 +58,7 @@ export default function Setujui() {
           Halaman Persetujuan Pembayaran
         </h5>
         <p className="text-center text-secondary">
-          Setujui pembayaran jika pembayaran yang di lakukan sudah benar{" "}
-          {iduser}
+          Setujui pembayaran jika pembayaran yang di lakukan sudah benar
         </p>
         <p className="text-center">
           Bank Pengirim : {dataBooking.norek} <br></br>Atas Nama :{" "}
