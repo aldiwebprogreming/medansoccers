@@ -12,6 +12,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Loadmenu from "../skeleton/Loadmenu";
 import Benner from "../componenst/Benner";
+import Notifikasi from "../componenst/Notifikasi";
 
 export default function Home() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -41,6 +42,7 @@ export default function Home() {
 
       <div className="" style={{ position: "relative", bottom: "70px" }}>
         <div className="card-body">
+          <Notifikasi />
           <Vanue />
           <hr />
           {/* <Comteam /> */}
