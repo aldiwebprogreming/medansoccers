@@ -440,13 +440,21 @@ export default function Formbooking() {
                             </div>
                           </div>
                           <div className="d-flex justify-content-between">
-                            <div>
+                            <div
+                              className={
+                                jm.harga == jm.harga_diskon ? "d-none" : ""
+                              }
+                            >
                               <small className="fw-bold text-secondary">
                                 <s>{formatrupiah(jm.harga)}</s>
                               </small>{" "}
                             </div>
 
-                            <div>
+                            <div
+                              className={
+                                jm.harga == jm.harga_diskon ? "d-none" : ""
+                              }
+                            >
                               <span
                                 className={
                                   jm.time == "Promo"
