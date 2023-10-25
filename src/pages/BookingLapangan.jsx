@@ -37,7 +37,15 @@ export default function BookingLapangan() {
         judul={lapangan.lapangan}
         title={lapangan.pasilitas}
       />
-      {load ? <CompSlide gambar={lapangan.gambar} /> : <Loadgambar />}
+      {load ? (
+        <CompSlide
+          gambar={lapangan.gambar}
+          gambar1={lapangan.gambar1}
+          gambar2={lapangan.gambar2}
+        />
+      ) : (
+        <Loadgambar />
+      )}
 
       {load ? (
         <>
