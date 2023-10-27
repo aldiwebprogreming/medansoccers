@@ -203,7 +203,9 @@ export default function Formbooking() {
         urlapi + "Jammain?tgl=" + tgl + "&&lapangan=" + idlapangan
       );
       setJammain(response.data);
+      console.log(tglsekarang);
       setLoad(true);
+
       // console.log(response.data);
     } catch (error) {}
   };
@@ -270,7 +272,7 @@ export default function Formbooking() {
   useEffect(() => {
     setTimeout(() => {
       getLapangan();
-      getJammain();
+      getJammain(tglsekarang);
       cekBookinglapangan(tglsrc);
     }, 300);
   }, []);
@@ -362,6 +364,15 @@ export default function Formbooking() {
                   <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
                   <br />
                   Tanggal yang ada pilih sudah lewat
+                </p>
+
+                <p
+                  className={
+                    jammain == "" ? "text-center my-5 text-danger" : "d-none"
+                  }
+                >
+                  Jam Booking <strong>{namaLapangan}</strong> untuk saat ini
+                  belum tersedia, cobalah atur dengan tanggal yang lain
                 </p>
 
                 {jammain.map((jm, index) => {
