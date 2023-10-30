@@ -13,6 +13,7 @@ import Databookinglapangan from "./Databookinglapangan";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Datalapangan from "./Datalapangan";
 
 export default function Formbooking() {
   const urlapi = process.env.REACT_APP_BASE_URL;
@@ -33,6 +34,7 @@ export default function Formbooking() {
   const [hiddenbutton, setHiddenbutton] = useState(true);
   const [pagebooking, setPagebooking] = useState(true);
   const [pagedatabooking, setPagedatabooking] = useState(false);
+  const [pagejam, setPagajam] = useState(true);
 
   const resvonsive = {
     0: {
@@ -337,12 +339,13 @@ export default function Formbooking() {
                   style={{ cursor: "pointer" }}
                   onClick={() => showDatabooking()}
                 >
-                  <i className="far fa-futbol"></i> Data Booking
+                  <i className="far fa-futbol"></i> Lapangan Lainya
                 </p>
               </div>
 
               <div className={pagedatabooking ? "" : "d-none"}>
-                <Databookinglapangan />
+                {/* <Databookinglapangan /> */}
+                <Datalapangan />
               </div>
 
               <div className={pagebooking ? "" : "d-none"}>
@@ -355,146 +358,164 @@ export default function Formbooking() {
                 />
                 <hr />
 
-                <p
-                  className={
-                    alerttglsudahlewat ? "text-center text-secondary" : "d-none"
-                  }
-                  style={{ marginTop: "100px", marginBottom: "100px" }}
-                >
-                  <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
-                  <br />
-                  Tanggal yang ada pilih sudah lewat
-                </p>
-
-                <p
-                  className={
-                    jammain == "" ? "text-center my-5 text-danger" : "d-none"
-                  }
-                >
-                  Jam Booking <strong>{namaLapangan}</strong> untuk saat ini
-                  belum tersedia, cobalah atur dengan tanggal yang lain
-                </p>
-
-                {jammain.map((jm, index) => {
-                  return (
-                    <div
-                      key={index}
+                <div className="card">
+                  <div className="card-header">
+                    <div className="d-flex justify-content-between">
+                      <strong> {namaLapangan}</strong>
+                      <i
+                        className="fas fa-circle-chevron-down"
+                        onClick={() => setPagajam(!pagejam)}
+                      ></i>
+                    </div>
+                  </div>
+                  <div className={pagejam ? "card-body" : "d-none"}>
+                    <p
                       className={
-                        jam > jm.jam_mulai && tglsrc == tglsekarang
-                          ? "d-none"
-                          : tglsrc < tglsekarang
-                          ? "d-none"
-                          : ""
+                        alerttglsudahlewat
+                          ? "text-center text-secondary"
+                          : "d-none"
+                      }
+                      style={{ marginTop: "100px", marginBottom: "100px" }}
+                    >
+                      <strong>Mohon Maaf {localStorage.getItem("nama")}</strong>
+                      <br />
+                      Tanggal yang ada pilih sudah lewat
+                    </p>
+
+                    <p
+                      className={
+                        jammain == ""
+                          ? "text-center my-5 text-danger"
+                          : "d-none"
                       }
                     >
-                      <div
-                        className={
-                          idjambooking == jm.id
-                            ? "card mt-2 border-primary"
-                            : "card mt-2"
-                        }
-                        disabled
-                        onClick={() => handleJambooking(jm.id, jm.harga_diskon)}
-                        key={jm.id}
-                      >
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <p>{jm.jam_mulai} WIB</p>
-                            <p className="fw-bold text-center">
-                              -
-                              {cekbookinglap.map((bk, index) => {
-                                return (
-                                  <div key={index}>
-                                    {bk.jam_mulai == jm.jam_mulai &&
-                                    bk.status_pembayaran == "200" ? (
-                                      <>
-                                        <label className="text-danger">
-                                          Booked
-                                        </label>
-                                        <br></br>
-                                        <small>
-                                          {localStorage.getItem("id") ==
-                                          bk.iduser ? (
+                      Jam Booking <strong>{namaLapangan}</strong> untuk saat ini
+                      belum tersedia, cobalah atur dengan tanggal yang lain
+                    </p>
+                    {jammain.map((jm, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={
+                            jam > jm.jam_mulai && tglsrc == tglsekarang
+                              ? "d-none"
+                              : tglsrc < tglsekarang
+                              ? "d-none"
+                              : ""
+                          }
+                        >
+                          <div
+                            className={
+                              idjambooking == jm.id
+                                ? "card mt-2 border-primary"
+                                : "card mt-2"
+                            }
+                            disabled
+                            onClick={() =>
+                              handleJambooking(jm.id, jm.harga_diskon)
+                            }
+                            key={jm.id}
+                          >
+                            <div className="card-body">
+                              <div className="d-flex justify-content-between">
+                                <p>{jm.jam_mulai} WIB</p>
+                                <p className="fw-bold text-center">
+                                  -
+                                  {cekbookinglap.map((bk, index) => {
+                                    return (
+                                      <div key={index}>
+                                        {bk.jam_mulai == jm.jam_mulai &&
+                                        bk.status_pembayaran == "200" ? (
+                                          <>
+                                            <label className="text-danger">
+                                              Booked
+                                            </label>
+                                            <br></br>
                                             <small>
-                                              {localStorage.getItem("nama")}
+                                              {localStorage.getItem("id") ==
+                                              bk.iduser ? (
+                                                <small>
+                                                  {localStorage.getItem("nama")}
+                                                </small>
+                                              ) : (
+                                                ""
+                                              )}
                                             </small>
-                                          ) : (
-                                            ""
-                                          )}
-                                        </small>
-                                      </>
-                                    ) : localStorage.getItem("id") ==
-                                        bk.iduser &&
-                                      bk.jam_mulai == jm.jam_mulai &&
-                                      bk.status_pembayaran == "201" ? (
-                                      <small className="text-danger">
-                                        Menunggu Approve
-                                      </small>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </div>
-                                );
-                              })}
-                            </p>
+                                          </>
+                                        ) : localStorage.getItem("id") ==
+                                            bk.iduser &&
+                                          bk.jam_mulai == jm.jam_mulai &&
+                                          bk.status_pembayaran == "201" ? (
+                                          <small className="text-danger">
+                                            Menunggu Approve
+                                          </small>
+                                        ) : (
+                                          ""
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </p>
 
-                            <p>{jm.jam_berakhir} WIB</p>
+                                <p>{jm.jam_berakhir} WIB</p>
 
-                            <div
-                              className="form-check form-check-inline"
-                              style={{ display: "none" }}
-                            >
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value={jm.id}
-                                id="flexCheckDefault"
-                              />
-                            </div>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <div
-                              className={
-                                jm.harga == jm.harga_diskon ? "d-none" : ""
-                              }
-                            >
-                              <small className="fw-bold text-secondary">
-                                <s>{formatrupiah(jm.harga)}</s>
-                              </small>{" "}
-                            </div>
+                                <div
+                                  className="form-check form-check-inline"
+                                  style={{ display: "none" }}
+                                >
+                                  <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value={jm.id}
+                                    id="flexCheckDefault"
+                                  />
+                                </div>
+                              </div>
+                              <div className="d-flex justify-content-between">
+                                <div
+                                  className={
+                                    jm.harga == jm.harga_diskon ? "d-none" : ""
+                                  }
+                                >
+                                  <small className="fw-bold text-secondary">
+                                    <s>{formatrupiah(jm.harga)}</s>
+                                  </small>{" "}
+                                </div>
 
-                            <div
-                              className={
-                                jm.harga == jm.harga_diskon ? "d-none" : ""
-                              }
-                            >
-                              <span
-                                className={
-                                  jm.time == "Promo"
-                                    ? "badge text-bg-primary"
-                                    : jm.time == "Hot"
-                                    ? "badge text-bg-danger"
-                                    : "badge text-bg-success"
-                                }
-                                style={{ width: "50px" }}
-                              >
-                                {jm.time}
-                              </span>
+                                <div
+                                  className={
+                                    jm.harga == jm.harga_diskon ? "d-none" : ""
+                                  }
+                                >
+                                  <span
+                                    className={
+                                      jm.time == "Promo"
+                                        ? "badge text-bg-primary"
+                                        : jm.time == "Hot"
+                                        ? "badge text-bg-danger"
+                                        : "badge text-bg-success"
+                                    }
+                                    style={{ width: "50px" }}
+                                  >
+                                    {jm.time}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="d-flex justify-content-between mt-2">
+                                <span className="badge text-bg-dark fw-bold">
+                                  {formatrupiah(jm.harga_diskon)}
+                                </span>{" "}
+                                <span className="badge text-bg-dark fw-bold">
+                                  SOFT OPENING
+                                </span>{" "}
+                              </div>
                             </div>
-                          </div>
-                          <div className="d-flex justify-content-between mt-2">
-                            <span className="badge text-bg-dark fw-bold">
-                              {formatrupiah(jm.harga_diskon)}
-                            </span>{" "}
-                            <span className="badge text-bg-dark fw-bold">
-                              SOFT OPENING
-                            </span>{" "}
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
