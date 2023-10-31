@@ -44,10 +44,6 @@ export default function Datalapangan() {
                           <label className="fw-bold text-secondary">
                             {lap.lapangan}
                           </label>
-
-                          {/* <small className="fw-bold text-success">
-                                {"Rp."} {lap.harga_perjam} / Jam
-                              </small> */}
                           <br></br>
                           <p className="text-secondary"> {lap.pasilitas}</p>
                         </div>
