@@ -44,6 +44,10 @@ function App() {
                   path="/formbooking/:idlapangan"
                   element={<Formbooking />}
                 />
+                <Route
+                  path="/formbooking/:idlapangan/:tglsrcbooking"
+                  element={<Formbooking />}
+                />
                 <Route path="/about" element={<About />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/jadwalmemberkarir" element={<Jadwalmember />} />

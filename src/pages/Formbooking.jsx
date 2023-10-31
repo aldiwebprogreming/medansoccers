@@ -3,7 +3,7 @@ import Navbar from "../componenst/Navbar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loadketentuanbooking from "../skeleton/Loadketentuanbooking";
 import Loadjambooking from "../skeleton/Loadjambooking";
 import Loadformbooking from "../skeleton/loadformbooking";
@@ -278,15 +278,7 @@ export default function Formbooking() {
     );
     try {
       setLapanganlainya(response.data);
-      console.log(response.data);
     } catch (error) {}
-  };
-
-  const handlelainya = (e) => {
-    getlapanganlainya();
-    getLapangan();
-    getJammain(tglsrc);
-    cekBookinglapangan(tglsrc);
   };
 
   useEffect(() => {
@@ -378,18 +370,12 @@ export default function Formbooking() {
                 <hr />
 
                 <div className="card">
-                  <div
-                    className="card-header"
-                    onClick={() => setPagajam(!pagejam)}
-                  >
+                  <div className="card-header">
                     <div className="d-flex justify-content-between">
                       <strong> {namaLapangan}</strong>
                       <i
-                        className={
-                          pagejam
-                            ? "fas fa-circle-chevron-down"
-                            : "fas fa-circle-chevron-up"
-                        }
+                        className="fas fa-circle-chevron-down"
+                        onClick={() => setPagajam(!pagejam)}
                       ></i>
                     </div>
                   </div>
@@ -547,46 +533,55 @@ export default function Formbooking() {
         ) : (
           <Loadjambooking />
         )}
-        <div className={pagebooking == false ? "d-none" : ""}>
+        {/* <div className={pagebooking == false ? "d-none" : ""}>
           <div className="container">
             <p className="mt-2 text-primary fw-bold">Lapangan lainya</p>
             <hr />
             {lapanganlainya.map((lpl, index) => {
               return (
-                <Link
-                  key={index}
-                  onClick={() => handlelainya(lpl.id)}
-                  to={"/formbooking/" + lpl.id}
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="card cardBooking shadow mt-3">
-                    <div className="row g-0">
-                      <div className="col-6 col-md-5">
-                        <img
-                          src={lpl.gambar}
-                          className="img-fluid"
-                          alt="Responsive image"
-                        />
-                      </div>
-                      <div className="col-6 col-md-7">
-                        <div className="card-body d-flex flex-column">
-                          <div className="h-100">
-                            <label className="fw-bold text-secondary">
-                              {lpl.lapangan}
-                            </label>
-                            <br></br>
-                            <p className="text-secondary"> {lpl.pasilitas}</p>
+                <div key={lpl.id}>
+                  <>
+                    <a
+                      href={"/formbooking/" + lpl.id}
+                      style={{ textDecoration: "none" }}
+                      key={lpl.id}
+                    >
+                      <div
+                        className="card cardBooking shadow mt-3"
+                        key={lpl.id}
+                      >
+                        <div className="row g-0">
+                          <div className="col-6 col-md-5">
+                            <img
+                              src={lpl.gambar}
+                              className="img-fluid"
+                              alt="Responsive image"
+                            />
+                          </div>
+                          <div className="col-6 col-md-7">
+                            <div className="card-body d-flex flex-column">
+                              <div className="h-100">
+                                <label className="fw-bold text-secondary">
+                                  {lpl.lapangan}
+                                </label>
+                                <br></br>
+                                <p className="text-secondary">
+                                  {" "}
+                                  {lpl.pasilitas}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </Link>
+                    </a>
+                  </>
+                </div>
               );
             })}
             <br />
           </div>
-        </div>
+        </div> */}
         {load ? (
           <div className={pagebooking ? "" : "d-none"}>
             <div
