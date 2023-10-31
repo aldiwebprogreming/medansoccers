@@ -278,11 +278,11 @@ export default function Formbooking() {
     );
     try {
       setLapanganlainya(response.data);
+      console.log(response.data);
     } catch (error) {}
   };
 
   const handlelainya = (e) => {
-    // console.log(e);
     getlapanganlainya();
     getLapangan();
     getJammain(tglsrc);
@@ -553,41 +553,35 @@ export default function Formbooking() {
             <hr />
             {lapanganlainya.map((lpl, index) => {
               return (
-                <div key={index}>
-                  <>
-                    <Link
-                      onClick={(e) => handlelainya(e)}
-                      to={"/formbooking/" + lpl.id}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <div className="card cardBooking shadow mt-3">
-                        <div className="row g-0">
-                          <div className="col-6 col-md-5">
-                            <img
-                              src={lpl.gambar}
-                              className="img-fluid"
-                              alt="Responsive image"
-                            />
-                          </div>
-                          <div className="col-6 col-md-7">
-                            <div className="card-body d-flex flex-column">
-                              <div className="h-100">
-                                <label className="fw-bold text-secondary">
-                                  {lpl.lapangan}
-                                </label>
-                                <br></br>
-                                <p className="text-secondary">
-                                  {" "}
-                                  {lpl.pasilitas}
-                                </p>
-                              </div>
-                            </div>
+                <Link
+                  key={index}
+                  onClick={() => handlelainya(lpl.id)}
+                  to={"/formbooking/" + lpl.id}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="card cardBooking shadow mt-3">
+                    <div className="row g-0">
+                      <div className="col-6 col-md-5">
+                        <img
+                          src={lpl.gambar}
+                          className="img-fluid"
+                          alt="Responsive image"
+                        />
+                      </div>
+                      <div className="col-6 col-md-7">
+                        <div className="card-body d-flex flex-column">
+                          <div className="h-100">
+                            <label className="fw-bold text-secondary">
+                              {lpl.lapangan}
+                            </label>
+                            <br></br>
+                            <p className="text-secondary"> {lpl.pasilitas}</p>
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  </>
-                </div>
+                    </div>
+                  </div>
+                </Link>
               );
             })}
             <br />
